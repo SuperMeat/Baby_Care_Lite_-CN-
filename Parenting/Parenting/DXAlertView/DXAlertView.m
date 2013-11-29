@@ -84,7 +84,7 @@
         //self.alertContentLabel.numberOfLines = 0;
         self.alertContentLabel.editable = NO;
         self.alertContentLabel.backgroundColor = [UIColor clearColor];
-        self.alertContentLabel.textAlignment = self.alertTitleLabel.textAlignment = NSTextAlignmentCenter;
+        self.alertTitleLabel.textAlignment = NSTextAlignmentCenter;
         self.alertContentLabel.textColor = [UIColor colorWithRed:127.0/255.0 green:127.0/255.0 blue:127.0/255.0 alpha:1];
         self.alertContentLabel.font = [UIFont systemFontOfSize:15.0f];
         [self addSubview:self.alertContentLabel];

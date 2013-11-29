@@ -282,8 +282,6 @@
     DXAlertView *alert = [[DXAlertView alloc] initWithTitle:title contentText:mAd.mContent leftButtonTitle:@"Ok" rightButtonTitle:nil];
     [alert show];
     //[self pushViewController:wavc animated:YES];
-    
-    //fuckarvi 123123   ttt
 }
 
 @end

@@ -282,6 +282,8 @@
     DXAlertView *alert = [[DXAlertView alloc] initWithTitle:title contentText:mAd.mContent leftButtonTitle:@"Ok" rightButtonTitle:nil];
     [alert show];
     //[self pushViewController:wavc animated:YES];
+    
+    //test
 }
 
 @end

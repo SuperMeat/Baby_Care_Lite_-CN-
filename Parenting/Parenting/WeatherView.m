@@ -283,7 +283,7 @@
     [alert show];
     //[self pushViewController:wavc animated:YES];
     
-    //fuckarvi 123123
+    //fuckarvi 123123   ttt
 }
 
 @end

@@ -11,7 +11,7 @@
 
 
 #define kAlertWidth 245.0f
-#define kAlertHeight 160.0f
+#define kAlertHeight 210.0f
 
 @interface DXAlertView ()
 {
@@ -19,7 +19,7 @@
 }
 
 @property (nonatomic, strong) UILabel *alertTitleLabel;
-@property (nonatomic, strong) UILabel *alertContentLabel;
+@property (nonatomic, strong) UITextView *alertContentLabel;
 @property (nonatomic, strong) UIButton *leftBtn;
 @property (nonatomic, strong) UIButton *rightBtn;
 @property (nonatomic, strong) UIView *backImageView;
@@ -62,13 +62,28 @@
         self.layer.cornerRadius = 5.0;
         self.backgroundColor = [UIColor whiteColor];
         self.alertTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kTitleYOffset, kAlertWidth, kTitleHeight)];
+        
+        if ([title isEqual:@"Excellent"]) {
+            self.alertTitleLabel.textColor = [UIColor colorWithRed:0.133 green:1.000 blue:0.634 alpha:1.000];
+        }
+        else if ([title isEqual:@"Good"])
+        {
+            self.alertTitleLabel.textColor = [UIColor colorWithRed:0.772 green:1.000 blue:0.043 alpha:1.000];
+        }
+        else
+        {
+            self.alertTitleLabel.textColor = [UIColor colorWithRed:0.881 green:0.244 blue:0.241 alpha:1.000];
+        }
+        
         self.alertTitleLabel.font = [UIFont boldSystemFontOfSize:20.0f];
-        self.alertTitleLabel.textColor = [UIColor colorWithRed:56.0/255.0 green:64.0/255.0 blue:71.0/255.0 alpha:1];
+        //self.alertTitleLabel.textColor = [UIColor colorWithRed:56.0/255.0 green:64.0/255.0 blue:71.0/255.0 alpha:1];
         [self addSubview:self.alertTitleLabel];
         
         CGFloat contentLabelWidth = kAlertWidth - 16;
-        self.alertContentLabel = [[UILabel alloc] initWithFrame:CGRectMake((kAlertWidth - contentLabelWidth) * 0.5, CGRectGetMaxY(self.alertTitleLabel.frame), contentLabelWidth, 60)];
-        self.alertContentLabel.numberOfLines = 0;
+        self.alertContentLabel = [[UITextView alloc] initWithFrame:CGRectMake((kAlertWidth - contentLabelWidth) * 0.5, CGRectGetMaxY(self.alertTitleLabel.frame)+10, contentLabelWidth, 60+40)];
+        //self.alertContentLabel.numberOfLines = 0;
+        self.alertContentLabel.editable = NO;
+        self.alertContentLabel.backgroundColor = [UIColor clearColor];
         self.alertContentLabel.textAlignment = self.alertTitleLabel.textAlignment = NSTextAlignmentCenter;
         self.alertContentLabel.textColor = [UIColor colorWithRed:127.0/255.0 green:127.0/255.0 blue:127.0/255.0 alpha:1];
         self.alertContentLabel.font = [UIFont systemFontOfSize:15.0f];

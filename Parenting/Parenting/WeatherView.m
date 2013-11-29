@@ -265,8 +265,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    WeatherAdviseViewController *wavc = [[WeatherAdviseViewController alloc] initWithAdviseData:mAd andAdviseLevel:mAl];
-    [self addSubview:wavc.view];
+    NSString *title;
+    switch (mAl.mLevel) {
+        case 1:
+            title = @"Excellent";
+            break;
+        case 2:
+            title = @"Good";
+            break;
+        case 3:
+            title = @"Bad";
+            break;
+        default:
+            break;
+    }
+    DXAlertView *alert = [[DXAlertView alloc] initWithTitle:title contentText:mAd.mContent leftButtonTitle:@"Ok" rightButtonTitle:nil];
+    [alert show];
     //[self pushViewController:wavc animated:YES];
 }
 

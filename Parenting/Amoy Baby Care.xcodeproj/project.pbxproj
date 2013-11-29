@@ -48,6 +48,11 @@
 		48152E2318486C66009A4900 /* send_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48152E0C18486C66009A4900 /* send_selected@2x.png */; };
 		48152E2E1848721F009A4900 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48152E2C1848721F009A4900 /* GuideViewController.m */; };
 		48152E2F1848721F009A4900 /* GuideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48152E2D1848721F009A4900 /* GuideViewController.xib */; };
+		48152E3718487EB0009A4900 /* btn_close_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 48152E3118487EB0009A4900 /* btn_close_normal.png */; };
+		48152E3818487EB0009A4900 /* btn_close_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48152E3218487EB0009A4900 /* btn_close_normal@2x.png */; };
+		48152E3918487EB0009A4900 /* btn_close_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 48152E3318487EB0009A4900 /* btn_close_selected.png */; };
+		48152E3A18487EB0009A4900 /* btn_close_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48152E3418487EB0009A4900 /* btn_close_selected@2x.png */; };
+		48152E3B18487EB0009A4900 /* DXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48152E3618487EB0009A4900 /* DXAlertView.m */; };
 		48357E231846ED2A00BCF799 /* EnvironmentAdviceDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 48357E221846ED2A00BCF799 /* EnvironmentAdviceDataBase.m */; };
 		48357E2618472BB500BCF799 /* AdviseLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48357E2518472BB500BCF799 /* AdviseLevel.m */; };
 		48357E2A18473EC400BCF799 /* WeatherAdviseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48357E2818473EC400BCF799 /* WeatherAdviseViewController.m */; };
@@ -609,6 +614,12 @@
 		48152E2B1848721F009A4900 /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
 		48152E2C1848721F009A4900 /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
 		48152E2D1848721F009A4900 /* GuideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideViewController.xib; sourceTree = "<group>"; };
+		48152E3118487EB0009A4900 /* btn_close_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_close_normal.png; sourceTree = "<group>"; };
+		48152E3218487EB0009A4900 /* btn_close_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_close_normal@2x.png"; sourceTree = "<group>"; };
+		48152E3318487EB0009A4900 /* btn_close_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_close_selected.png; sourceTree = "<group>"; };
+		48152E3418487EB0009A4900 /* btn_close_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_close_selected@2x.png"; sourceTree = "<group>"; };
+		48152E3518487EB0009A4900 /* DXAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXAlertView.h; sourceTree = "<group>"; };
+		48152E3618487EB0009A4900 /* DXAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXAlertView.m; sourceTree = "<group>"; };
 		48357E211846ED2A00BCF799 /* EnvironmentAdviceDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnvironmentAdviceDataBase.h; path = LocalData/EnvironmentAdviceDataBase.h; sourceTree = "<group>"; };
 		48357E221846ED2A00BCF799 /* EnvironmentAdviceDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EnvironmentAdviceDataBase.m; path = LocalData/EnvironmentAdviceDataBase.m; sourceTree = "<group>"; };
 		48357E2418472BB500BCF799 /* AdviseLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdviseLevel.h; path = AdviseLevel/AdviseLevel.h; sourceTree = "<group>"; };
@@ -1402,6 +1413,19 @@
 			name = Guide;
 			sourceTree = "<group>";
 		};
+		48152E3018487EB0009A4900 /* DXAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				48152E3118487EB0009A4900 /* btn_close_normal.png */,
+				48152E3218487EB0009A4900 /* btn_close_normal@2x.png */,
+				48152E3318487EB0009A4900 /* btn_close_selected.png */,
+				48152E3418487EB0009A4900 /* btn_close_selected@2x.png */,
+				48152E3518487EB0009A4900 /* DXAlertView.h */,
+				48152E3618487EB0009A4900 /* DXAlertView.m */,
+			);
+			path = DXAlertView;
+			sourceTree = "<group>";
+		};
 		4855BC18182B237800F02A3E /* UMengfeedback */ = {
 			isa = PBXGroup;
 			children = (
@@ -1529,6 +1553,7 @@
 		4855BCF21830AF3E00F02A3E /* ThirdSDK */ = {
 			isa = PBXGroup;
 			children = (
+				48152E3018487EB0009A4900 /* DXAlertView */,
 				48152DD018486AEA009A4900 /* EGO_Refresh */,
 				489AABF2180E777200EB607E /* RNGridMenu */,
 				48B7813E182A20610073EEBD /* util */,
@@ -2760,6 +2785,7 @@
 				48574A8D183B366B000D921B /* UMSocialLocalizable.strings in Resources */,
 				CE01685D174B49D300462363 /* btn_stop_focus@2x.png in Resources */,
 				CE01685E174B49D300462363 /* btn_wed.png in Resources */,
+				48152E3718487EB0009A4900 /* btn_close_normal.png in Resources */,
 				485749DF18332860000D921B /* Icon-Small-50.png in Resources */,
 				CE01685F174B49D300462363 /* btn_wed@2x.png in Resources */,
 				480C04D21828C9E600846E13 /* Submit_Btn@2x.png in Resources */,
@@ -2842,6 +2868,7 @@
 				485749D918332860000D921B /* 29.png in Resources */,
 				48574A93183B366B000D921B /* UMSCommentInputController.xib in Resources */,
 				CE382736174E0A2F009AD8DA /* bg_circle_process@2x.png in Resources */,
+				48152E3A18487EB0009A4900 /* btn_close_selected@2x.png in Resources */,
 				CE382737174E0A2F009AD8DA /* bg_list_item.png in Resources */,
 				48DEA7DB17F4703400A11316 /* Play_10.jpg in Resources */,
 				48DEA79D17F45E0C00A11316 /* Feed_2.jpg in Resources */,
@@ -2954,6 +2981,7 @@
 				48DEA7DE17F4703400A11316 /* Play_13.jpg in Resources */,
 				CE638B08174F4FC2009A60AB /* btn_bath_focus.png in Resources */,
 				CE638B09174F4FC2009A60AB /* btn_bath_focus@2x.png in Resources */,
+				48152E3918487EB0009A4900 /* btn_close_selected.png in Resources */,
 				48DEA7D517F4703400A11316 /* Play_4.jpg in Resources */,
 				CE638B0A174F4FC2009A60AB /* btn_day.png in Resources */,
 				CE638B0C174F4FC2009A60AB /* btn_day_focus.png in Resources */,
@@ -3038,6 +3066,7 @@
 				CE075A2917505AE100C57E27 /* save_dirty.png in Resources */,
 				CE075A2A17505AE100C57E27 /* save_dirty@2x.png in Resources */,
 				CE075A2B17505AE100C57E27 /* save_dry.png in Resources */,
+				48152E3818487EB0009A4900 /* btn_close_normal@2x.png in Resources */,
 				CE075A2C17505AE100C57E27 /* save_dry@2x.png in Resources */,
 				CE075A2D17505AE100C57E27 /* save_radio.png in Resources */,
 				CE075A2E17505AE100C57E27 /* save_radio@2x.png in Resources */,
@@ -3183,6 +3212,7 @@
 				48152DF218486B13009A4900 /* UMFeedbackTableViewCellLeft.m in Sources */,
 				CE0C33D817618AC200B1B683 /* DataBase.m in Sources */,
 				485749A01831C423000D921B /* MissionViewController.m in Sources */,
+				48152E3B18487EB0009A4900 /* DXAlertView.m in Sources */,
 				CE0C33DC17618AF100B1B683 /* SummaryViewController.m in Sources */,
 				CE69F1B6176AAAF600E26333 /* SummaryItem.m in Sources */,
 				F365CADC176C537900EA1406 /* CustumCell.m in Sources */,

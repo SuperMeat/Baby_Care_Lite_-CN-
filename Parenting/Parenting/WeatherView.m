@@ -283,7 +283,8 @@
     [alert show];
     //[self pushViewController:wavc animated:YES];
     
-    //test
+    //test 哈哈哈
+    //test2 啦啦啦
 }
 
 @end

@@ -214,6 +214,9 @@
     UIGraphicsEndImageContext();
     
     return image;
+    
+    
+    //SSS
 }
 
 @end

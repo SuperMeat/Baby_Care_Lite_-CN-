@@ -93,5 +93,5 @@
 
 #define JPUSHAPPKEY    @"415aa5c57db9b6d73d91c2af"
 
-#define GuideVerson    @"1.5.2"
+#define GuideVerson    @"1.5.56"
 

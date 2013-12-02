@@ -45,18 +45,17 @@
     
     // 初始化数组
     _slideImages = [[NSMutableArray alloc] init];
-    [_slideImages addObject:@"guide_1.png"];
-    [_slideImages addObject:@"guide_2.png"];
-    [_slideImages addObject:@"guide_3.png"];
-    [_slideImages addObject:@"guide_4.png"];
-    
-    // 初始化 pagecontrol x轴位置等于 windows宽度/2-控件宽度/2
-    _pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(110,0.875*fitHeight,100,18)]; // 初始化mypagecontrol
-    [_pageControl setCurrentPageIndicatorTintColor:[UIColor redColor]];
-    [_pageControl setPageIndicatorTintColor:[UIColor blackColor]];
-    _pageControl.numberOfPages = [self.slideImages count];
-    _pageControl.currentPage = 0;
-    [self.view addSubview:_pageControl];
+    if ([UIScreen mainScreen].bounds.size.height == 568) {
+        [_slideImages addObject:@"1136.1.png"];
+        [_slideImages addObject:@"1136.2.png"];
+        [_slideImages addObject:@"1136.3.png"];
+    }
+    else
+    {
+        [_slideImages addObject:@"960.1.png"];
+        [_slideImages addObject:@"960.2.png"];
+        [_slideImages addObject:@"960.3.png"];
+    }
     
     // 创建四个UImageIVew到UIScrollView中
     for (int i = 0;i<[_slideImages count];i++)
@@ -72,8 +71,11 @@
     [_scrollView scrollRectToVisible:CGRectMake(0,0,320,fitHeight) animated:NO];
     
     
-    UIButton *buttonSkip = [[UIButton alloc]initWithFrame:CGRectMake(320*(_slideImages.count-1)+110, 0.8*fitHeight, 100, 24)];
+    UIButton *buttonSkip = [[UIButton alloc]initWithFrame:CGRectMake(320*(_slideImages.count-1)+110, 0.8*fitHeight, 100, 44)];
     [buttonSkip setTitle:@"开始体验" forState:UIControlStateNormal];
+    buttonSkip.titleLabel.font = [UIFont fontWithName:@"Arial-BOLDMT" size:20.0f];
+    [buttonSkip setAlpha:0.8];
+    [buttonSkip setBackgroundImage:[UIImage imageNamed:@"btn1"] forState:UIControlStateNormal];
     [buttonSkip addTarget:self action:@selector(skipToMain:) forControlEvents:(UIControlEventTouchUpInside)];
     [_scrollView addSubview:buttonSkip];
 
@@ -86,19 +88,6 @@
 
 // scrollview 委托函数
 - (void)scrollViewDidScroll:(UIScrollView *)sender{
-    NSInteger offsetX =self.scrollView.contentOffset.x;
-    if (offsetX >=0 && offsetX <320) {
-        _pageControl.currentPage = 0;
-    }
-    else if (offsetX >=320 && offsetX <320*2){
-        _pageControl.currentPage = 1;
-    }
-    else if (offsetX >=320*2 && offsetX <320*3){
-        _pageControl.currentPage = 2;
-    }
-    else if (offsetX>=320*3 && offsetX < 320*4){
-        _pageControl.currentPage = 3;
-    }
 }
 
 // scrollview 委托函数

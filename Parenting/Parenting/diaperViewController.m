@@ -55,6 +55,7 @@
 
   //  [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"weather"];
     if (self.weather) {
+        self.weather.chooseType = QCM_TYPE_DIAPER;
         [self.weather refreshweather];
     }
     
@@ -157,6 +158,7 @@
 
     
     self.weather=[WeatherView weatherview];
+    self.weather.chooseType = QCM_TYPE_DIAPER;
     weather.frame=CGRectMake(0, 0+G_YADDONVERSION, 320, 200);
     [self.view addSubview:weather];
     NSLog(@"weather %@",weather);

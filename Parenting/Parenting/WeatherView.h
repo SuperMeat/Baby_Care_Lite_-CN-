@@ -16,11 +16,18 @@
     UITableView *table;
     NSString *tempcontent;
     int       templevel;
-    AdviseData  *mAd;
-    AdviseLevel *mAl;
+    //温度建议
+    AdviseData  *mAdTemp;
+    AdviseLevel *mAlTemp;
+    
+    //湿度建议
+    AdviseData  *mAdHumi;
+    AdviseLevel *mAlHumi;
+    
 }
 +(id)weatherview;
 @property(nonatomic,strong)NSMutableArray  *dataarray;
 @property (nonatomic, weak )id delete;
+@property int chooseType;
 -(void)refreshweather;
 @end

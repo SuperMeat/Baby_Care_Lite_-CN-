@@ -53,6 +53,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     if (self.weather) {
+        self.weather.chooseType = QCM_TYPE_SLEEP;
         [self.weather refreshweather];
     }
     
@@ -187,6 +188,7 @@
 
     
     self.weather=[WeatherView weatherview];
+    self.weather.chooseType = QCM_TYPE_SLEEP;
     weather.frame=CGRectMake(0, 0+G_YADDONVERSION, 320, 200);
     [self.view addSubview:weather];
     NSLog(@"weather %@",weather);

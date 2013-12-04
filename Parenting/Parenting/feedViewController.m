@@ -62,6 +62,7 @@
 {
     
     if (self.weather) {
+        self.weather.chooseType = QCM_TYPE_FEED;
         [self.weather refreshweather];
     }
     
@@ -225,7 +226,7 @@
     [self.view addSubview:ad];
     
     self.weather = [WeatherView weatherview];
-    
+    self.weather.chooseType = QCM_TYPE_FEED;
     weather.frame=CGRectMake(0, 0+G_YADDONVERSION, 320, 200);
     [self.view addSubview:weather];
     NSLog(@"weather %@",weather);

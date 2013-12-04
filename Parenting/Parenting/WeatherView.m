@@ -266,25 +266,25 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0 && mAl.mAdviseId > 0) {
-        NSString *title;
-        switch (mAl.mLevel) {
-            case 1:
-                title = @"Excellent";
-                break;
-            case 2:
-                title = @"Good";
-                break;
-            case 3:
-                title = @"Bad";
-                break;
-            default:
-                break;
-        }
-        DXAlertView *alert = [[DXAlertView alloc] initWithTitle:title contentText:mAd.mContent leftButtonTitle:nil rightButtonTitle:@"OK"];
-        [alert show];
-
-    }
+//    if (indexPath.section == 0 && mAl.mAdviseId > 0) {
+//        NSString *title;
+//        switch (mAl.mLevel) {
+//            case 1:
+//                title = @"Excellent";
+//                break;
+//            case 2:
+//                title = @"Good";
+//                break;
+//            case 3:
+//                title = @"Bad";
+//                break;
+//            default:
+//                break;
+//        }
+//        DXAlertView *alert = [[DXAlertView alloc] initWithTitle:title contentText:mAd.mContent leftButtonTitle:nil rightButtonTitle:@"OK"];
+//        [alert show];
+//
+//    }
 }
 
 @end

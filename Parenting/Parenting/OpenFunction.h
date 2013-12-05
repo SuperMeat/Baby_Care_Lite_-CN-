@@ -14,5 +14,8 @@
 + (void) openUserReviews;
 + (NSString*)getpm25description:(int)value;
 + (NSString*)getopenudid;
-
++ (NSString*)getMonthBeginAndEndWith:(NSDate *)newDate;
++ (NSString*)getWeekBeginAndEndWith:(NSDate *)newDate;
++ (long)getTimeStampFromDate:(NSDate*)date;
++ (NSDate*)getDateFromTimeStamp:(long)timestamp;
 @end

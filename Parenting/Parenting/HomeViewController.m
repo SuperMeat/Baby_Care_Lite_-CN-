@@ -23,23 +23,27 @@
     if (self) {
         //    [self.tabBarController.tabBarItem setImage:[UIImage imageNamed:@"menu1.png"]];
         //self.automaticallyAdjustsScrollViewInsets = NO;
+#define IOS7_OR_LATER   ( [[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending )
+        
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+        if ( IOS7_OR_LATER )
+        {
+            self.edgesForExtendedLayout = UIRectEdgeNone;
+            self.extendedLayoutIncludesOpaqueBars = NO;
+            self.modalPresentationCapturesStatusBarAppearance = NO;
+        }
+#endif  // #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
     }
     return self;
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;//隐藏为YES，显示为NO
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
-#define IOS7_OR_LATER   ( [[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending )
-    
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
-    if ( IOS7_OR_LATER )
-    {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.extendedLayoutIncludesOpaqueBars = NO;
-        self.modalPresentationCapturesStatusBarAppearance = NO;
-    }
-#endif  // #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
-    
     [self LoadData];
     if (birth != nil) {
         [birth setText:[BabyinfoViewController getbabyage]];
@@ -116,18 +120,16 @@
     
     
 }
+
 -(void)viewWillDisappear:(BOOL)animated
 {
     [timer invalidate];
-    
-    
 }
+
 -(void)viewDidDisappear:(BOOL)animated
 {
     
 }
-
-
 
 -(void)setting
 {
@@ -186,15 +188,18 @@
     NSLog(@"xml=%@",xmlstring);
     
 }
+
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     NSLog(@"error%@",error);
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if (tableView==actionTable) {
@@ -208,6 +213,7 @@
         return dataArray.count;
     }
 }
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
@@ -720,6 +726,11 @@
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        // iOS 7
+        [self prefersStatusBarHidden];
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    }
     [imagePicker dismissViewControllerAnimated:YES completion:nil];
 }
 

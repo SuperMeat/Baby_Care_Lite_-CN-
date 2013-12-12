@@ -75,6 +75,17 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+#define IOS7_OR_LATER   ( [[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending )
+    
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+    if ( IOS7_OR_LATER )
+    {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.extendedLayoutIncludesOpaqueBars = NO;
+        self.modalPresentationCapturesStatusBarAppearance = NO;
+    }
+#endif  // #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"gototips"]boolValue] == YES) {
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"gototips"];
     }

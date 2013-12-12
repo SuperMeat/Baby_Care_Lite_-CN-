@@ -12,6 +12,7 @@
 #import "BabyinfoViewController.h"
 #import "defaultAppDelegate.h"
 #import "UMFeedbackViewController.h"
+#import "MyLocalNofityViewController.h"
 
 @interface SettingViewController ()
 @property (strong, nonatomic) UITableView *settingTable;
@@ -83,6 +84,7 @@ messageView;
     SettingItem *_item6 = [[SettingItem alloc]init];
     SettingItem *_item7 = [[SettingItem alloc]init];
     SettingItem *_item8 = [[SettingItem alloc]init];
+    SettingItem *_item9 = [[SettingItem alloc]init];
     
     _item1.name=NSLocalizedString(@"Baby information",nil);
     _item2.name=NSLocalizedString(@"Metric/Imperial",nil);
@@ -93,6 +95,7 @@ messageView;
     _item6.name=NSLocalizedString(@"Submit feedback/improvements",nil);
     _item7.name=NSLocalizedString(@"Copyright",nil);
     _item8.name=NSLocalizedString(@"Clear all logged data",nil);
+    _item9.name=NSLocalizedString(@"LocalNotify", nil);
     
     UIButton *detailforbaby=[UIButton buttonWithType:UIButtonTypeCustom];
     [detailforbaby setImage:[[UIImage imageNamed:@"btn_right.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(8, 8, 8, 8)] forState:UIControlStateNormal];
@@ -101,6 +104,10 @@ messageView;
     UIButton *detailforReview=[UIButton buttonWithType:UIButtonTypeCustom];
     [detailforReview setImage:[[UIImage imageNamed:@"btn_right.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(8, 8, 8, 8)] forState:UIControlStateNormal];
     detailforReview.frame=CGRectMake(0, 0, 20, 20);
+    
+    UIButton *myreminder=[UIButton buttonWithType:UIButtonTypeCustom];
+    [myreminder setImage:[[UIImage imageNamed:@"btn_right.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(8, 8, 8, 8)] forState:UIControlStateNormal];
+    myreminder.frame=CGRectMake(0, 0, 20, 20);
     
     UIButton *feedbackOnline=[UIButton buttonWithType:UIButtonTypeCustom];
     [feedbackOnline setImage:[[UIImage imageNamed:@"btn_right.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(8, 8, 8, 8)] forState:UIControlStateNormal];
@@ -177,20 +184,21 @@ messageView;
     _item6.accessView=detailforSubmit;
     _item7.accessView=detailforCopyright;
     _item8.accessView=buttonForClear;
-    
+    _item9.accessView=myreminder;
     
     [_array1 addObject:_item1];
+    //[_array1 addObject:_item9];
+    
     [_array2 addObject:_item2];
     [_array2 addObject:_item3];
     [_array2 addObject:_item4];
+
     //[_array2 addObject:_item5];
     [_array2 addObject:_item6];
     [_array2 addObject:_item7];
     [_array3 addObject:_item8];
     
     _settingArray=[[NSArray alloc]initWithObjects:_array1,_array2,_array3, nil];
-    
-    
 }
 
 
@@ -208,10 +216,10 @@ messageView;
     
     self.settingTable= [[UITableView alloc]initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStyleGrouped];
     _settingTable.dataSource=self;
-    _settingTable.delegate=self;
+    _settingTable.delegate  =self;
     _settingTable.backgroundColor = [UIColor clearColor];
-    _settingTable.backgroundView=nil;
-    _settingTable.showsVerticalScrollIndicator=NO;
+    _settingTable.backgroundView  = nil;
+    _settingTable.showsVerticalScrollIndicator = NO;
     //    _settingTable.bounces=NO;
     _settingTable.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:_settingTable];
@@ -321,7 +329,11 @@ messageView;
     else if([item.name isEqualToString:NSLocalizedString(@"Copyright",nil)]){
         [self showCopyright];
     }
-    
+    else if([item.name isEqualToString:NSLocalizedString(@"LocalNotify",nil)])
+    {
+        MyLocalNofityViewController *mynotify = [[MyLocalNofityViewController alloc]init];
+        [self.navigationController pushViewController:mynotify animated:YES];
+    }
     
 }
 -(void)showCopyright

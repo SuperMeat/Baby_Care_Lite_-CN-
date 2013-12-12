@@ -23,6 +23,13 @@
 "Sleep"="睡觉";
 "Bath"="洗澡";
 "Play"="玩耍";
+
+"FeedTable"="Feed";
+"DiaperTable"="Diaper";
+"SleepTable"="Sleep";
+"BathTable"="Bath";
+"PlayTable"="Play";
+
 "btnenvironment"="环境";
 "btnadvise"="建议";
 
@@ -159,6 +166,7 @@
 "Tips"    = "小贴士";
 
 "PlotLoading" = "加载中...";
+"LocalNotify" = "我的提醒";
 
 "CopyRight" = "
 Copyright © [2013-2018] [厦门爱摩信息科技有限公司]

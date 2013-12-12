@@ -63,4 +63,64 @@
     return [APService openUDID];
 }
 
++ (NSString*)getWeekBeginAndEndWith:(NSDate *)newDate{
+    NSLog(@"%@",newDate);
+    if (newDate == nil) {
+        newDate = [NSDate date];
+    }
+    double interval = 0;
+    NSDate *beginDate = nil;
+    NSDate *endDate = nil;
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    [calendar setFirstWeekday:1];//设定周日为周首日
+    BOOL ok = [calendar rangeOfUnit:NSWeekCalendarUnit startDate:&beginDate interval:&interval forDate:newDate];
+    //分别修改为 NSDayCalendarUnit NSWeekCalendarUnit NSYearCalendarUnit
+    if (ok) {
+        endDate = [beginDate dateByAddingTimeInterval:interval-1];
+    }else {
+        return nil;
+    }
+    NSDateFormatter *myDateFormatter = [[NSDateFormatter alloc] init];
+    [myDateFormatter setDateFormat:@"MM.dd"];
+    NSString *beginString = [myDateFormatter stringFromDate:beginDate];
+    NSString *endString = [myDateFormatter stringFromDate:endDate];
+    
+    return [NSString stringWithFormat:@"%@~%@",beginString,endString];
+}
+
++ (NSString*)getMonthBeginAndEndWith:(NSDate *)newDate{
+    if (newDate == nil) {
+        newDate = [NSDate date];
+    }
+    double interval = 0;
+    NSDate *beginDate = nil;
+    NSDate *endDate = nil;
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    [calendar setFirstWeekday:1];//设定周日为周首日
+    BOOL ok = [calendar rangeOfUnit:NSMonthCalendarUnit startDate:&beginDate interval:&interval forDate:newDate];
+    //分别修改为 NSDayCalendarUnit NSWeekCalendarUnit NSYearCalendarUnit
+    if (ok) {
+        endDate = [beginDate dateByAddingTimeInterval:interval-1];
+    }else {
+        return nil;
+    }
+    NSDateFormatter *myDateFormatter = [[NSDateFormatter alloc] init];
+    [myDateFormatter setDateFormat:@"yyyy.MM.dd"];
+    NSString *beginString = [myDateFormatter stringFromDate:beginDate];
+    NSString *endString = [myDateFormatter stringFromDate:endDate];
+    
+    return [NSString stringWithFormat:@"%@~%@",beginString,endString];
+}
+
++(long)getTimeStampFromDate:(NSDate*)date
+{
+    return [[NSString stringWithFormat:@"%ld", (long)[date timeIntervalSince1970]] intValue];
+}
+
++(NSDate*)getDateFromTimeStamp:(long)timestamp
+{
+       return [NSDate dateWithTimeIntervalSince1970:(NSTimeInterval)timestamp];
+}
 @end

@@ -54,6 +54,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     if (self.weather) {
+        self.weather.chooseType = QCM_TYPE_BATH;
         [self.weather refreshweather];
     }
     
@@ -198,6 +199,8 @@
     
     
     self.weather=[WeatherView weatherview];
+    self.weather.chooseType = QCM_TYPE_BATH;
+    
     //NSLog(@"%f",G_YADDONVERSION);
     weather.frame=CGRectMake(0, 0+G_YADDONVERSION, 320, 200);
     [self.view addSubview:weather];
@@ -271,9 +274,6 @@
     UIImageView *typeimage=[[UIImageView alloc]initWithFrame:CGRectMake(10, 290+G_YADDONVERSION, 70, 88)];
     typeimage.image=[UIImage imageNamed:@"bath_time.png"];
     [self.view addSubview:typeimage];
-    
-    
-    
     
     
     UIImageView *timeicon=[[UIImageView alloc]initWithFrame:CGRectMake(10, 240+G_YADDONVERSION, 25, 25)];

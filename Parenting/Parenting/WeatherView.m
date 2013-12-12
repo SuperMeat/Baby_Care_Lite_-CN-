@@ -135,7 +135,8 @@
 
 -(void)refreshweather
 {
-    mAl.mAdviseId = 0;
+    mAlTemp.mAdviseId = 0;
+    mAlHumi.mAdviseId = 0;
     [self updatedataarray];
 }
 
@@ -155,7 +156,27 @@
         if([[dict objectForKey:@"temp"] length]>0)
         {
             temp.detail=[NSString stringWithFormat:@"%@℃",[dict objectForKey:@"temp"]];
-            NSArray *arr = [EnvironmentAdviceDataBase selectSleepSuggestionByTemp:[[dict objectForKey:@"temp"] intValue]];
+            NSArray *arr;
+            switch (self.chooseType) {
+                case QCM_TYPE_BATH:
+                    arr = [EnvironmentAdviceDataBase selectBathSuggestionByTemp:[[dict objectForKey:@"temp"] intValue]];
+                    break;
+                case QCM_TYPE_DIAPER:
+                    arr = [EnvironmentAdviceDataBase selectDiaperSuggestionByTemp:[[dict objectForKey:@"temp"] intValue]];
+                    break;
+                case QCM_TYPE_FEED:
+                    arr = [EnvironmentAdviceDataBase selectFeedSuggestionByTemp:[[dict objectForKey:@"temp"] intValue]];
+                    break;
+                case QCM_TYPE_SLEEP:
+                    arr = [EnvironmentAdviceDataBase selectSleepSuggestionByTemp:[[dict objectForKey:@"temp"] intValue]];
+                    break;
+                case QCM_TYPE_PLAY:
+                    arr = [EnvironmentAdviceDataBase selectPlaySuggestionByTemp:[[dict objectForKey:@"temp"] intValue]];
+                    break;
+                default:
+                    break;
+            }
+
             if ([arr count]>0) {
                 AdviseLevel *al = [arr objectAtIndex:0];
                 NSArray *a2 = [EnvironmentAdviceDataBase selectsuggestiontemp:al.mAdviseId];
@@ -163,14 +184,45 @@
                    AdviseData* ad = [a2 objectAtIndex:0];
                     tempcontent = ad.mContent;
                     templevel   = al.mLevel;
-                    mAd = ad;
-                    mAl = al;
+                    mAdTemp = ad;
+                    mAlTemp = al;
                 }
             }
             
         }
         if ([[dict objectForKey:@"humidity"] length]>0) {
             humi.detail=[NSString stringWithFormat:@"%@ %%",[dict objectForKey:@"humidity"]];
+            NSArray *arr;
+            switch (self.chooseType) {
+                case QCM_TYPE_BATH:
+                    arr = [EnvironmentAdviceDataBase selectBathSuggestionByHumi:[[dict objectForKey:@"humidity"] intValue]];
+                    break;
+                case QCM_TYPE_DIAPER:
+                    arr = [EnvironmentAdviceDataBase selectDiaperSuggestionByHumi:[[dict objectForKey:@"humidity"] intValue]];
+                    break;
+                case QCM_TYPE_FEED:
+                    arr = [EnvironmentAdviceDataBase selectFeedSuggestionByHumi:[[dict objectForKey:@"humidity"] intValue]];
+                    break;
+                case QCM_TYPE_SLEEP:
+                    arr = [EnvironmentAdviceDataBase selectSleepSuggestionByHumi:[[dict objectForKey:@"humidity"] intValue]];
+                    break;
+                case QCM_TYPE_PLAY:
+                    arr = [EnvironmentAdviceDataBase selectPlaySuggestionByHumi:[[dict objectForKey:@"humidity"] intValue]];
+                    break;
+                default:
+                    break;
+            }
+            if ([arr count]>0) {
+                AdviseLevel *al = [arr objectAtIndex:0];
+                NSArray *a2 = [EnvironmentAdviceDataBase selectsuggestionhumi:al.mAdviseId];
+                if ([a2 count]>0) {
+                    AdviseData* ad = [a2 objectAtIndex:0];
+                    tempcontent = ad.mContent;
+                    templevel   = al.mLevel;
+                    mAdHumi = ad;
+                    mAlHumi = al;
+                }
+            }
         }
         
         if (CUSTOMER_COUNTRY == 1) {
@@ -266,9 +318,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (indexPath.section == 0 && mAl.mAdviseId > 0) {
+//    NSLog(@"%d,%d",indexPath.section, indexPath.row);
+//    if (indexPath.section == 0 && mAlTemp.mAdviseId > 0) {
 //        NSString *title;
-//        switch (mAl.mLevel) {
+//        switch (mAlTemp.mLevel) {
 //            case 1:
 //                title = @"Excellent";
 //                break;
@@ -281,10 +334,31 @@
 //            default:
 //                break;
 //        }
-//        DXAlertView *alert = [[DXAlertView alloc] initWithTitle:title contentText:mAd.mContent leftButtonTitle:nil rightButtonTitle:@"OK"];
+//        DXAlertView *alert = [[DXAlertView alloc] initWithTitle:title contentText:mAdTemp.mContent leftButtonTitle:nil rightButtonTitle:@"OK"];
 //        [alert show];
 //
 //    }
+//    
+//    if (indexPath.section == 1 && mAlHumi.mAdviseId > 0) {
+//        NSString *title;
+//        switch (mAlHumi.mLevel) {
+//            case 1:
+//                title = @"Excellent";
+//                break;
+//            case 2:
+//                title = @"Good";
+//                break;
+//            case 3:
+//                title = @"Bad";
+//                break;
+//            default:
+//                break;
+//        }
+//        DXAlertView *alert = [[DXAlertView alloc] initWithTitle:title contentText:mAdHumi.mContent leftButtonTitle:nil rightButtonTitle:@"OK"];
+//        [alert show];
+//        
+//    }
+
 }
 
 @end

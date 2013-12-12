@@ -797,7 +797,11 @@
         }
     }
     if (0 == fileTag) {
-        [self setWeekName:fileTag andTAble:table andpage:scrollpage];
+        long timestamp = [OpenFunction getTimeStampFromDate:[currentdate date]];
+        NSDate   *newDate    = [OpenFunction getDateFromTimeStamp:(timestamp-scrollpage*604800)];
+        NSString *rangeTitle = [OpenFunction getWeekBeginAndEndWith:newDate];
+        //[self setWeekName:fileTag andTAble:table andpage:scrollpage];
+        [self setWeekName:table andrange:rangeTitle];
     }else{
         [self setTitleName:[NSString stringWithFormat:@"%@(%i.%i)",NSLocalizedString(table,nil), [currentdate getCurrentYear], month - scrollpage]];
     }
@@ -1005,6 +1009,13 @@
 
 + (void)setWeekName:(int)fileTag andTAble:(NSString *)table andpage:(int)scrollPage{
     NSString *name = [NSString stringWithFormat:@"%@(%i %@)",NSLocalizedString(table, nil), [self scrollWidth:fileTag] - scrollPage, NSLocalizedString(@"Week", nil)];
+    NSUserDefaults *df = [NSUserDefaults standardUserDefaults];
+    [df setObject:name forKey:@"NAME"];
+    [df synchronize];
+}
+
++ (void)setWeekName:(NSString *)table andrange:(NSString *)range{
+    NSString *name = [NSString stringWithFormat:@"%@(%@)",NSLocalizedString(table, nil), range];
     NSUserDefaults *df = [NSUserDefaults standardUserDefaults];
     [df setObject:name forKey:@"NAME"];
     [df synchronize];

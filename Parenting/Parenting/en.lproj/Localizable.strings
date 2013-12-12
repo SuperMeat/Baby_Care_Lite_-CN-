@@ -22,6 +22,12 @@
 "Sleep"="Sleep";
 "Bath"="Bath";
 "Play"="Play";
+"All"="All";
+"FeedTable"="Feed";
+"DiaperTable"="Diaper";
+"SleepTable"="Sleep";
+"BathTable"="Bath";
+"PlayTable"="Play";
 "btnenvironment"="Environment";
 "btnadvise"="Advise";
 "Baby information"="Baby Information";
@@ -155,6 +161,8 @@
 "Nofity" = "Notify";
 
 "PlotLoading" = "Loading...";
+"LocalNotify" = "Reminder";
+
 
 "CopyRight" = "
 Copyright © [2013-2018] [AmoyCare Information Technology Co., Ltd]

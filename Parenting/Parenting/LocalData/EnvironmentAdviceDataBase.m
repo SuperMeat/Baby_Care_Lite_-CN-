@@ -55,7 +55,7 @@
         }
     }
     
-    resultset = [db executeQuery:@"select * from 			sleep_suggestion_by_environment where temp_max = 0 and temp_min > ?",[NSNumber numberWithInt:temp]];
+    resultset = [db executeQuery:@"select * from sleep_suggestion_by_environment where temp_max = 0 and temp_min > ?",[NSNumber numberWithInt:temp]];
     if ([resultset next]) {
         NSString *str = [resultset stringForColumn:@"temp_suggestion_ids"];
         if (str != nil) {
@@ -68,7 +68,7 @@
         }
     }
     
-    resultset = [db executeQuery:@"select * from 			sleep_suggestion_by_environment where temp_min = 0 and temp_max < ?",[NSNumber numberWithInt:temp]];
+    resultset = [db executeQuery:@"select * from sleep_suggestion_by_environment where temp_min = 0 and temp_max < ?",[NSNumber numberWithInt:temp]];
     if ([resultset next]) {
         NSString *str = [resultset stringForColumn:@"temp_suggestion_ids"];
         if (str != nil) {
@@ -86,64 +86,496 @@
 
 +(NSArray*)selectFeedSuggestionByTemp:(int)temp
 {
+    BOOL res;
     NSMutableArray *array=[[NSMutableArray alloc]initWithCapacity:0];
+    NSString *path=[[NSBundle mainBundle] pathForResource:@"Babyinfo" ofType:@"rdb"];
+    
+    FMDatabase *db=[FMDatabase databaseWithPath:path];
+    res=[db open];
+    if (!res) {
+        NSLog(@"数据库打开失败");
+        return nil;
+    }
+    
+    FMResultSet *resultset=[db executeQuery:@"select * from 			feed_suggestion_by_environment where temp_min <= ? and temp_max >= ?",[NSNumber numberWithInt:temp],[NSNumber numberWithInt:temp]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"temp_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];;
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+    }
+    
+    resultset = [db executeQuery:@"select * from feed_suggestion_by_environment where temp_max = 0 and temp_min > ?",[NSNumber numberWithInt:temp]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"temp_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+    }
+    
+    resultset = [db executeQuery:@"select * from feed_suggestion_by_environment where temp_min = 0 and temp_max < ?",[NSNumber numberWithInt:temp]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"temp_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+    }
 
     return array;
 }
 
 +(NSArray*)selectPlaySuggestionByTemp:(int)temp
 {
+    BOOL res;
     NSMutableArray *array=[[NSMutableArray alloc]initWithCapacity:0];
+    NSString *path=[[NSBundle mainBundle] pathForResource:@"Babyinfo" ofType:@"rdb"];
+    
+    FMDatabase *db=[FMDatabase databaseWithPath:path];
+    res=[db open];
+    if (!res) {
+        NSLog(@"数据库打开失败");
+        return nil;
+    }
+    
+    FMResultSet *resultset=[db executeQuery:@"select * from 			play_suggestion_by_environment where temp_min <= ? and temp_max >= ?",[NSNumber numberWithInt:temp],[NSNumber numberWithInt:temp]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"temp_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];;
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+    }
+    
+    resultset = [db executeQuery:@"select * from play_suggestion_by_environment where temp_max = 0 and temp_min > ?",[NSNumber numberWithInt:temp]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"temp_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+    }
+    
+    resultset = [db executeQuery:@"select * from play_suggestion_by_environment where temp_min = 0 and temp_max < ?",[NSNumber numberWithInt:temp]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"temp_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+    }
     
     return array;
 }
 
 +(NSArray*)selectBathSuggestionByTemp:(int)temp
 {
+    BOOL res;
     NSMutableArray *array=[[NSMutableArray alloc]initWithCapacity:0];
+    NSString *path=[[NSBundle mainBundle] pathForResource:@"Babyinfo" ofType:@"rdb"];
+    
+    FMDatabase *db=[FMDatabase databaseWithPath:path];
+    res=[db open];
+    if (!res) {
+        NSLog(@"数据库打开失败");
+        return nil;
+    }
+    
+    FMResultSet *resultset=[db executeQuery:@"select * from 			bath_suggestion_by_environment where temp_min <= ? and temp_max >= ?",[NSNumber numberWithInt:temp],[NSNumber numberWithInt:temp]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"temp_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];;
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+    }
+    
+    resultset = [db executeQuery:@"select * from bath_suggestion_by_environment where temp_max = 0 and temp_min > ?",[NSNumber numberWithInt:temp]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"temp_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+    }
+    
+    resultset = [db executeQuery:@"select * from bath_suggestion_by_environment where temp_min = 0 and temp_max < ?",[NSNumber numberWithInt:temp]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"temp_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+    }
     
     return array;
 }
 
 +(NSArray*)selectDiaperSuggestionByTemp:(int)temp
 {
+    BOOL res;
     NSMutableArray *array=[[NSMutableArray alloc]initWithCapacity:0];
+    NSString *path=[[NSBundle mainBundle] pathForResource:@"Babyinfo" ofType:@"rdb"];
+    
+    FMDatabase *db=[FMDatabase databaseWithPath:path];
+    res=[db open];
+    if (!res) {
+        NSLog(@"数据库打开失败");
+        return nil;
+    }
+    
+    FMResultSet *resultset=[db executeQuery:@"select * from 			diaper_suggestion_by_environment where temp_min <= ? and temp_max >= ?",[NSNumber numberWithInt:temp],[NSNumber numberWithInt:temp]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"temp_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];;
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+    }
+    
+    resultset = [db executeQuery:@"select * from diaper_suggestion_by_environment where temp_max = 0 and temp_min > ?",[NSNumber numberWithInt:temp]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"temp_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+    }
+    
+    resultset = [db executeQuery:@"select * from diaper_suggestion_by_environment where temp_min = 0 and temp_max < ?",[NSNumber numberWithInt:temp]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"temp_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+    }
     
     return array;
 }
 
 +(NSArray*)selectFeedSuggestionByHumi:(int)humi
 {
+    BOOL res;
     NSMutableArray *array=[[NSMutableArray alloc]initWithCapacity:0];
+    NSString *path=[[NSBundle mainBundle] pathForResource:@"Babyinfo" ofType:@"rdb"];
+    
+    FMDatabase *db=[FMDatabase databaseWithPath:path];
+    res=[db open];
+    if (!res) {
+        NSLog(@"数据库打开失败");
+        return nil;
+    }
+    
+    FMResultSet *resultset=[db executeQuery:@"select * from 			feed_suggestion_by_environment where humi_min <= ? and humi_max >= ?",[NSNumber numberWithInt:humi],[NSNumber numberWithInt:humi]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];;
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+    }
+    
+    resultset = [db executeQuery:@"select * from feed_suggestion_by_environment where humi_max = 0 and humi_min > ?",[NSNumber numberWithInt:humi]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+    }
+    
+    resultset = [db executeQuery:@"select * from feed_suggestion_by_environment where humi_min = 0 and humi_max < ?",[NSNumber numberWithInt:humi]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+    }
     
     return array;
 }
 
 +(NSArray*)selectPlaySuggestionByHumi:(int)humi
 {
+    BOOL res;
     NSMutableArray *array=[[NSMutableArray alloc]initWithCapacity:0];
+    NSString *path=[[NSBundle mainBundle] pathForResource:@"Babyinfo" ofType:@"rdb"];
+    
+    FMDatabase *db=[FMDatabase databaseWithPath:path];
+    res=[db open];
+    if (!res) {
+        NSLog(@"数据库打开失败");
+        return nil;
+    }
+    
+    FMResultSet *resultset=[db executeQuery:@"select * from 			play_suggestion_by_environment where humi_min <= ? and humi_max >= ?",[NSNumber numberWithInt:humi],[NSNumber numberWithInt:humi]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];;
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+    }
+    
+    resultset = [db executeQuery:@"select * from play_suggestion_by_environment where humi_max = 0 and humi_min > ?",[NSNumber numberWithInt:humi]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+    }
+    
+    resultset = [db executeQuery:@"select * from play_suggestion_by_environment where humi_min = 0 and humi_max < ?",[NSNumber numberWithInt:humi]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+        
+    }
     
     return array;
 }
 
 +(NSArray*)selectBathSuggestionByHumi:(int)humi
 {
+    BOOL res;
     NSMutableArray *array=[[NSMutableArray alloc]initWithCapacity:0];
+    NSString *path=[[NSBundle mainBundle] pathForResource:@"Babyinfo" ofType:@"rdb"];
     
+    FMDatabase *db=[FMDatabase databaseWithPath:path];
+    res=[db open];
+    if (!res) {
+        NSLog(@"数据库打开失败");
+        return nil;
+    }
+    
+    FMResultSet *resultset=[db executeQuery:@"select * from 			bath_suggestion_by_environment where humi_min <= ? and humi_max >= ?",[NSNumber numberWithInt:humi],[NSNumber numberWithInt:humi]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];;
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+    }
+    
+    resultset = [db executeQuery:@"select * from bath_suggestion_by_environment where humi_max = 0 and humi_min > ?",[NSNumber numberWithInt:humi]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+    }
+    
+    resultset = [db executeQuery:@"select * from bath_suggestion_by_environment where humi_min = 0 and humi_max < ?",[NSNumber numberWithInt:humi]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+        
+    }
     return array;
 }
 
 +(NSArray*)selectSleepSuggestionByHumi:(int)humi
 {
+    BOOL res;
     NSMutableArray *array=[[NSMutableArray alloc]initWithCapacity:0];
+    NSString *path=[[NSBundle mainBundle] pathForResource:@"Babyinfo" ofType:@"rdb"];
     
+    FMDatabase *db=[FMDatabase databaseWithPath:path];
+    res=[db open];
+    if (!res) {
+        NSLog(@"数据库打开失败");
+        return nil;
+    }
+    
+    FMResultSet *resultset=[db executeQuery:@"select * from 			sleep_suggestion_by_environment where humi_min <= ? and humi_max >= ?",[NSNumber numberWithInt:humi],[NSNumber numberWithInt:humi]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];;
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+    }
+    
+    resultset = [db executeQuery:@"select * from sleep_suggestion_by_environment where humi_max = 0 and humi_min > ?",[NSNumber numberWithInt:humi]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+    }
+    
+    resultset = [db executeQuery:@"select * from sleep_suggestion_by_environment where humi_min = 0 and humi_max < ?",[NSNumber numberWithInt:humi]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+    }
     return array;
 }
 
 +(NSArray*)selectDiaperSuggestionByHumi:(int)humi
 {
+    BOOL res;
     NSMutableArray *array=[[NSMutableArray alloc]initWithCapacity:0];
+    NSString *path=[[NSBundle mainBundle] pathForResource:@"Babyinfo" ofType:@"rdb"];
     
+    FMDatabase *db=[FMDatabase databaseWithPath:path];
+    res=[db open];
+    if (!res) {
+        NSLog(@"数据库打开失败");
+        return nil;
+    }
+    
+    FMResultSet *resultset=[db executeQuery:@"select * from 			diaper_suggestion_by_environment where humi_min <= ? and humi_max >= ?",[NSNumber numberWithInt:humi],[NSNumber numberWithInt:humi]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];;
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+    }
+    
+    resultset = [db executeQuery:@"select * from diaper_suggestion_by_environment where humi_max = 0 and humi_min > ?",[NSNumber numberWithInt:humi]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+    }
+    
+    resultset = [db executeQuery:@"select * from diaper_suggestion_by_environment where humi_min = 0 and humi_max < ?",[NSNumber numberWithInt:humi]];
+    if ([resultset next]) {
+        NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
+        if (str != nil) {
+            AdviseLevel *al = [[AdviseLevel alloc]init];
+            al.mAdviseId = [self getSuggestionIdByIds:str];
+            al.mLevel    = [resultset intForColumn:@"status"];
+            [array addObject:al];
+            [db close];
+            return array;
+        }
+        
+    }
     return array;
 }
 

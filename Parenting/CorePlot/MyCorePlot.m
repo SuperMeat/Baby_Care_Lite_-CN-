@@ -193,25 +193,25 @@
     yAxis.title=NSLocalizedString(@"Count",nil);
     
     CPTGradient *fillGradient;
-    if ([self.tablename isEqualToString:NSLocalizedString(@"Play",nil)]) {
+    if ([self.tablename isEqualToString:NSLocalizedString(@"PlayTable",nil)]) {
         barPlot.fill = [CPTFill fillWithColor:[CPTColor colorWithComponentRed:0xF7/255.0 green:0x6E/255.0 blue:0x39/255.0 alpha:0xFF/255.0]];
         
           fillGradient = [CPTGradient gradientWithBeginningColor:[CPTColor colorWithComponentRed:0xF7/255.0 green:0x6E/255.0 blue:0x39/255.0 alpha:0xFF/255.0] endingColor:[CPTColor colorWithComponentRed:0xF7/255.0 green:0x6E/255.0 blue:0x39/255.0 alpha:0xFF/255.0]];
         
         lineStyle.lineColor         = [CPTColor colorWithComponentRed:0xF7/255.0 green:0x6E/255.0 blue:0x39/255.0 alpha:0xFF/255.0];
-    }else if([self.tablename isEqualToString:NSLocalizedString(@"Bath",nil)]){
+    }else if([self.tablename isEqualToString:NSLocalizedString(@"BathTable",nil)]){
         barPlot.fill = [CPTFill fillWithColor:[CPTColor colorWithComponentRed:0x46/255.0 green:0x90/255.0 blue:0xCD/255.0 alpha:0xFF/255.0]];
         
           fillGradient = [CPTGradient gradientWithBeginningColor:[CPTColor colorWithComponentRed:0x46/255.0 green:0x90/255.0 blue:0xCD/255.0 alpha:0xFF/255.0] endingColor:[CPTColor colorWithComponentRed:0x46/255.0 green:0x90/255.0 blue:0xCD/255.0 alpha:0xFF/255.0]];
         
         lineStyle.lineColor         = [CPTColor colorWithComponentRed:0x46/255.0 green:0x90/255.0 blue:0xCD/255.0 alpha:0xFF/255.0];
-    }else if([self.tablename isEqualToString:NSLocalizedString(@"Feed",nil)]){
+    }else if([self.tablename isEqualToString:NSLocalizedString(@"FeedTable",nil)]){
         barPlot.fill = [CPTFill fillWithColor:[CPTColor colorWithComponentRed:0x64/255.0 green:0xA7/255.0 blue:0x5B/255.0 alpha:0xFF/255.0]];
         
           fillGradient = [CPTGradient gradientWithBeginningColor:[CPTColor colorWithComponentRed:0x64/255.0 green:0xA7/255.0 blue:0x5B/255.0 alpha:0xFF/255.0] endingColor:[CPTColor colorWithComponentRed:0x64/255.0 green:0xA7/255.0 blue:0x5B/255.0 alpha:0xFF/255.0]];
         
         lineStyle.lineColor         = [CPTColor colorWithComponentRed:0x64/255.0 green:0xA7/255.0 blue:0x5B/255.0 alpha:0xFF/255.0];
-    }else if([self.tablename isEqualToString:NSLocalizedString(@"Sleep",nil)]){
+    }else if([self.tablename isEqualToString:NSLocalizedString(@"SleepTable",nil)]){
         barPlot.fill = [CPTFill fillWithColor:[CPTColor colorWithComponentRed:0xEA/255.0 green:0x6B/255.0 blue:0x72/255.0 alpha:0xFF/255.0]];
         
           fillGradient = [CPTGradient gradientWithBeginningColor:[CPTColor colorWithComponentRed:0xEA/255.0 green:0x6B/255.0 blue:0x72/255.0 alpha:0xFF/255.0] endingColor:[CPTColor colorWithComponentRed:0xEA/255.0 green:0x6B/255.0 blue:0x72/255.0 alpha:0xFF/255.0]];
@@ -249,16 +249,16 @@
     lineStyle.lineWidth         = 1.0f;
     //曲线加点
     CPTPlotSymbol *plotSymbol = [CPTPlotSymbol ellipsePlotSymbol];
-    if ([table isEqualToString:NSLocalizedString(@"Play",nil)]) {
+    if ([table isEqualToString:NSLocalizedString(@"PlayTable",nil)]) {
         lineStyle.lineColor         = [CPTColor colorWithComponentRed:0xF7/255.0 green:0x6E/255.0 blue:0x39/255.0 alpha:0xFF/255.0];
         plotSymbol.fill = [CPTFill fillWithColor:[CPTColor colorWithComponentRed:0xF7/255.0 green:0x6E/255.0 blue:0x39/255.0 alpha:0xFF/255.0]];
-    }else if([table isEqualToString:NSLocalizedString(@"Bath",nil)]){
+    }else if([table isEqualToString:NSLocalizedString(@"BathTable",nil)]){
         lineStyle.lineColor         = [CPTColor colorWithComponentRed:0x46/255.0 green:0x90/255.0 blue:0xCD/255.0 alpha:0xFF/255.0];
         plotSymbol.fill = [CPTFill fillWithColor:[CPTColor colorWithComponentRed:0x46/255.0 green:0x90/255.0 blue:0xCD/255.0 alpha:0xFF/255.0]];
-    }else if([table isEqualToString:NSLocalizedString(@"Feed",nil)]){
+    }else if([table isEqualToString:NSLocalizedString(@"FeedTable",nil)]){
         lineStyle.lineColor         = [CPTColor colorWithComponentRed:0x64/255.0 green:0xA7/255.0 blue:0x5B/255.0 alpha:0xFF/255.0];
         plotSymbol.fill = [CPTFill fillWithColor:[CPTColor colorWithComponentRed:0x64/255.0 green:0xA7/255.0 blue:0x5B/255.0 alpha:0xFF/255.0]];
-    }else if([table isEqualToString:NSLocalizedString(@"Sleep",nil)]){
+    }else if([table isEqualToString:NSLocalizedString(@"SleepTable",nil)]){
         lineStyle.lineColor         = [CPTColor colorWithComponentRed:0xEA/255.0 green:0x6B/255.0 blue:0x72/255.0 alpha:0xFF/255.0];
         plotSymbol.fill = [CPTFill fillWithColor:[CPTColor colorWithComponentRed:0xEA/255.0 green:0x6B/255.0 blue:0x72/255.0 alpha:0xFF/255.0]];
     }else{
@@ -479,7 +479,34 @@
             [graph removePlot:barPlot];
             self.barPlot = nil;
         }
-        [self drawGraph:graph.title];
+        NSString *title;
+        NSString *comtitle;
+        NSRange range = [graph.title rangeOfString:@"("];
+        
+        if (range.length > 0) {
+            comtitle = [graph.title substringToIndex:range.location];
+        }
+        if ([comtitle isEqualToString:NSLocalizedString(@"Play", nil)])
+        {
+            title = @"Play";
+        }
+        if ([comtitle isEqualToString:NSLocalizedString(@"Diaper", nil)])
+        {
+            title = @"Diaper";
+        }
+        if ([comtitle isEqualToString:NSLocalizedString(@"Bath", nil)])
+        {
+            title = @"Bath";
+        }
+        if ([comtitle isEqualToString:NSLocalizedString(@"Sleep", nil)])
+        {
+            title = @"Sleep";
+        }
+        if ([comtitle isEqualToString:NSLocalizedString(@"Feed", nil)])
+        {
+            title = @"Feed";
+        }
+        [self drawGraph:title];
     }
 }
 

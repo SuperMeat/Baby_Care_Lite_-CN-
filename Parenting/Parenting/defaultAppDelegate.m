@@ -61,6 +61,8 @@ void UncaughtExceptionHandler(NSException *exception) {
     
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"bg_title.png"]  forBarMetrics:UIBarMetricsDefault];
     
+    [[UINavigationBar appearance] setBackgroundColor:[UIColor clearColor]];
+    
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                           [UIColor whiteColor],
                                                           UITextAttributeTextColor,
@@ -76,6 +78,7 @@ void UncaughtExceptionHandler(NSException *exception) {
     NSSetUncaughtExceptionHandler(&UncaughtExceptionHandler);
 
     [MobClick startWithAppkey:UMENGAPPKEY];
+    [MobClick checkUpdate];
     
     // Required
     [APService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |

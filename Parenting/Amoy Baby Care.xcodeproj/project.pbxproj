@@ -59,6 +59,8 @@
 		48152E45184C65AE009A4900 /* 1136.1.png in Resources */ = {isa = PBXBuildFile; fileRef = 48152E3F184C65AE009A4900 /* 1136.1.png */; };
 		48152E46184C65AE009A4900 /* 1136.2.png in Resources */ = {isa = PBXBuildFile; fileRef = 48152E40184C65AE009A4900 /* 1136.2.png */; };
 		48152E47184C65AE009A4900 /* 1136.3.png in Resources */ = {isa = PBXBuildFile; fileRef = 48152E41184C65AE009A4900 /* 1136.3.png */; };
+		48152E4E1851B842009A4900 /* MyLocalNofityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48152E4C1851B842009A4900 /* MyLocalNofityViewController.m */; };
+		48152E4F1851B842009A4900 /* MyLocalNofityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48152E4D1851B842009A4900 /* MyLocalNofityViewController.xib */; };
 		48357E231846ED2A00BCF799 /* EnvironmentAdviceDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 48357E221846ED2A00BCF799 /* EnvironmentAdviceDataBase.m */; };
 		48357E2618472BB500BCF799 /* AdviseLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48357E2518472BB500BCF799 /* AdviseLevel.m */; };
 		48357E2A18473EC400BCF799 /* WeatherAdviseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48357E2818473EC400BCF799 /* WeatherAdviseViewController.m */; };
@@ -632,6 +634,9 @@
 		48152E3F184C65AE009A4900 /* 1136.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1136.1.png; sourceTree = "<group>"; };
 		48152E40184C65AE009A4900 /* 1136.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1136.2.png; sourceTree = "<group>"; };
 		48152E41184C65AE009A4900 /* 1136.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1136.3.png; sourceTree = "<group>"; };
+		48152E4B1851B842009A4900 /* MyLocalNofityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyLocalNofityViewController.h; path = LocalNofication/MyLocalNofityViewController.h; sourceTree = "<group>"; };
+		48152E4C1851B842009A4900 /* MyLocalNofityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyLocalNofityViewController.m; path = LocalNofication/MyLocalNofityViewController.m; sourceTree = "<group>"; };
+		48152E4D1851B842009A4900 /* MyLocalNofityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyLocalNofityViewController.xib; path = LocalNofication/MyLocalNofityViewController.xib; sourceTree = "<group>"; };
 		48357E211846ED2A00BCF799 /* EnvironmentAdviceDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnvironmentAdviceDataBase.h; path = LocalData/EnvironmentAdviceDataBase.h; sourceTree = "<group>"; };
 		48357E221846ED2A00BCF799 /* EnvironmentAdviceDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EnvironmentAdviceDataBase.m; path = LocalData/EnvironmentAdviceDataBase.m; sourceTree = "<group>"; };
 		48357E2418472BB500BCF799 /* AdviseLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdviseLevel.h; path = AdviseLevel/AdviseLevel.h; sourceTree = "<group>"; };
@@ -1444,6 +1449,36 @@
 			path = DXAlertView;
 			sourceTree = "<group>";
 		};
+		48152E481851B736009A4900 /* Copyright */ = {
+			isa = PBXGroup;
+			children = (
+				CE0167D1174B217C00462363 /* CopyrightViewController.h */,
+				CE0167D2174B217C00462363 /* CopyrightViewController.m */,
+				CE0167D3174B217C00462363 /* CopyrightViewController.xib */,
+			);
+			name = Copyright;
+			sourceTree = "<group>";
+		};
+		48152E491851B74A009A4900 /* BabyInfo */ = {
+			isa = PBXGroup;
+			children = (
+				CE33B5911770612B00EB8124 /* BabyinfoViewController.xib */,
+				CE239794176EE4A50096E033 /* BabyinfoViewController.h */,
+				CE239793176EE4A50096E033 /* BabyinfoViewController.m */,
+			);
+			name = BabyInfo;
+			sourceTree = "<group>";
+		};
+		48152E4A1851B79F009A4900 /* LocalNofication */ = {
+			isa = PBXGroup;
+			children = (
+				48152E4B1851B842009A4900 /* MyLocalNofityViewController.h */,
+				48152E4C1851B842009A4900 /* MyLocalNofityViewController.m */,
+				48152E4D1851B842009A4900 /* MyLocalNofityViewController.xib */,
+			);
+			name = LocalNofication;
+			sourceTree = "<group>";
+		};
 		4855BC18182B237800F02A3E /* UMengfeedback */ = {
 			isa = PBXGroup;
 			children = (
@@ -1980,8 +2015,8 @@
 		72159748174536C0006FD415 /* ClassFiles */ = {
 			isa = PBXGroup;
 			children = (
-				48152E2A18487204009A4900 /* Guide */,
 				4855BCAB183076BD00F02A3E /* Main */,
+				48152E2A18487204009A4900 /* Guide */,
 				7215974F17453980006FD415 /* Home */,
 				7215975017453988006FD415 /* Summary */,
 				4855BCA61830751B00F02A3E /* InformationCenter */,
@@ -2038,18 +2073,15 @@
 		72159752174539A3006FD415 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				48152E4A1851B79F009A4900 /* LocalNofication */,
+				48152E491851B74A009A4900 /* BabyInfo */,
+				48152E481851B736009A4900 /* Copyright */,
 				48152DDD18486B13009A4900 /* UMengContact */,
-				CE33B5911770612B00EB8124 /* BabyinfoViewController.xib */,
-				CE239794176EE4A50096E033 /* BabyinfoViewController.h */,
-				CE239793176EE4A50096E033 /* BabyinfoViewController.m */,
 				F3F09B5A1745CBCE006CB06D /* SettingViewController.h */,
 				F3F09B5B1745CBCE006CB06D /* SettingViewController.m */,
 				F3F09B5C1745CBCE006CB06D /* SettingViewController.xib */,
 				CECE7F8C174A214F0036D0BC /* SettingItem.h */,
 				CECE7F8D174A214F0036D0BC /* SettingItem.m */,
-				CE0167D1174B217C00462363 /* CopyrightViewController.h */,
-				CE0167D2174B217C00462363 /* CopyrightViewController.m */,
-				CE0167D3174B217C00462363 /* CopyrightViewController.xib */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -3124,6 +3156,7 @@
 				CE0D0EC317573B1A005A3200 /* line_nodate.png in Resources */,
 				CE0D0EC417573B1A005A3200 /* line_nodate@2x.png in Resources */,
 				CE0D0EC517573B1A005A3200 /* list_env.png in Resources */,
+				48152E4F1851B842009A4900 /* MyLocalNofityViewController.xib in Resources */,
 				CE0D0EC617573B1A005A3200 /* list_env@2x.png in Resources */,
 				48DEA7C317F46C3E00A11316 /* Diaper_4.jpg in Resources */,
 				48152E1418486C66009A4900 /* item_cancel_selected@2x.png in Resources */,
@@ -3168,6 +3201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				48B78141182A20610073EEBD /* CustomURLCache.m in Sources */,
+				48152E4E1851B842009A4900 /* MyLocalNofityViewController.m in Sources */,
 				485749961831C3D1000D921B /* NotifyViewController.m in Sources */,
 				7215972D17453680006FD415 /* main.m in Sources */,
 				48152DF318486B13009A4900 /* UMFeedbackTableViewCellRight.m in Sources */,

@@ -44,6 +44,10 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    if ([UIApplication sharedApplication].statusBarStyle != UIStatusBarStyleLightContent) {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    }
+    
     [self LoadData];
     if (birth != nil) {
         [birth setText:[BabyinfoViewController getbabyage]];

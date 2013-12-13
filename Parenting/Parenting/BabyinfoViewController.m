@@ -50,6 +50,10 @@ static int age = 0;
 }
 -(void)viewWillAppear:(BOOL)animated
 {
+    if ([UIApplication sharedApplication].statusBarStyle != UIStatusBarStyleLightContent) {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    }
+    
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"birthday"]) {
         NSDateFormatter *dateFormater=[[NSDateFormatter alloc]init];
         [dateFormater setDateFormat:@"yyyy-MM-dd"];
@@ -122,6 +126,7 @@ static int age = 0;
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
 -(void)makeNav
 {
     UIButton *backbutton=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -308,7 +313,10 @@ static int age = 0;
             [view resignFirstResponder];
         }
     }
-
+    
+    if ([UIApplication sharedApplication].statusBarStyle != UIStatusBarStyleLightContent) {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    }
 
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -350,12 +358,13 @@ static int age = 0;
     
     age=[currentdate getDurationfromdate:self.birthdaytextfield.text];
 
-
     [self loaddataForstandard:age];
-    [self.navigationController popViewControllerAnimated:YES];
+    if ([[NSUserDefaults standardUserDefaults]objectForKey:@"IsFirstSaveInfo"] == nil) {
+        [self.navigationController popViewControllerAnimated:YES];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"IsFirstSaveInfo"];
+    }
 
 }
-
 
 -(void)updatebirsthday:(UIDatePicker*)sender
 {
@@ -517,7 +526,9 @@ static int age = 0;
 }
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    
+    if ([UIApplication sharedApplication].statusBarStyle != UIStatusBarStyleLightContent) {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    }
     UIImage* image = [info objectForKey: @"UIImagePickerControllerEditedImage"];
     if (picker.sourceType==UIImagePickerControllerSourceTypeCamera) {
         UIImageWriteToSavedPhotosAlbum(image, self,@selector(image:didFinishSavingWithError:contextInfo:), nil);
@@ -529,11 +540,12 @@ static int age = 0;
     
     if ([OpenFunction getSystemVersion] < 7.0) {
         [self.navigationController setNavigationBarHidden:NO animated:NO];
+        
         [imagePicker.view removeFromSuperview];
     }
     else
     {
-        [self.navigationController setNavigationBarHidden:NO animated:NO];
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
         [imagePicker.view removeFromSuperview];
 
     }
@@ -543,7 +555,9 @@ static int age = 0;
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     //[imagePicker dismissViewControllerAnimated:YES completion:nil];
-   
+    if ([UIApplication sharedApplication].statusBarStyle != UIStatusBarStyleLightContent) {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    }
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     [imagePicker.view removeFromSuperview];
 }

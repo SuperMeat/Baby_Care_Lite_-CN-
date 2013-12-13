@@ -187,7 +187,7 @@ messageView;
     _item9.accessView=myreminder;
     
     [_array1 addObject:_item1];
-    //[_array1 addObject:_item9];
+    [_array1 addObject:_item9];
     
     [_array2 addObject:_item2];
     [_array2 addObject:_item3];
@@ -219,7 +219,7 @@ messageView;
     _settingTable.delegate  =self;
     _settingTable.backgroundColor = [UIColor clearColor];
     _settingTable.backgroundView  = nil;
-    _settingTable.showsVerticalScrollIndicator = NO;
+    _settingTable.showsVerticalScrollIndicator =NO;
     //    _settingTable.bounces=NO;
     _settingTable.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:_settingTable];

@@ -36,6 +36,7 @@ void UncaughtExceptionHandler(NSException *exception) {
     application.applicationIconBadgeNumber = 0;
     // Override point for customization after application launch.
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+       
         [application setStatusBarStyle:UIStatusBarStyleLightContent];
         self.window.clipsToBounds =YES;
     }

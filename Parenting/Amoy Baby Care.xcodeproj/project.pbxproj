@@ -3443,7 +3443,7 @@
 					"$(SRCROOT)/UMSocial_Sdk_3.1/SocialSDKXib",
 					"$(SRCROOT)/UMSocial_Sdk_3.1/frameworks/Wechat",
 					"$(SRCROOT)/Parenting/UMengContact",
-					"/Users/vlll00/开发/Code/MyCode/Code/Baby_Care_Lite_-CN-/Parenting/Parenting/UartLib",
+					"$(SRCROOT)/Parenting/UartLib",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
@@ -3489,7 +3489,7 @@
 					"$(SRCROOT)/UMSocial_Sdk_3.1/SocialSDKXib",
 					"$(SRCROOT)/UMSocial_Sdk_3.1/frameworks/Wechat",
 					"$(SRCROOT)/Parenting/UMengContact",
-					"/Users/vlll00/开发/Code/MyCode/Code/Baby_Care_Lite_-CN-/Parenting/Parenting/UartLib",
+					"$(SRCROOT)/Parenting/UartLib",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (

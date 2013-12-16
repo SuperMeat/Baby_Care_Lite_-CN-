@@ -422,7 +422,6 @@ static int age = 0;
     
 }
 
-
 -(void)imageSelectFromCamera
 {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {

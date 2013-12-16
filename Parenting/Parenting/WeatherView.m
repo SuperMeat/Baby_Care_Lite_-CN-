@@ -318,46 +318,46 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSLog(@"%d,%d",indexPath.section, indexPath.row);
-//    if (indexPath.section == 0 && mAlTemp.mAdviseId > 0) {
-//        NSString *title;
-//        switch (mAlTemp.mLevel) {
-//            case 1:
-//                title = @"Excellent";
-//                break;
-//            case 2:
-//                title = @"Good";
-//                break;
-//            case 3:
-//                title = @"Bad";
-//                break;
-//            default:
-//                break;
-//        }
-//        DXAlertView *alert = [[DXAlertView alloc] initWithTitle:title contentText:mAdTemp.mContent leftButtonTitle:nil rightButtonTitle:@"OK"];
-//        [alert show];
-//
-//    }
-//    
-//    if (indexPath.section == 1 && mAlHumi.mAdviseId > 0) {
-//        NSString *title;
-//        switch (mAlHumi.mLevel) {
-//            case 1:
-//                title = @"Excellent";
-//                break;
-//            case 2:
-//                title = @"Good";
-//                break;
-//            case 3:
-//                title = @"Bad";
-//                break;
-//            default:
-//                break;
-//        }
-//        DXAlertView *alert = [[DXAlertView alloc] initWithTitle:title contentText:mAdHumi.mContent leftButtonTitle:nil rightButtonTitle:@"OK"];
-//        [alert show];
-//        
-//    }
+    NSLog(@"%d,%d",indexPath.section, indexPath.row);
+    if (indexPath.section == 0 && mAlTemp.mAdviseId > 0) {
+        NSString *title;
+        switch (mAlTemp.mLevel) {
+            case 1:
+                title = @"Excellent";
+                break;
+            case 2:
+                title = @"Good";
+                break;
+            case 3:
+                title = @"Bad";
+                break;
+            default:
+                break;
+        }
+        DXAlertView *alert = [[DXAlertView alloc] initWithTitle:title contentText:mAdTemp.mContent leftButtonTitle:nil rightButtonTitle:@"OK"];
+        [alert show];
+
+    }
+    
+    if (indexPath.section == 1 && mAlHumi.mAdviseId > 0) {
+        NSString *title;
+        switch (mAlHumi.mLevel) {
+            case 1:
+                title = @"Excellent";
+                break;
+            case 2:
+                title = @"Good";
+                break;
+            case 3:
+                title = @"Bad";
+                break;
+            default:
+                break;
+        }
+        DXAlertView *alert = [[DXAlertView alloc] initWithTitle:title contentText:mAdHumi.mContent leftButtonTitle:nil rightButtonTitle:@"OK"];
+        [alert show];
+        
+    }
 
 }
 

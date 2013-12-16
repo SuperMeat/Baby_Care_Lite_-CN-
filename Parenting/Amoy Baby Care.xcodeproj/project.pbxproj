@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48013D37185ADFC300F483A6 /* BLEController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48013D36185ADFC300F483A6 /* BLEController.m */; };
+		48013D3B185AE3A000F483A6 /* libUartLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48013D39185AE3A000F483A6 /* libUartLib.a */; };
+		48013D3D185AE47900F483A6 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48013D3C185AE47900F483A6 /* CoreBluetooth.framework */; };
 		480C04CC18239F8F00846E13 /* DurationPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 480C04CB18239F8F00846E13 /* DurationPickerView.m */; };
 		480C04CE18239FC100846E13 /* DurationPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 480C04CD18239FC100846E13 /* DurationPickerView.xib */; };
 		480C04D11828C9E600846E13 /* Submit_Btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 480C04CF1828C9E600846E13 /* Submit_Btn.png */; };
@@ -569,6 +572,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		48013D35185ADFC300F483A6 /* BLEController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLEController.h; path = BLEController/BLEController.h; sourceTree = "<group>"; };
+		48013D36185ADFC300F483A6 /* BLEController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLEController.m; path = BLEController/BLEController.m; sourceTree = "<group>"; };
+		48013D39185AE3A000F483A6 /* libUartLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUartLib.a; sourceTree = "<group>"; };
+		48013D3A185AE3A000F483A6 /* UartLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UartLib.h; sourceTree = "<group>"; };
+		48013D3C185AE47900F483A6 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		4802778317B8C90800A71D13 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		4802778517B8C91100A71D13 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		4802778717B8C91D00A71D13 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -1317,6 +1325,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48013D3D185AE47900F483A6 /* CoreBluetooth.framework in Frameworks */,
 				7215972517453680006FD415 /* CoreGraphics.framework in Frameworks */,
 				483D08D318164C9B00E720E6 /* CoreTelephony.framework in Frameworks */,
 				48574A91183B366B000D921B /* libUMSocial_Sdk_Comment_3.1.a in Frameworks */,
@@ -1332,6 +1341,7 @@
 				CE31A10C177AAF8400F7EAE0 /* libicucore.dylib in Frameworks */,
 				CE31A10A177AAF7400F7EAE0 /* SystemConfiguration.framework in Frameworks */,
 				4855BC15182A7FBB00F02A3E /* libMobClickLibrary.a in Frameworks */,
+				48013D3B185AE3A000F483A6 /* libUartLib.a in Frameworks */,
 				4855BC1C182B237800F02A3E /* libUMFeedback.a in Frameworks */,
 				CE4F03F31763027F00DDF404 /* Accounts.framework in Frameworks */,
 				CE248CBC1759D7EF0058530A /* libxml2.2.dylib in Frameworks */,
@@ -1352,6 +1362,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		48013D33185ADF7F00F483A6 /* BLEController */ = {
+			isa = PBXGroup;
+			children = (
+				48013D35185ADFC300F483A6 /* BLEController.h */,
+				48013D36185ADFC300F483A6 /* BLEController.m */,
+			);
+			name = BLEController;
+			sourceTree = "<group>";
+		};
+		48013D38185AE3A000F483A6 /* UartLib */ = {
+			isa = PBXGroup;
+			children = (
+				48013D39185AE3A000F483A6 /* libUartLib.a */,
+				48013D3A185AE3A000F483A6 /* UartLib.h */,
+			);
+			name = UartLib;
+			path = Parenting/UartLib;
+			sourceTree = "<group>";
+		};
 		48152DD018486AEA009A4900 /* EGO_Refresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -1698,6 +1727,7 @@
 				CE31A10B177AAF8400F7EAE0 /* libicucore.dylib */,
 				7215975317453C52006FD415 /* libsqlite3.dylib */,
 				CE248CBB1759D7EF0058530A /* libxml2.2.dylib */,
+				48013D3C185AE47900F483A6 /* CoreBluetooth.framework */,
 				7215972417453680006FD415 /* CoreGraphics.framework */,
 				7215972217453680006FD415 /* Foundation.framework */,
 				7215972017453680006FD415 /* UIKit.framework */,
@@ -1953,6 +1983,7 @@
 		7215971F17453680006FD415 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				48013D38185AE3A000F483A6 /* UartLib */,
 				4855BCF91830B12700F02A3E /* IOSSDK */,
 				4855BCFC1830B1D100F02A3E /* Facebook */,
 				4855BCFB1830B1C400F02A3E /* MobClick */,
@@ -2031,6 +2062,7 @@
 		72159749174536D6006FD415 /* PublicClass */ = {
 			isa = PBXGroup;
 			children = (
+				48013D33185ADF7F00F483A6 /* BLEController */,
 				4855BCF81830B0CB00F02A3E /* MyTabBarController */,
 				4855BCF71830B0AD00F02A3E /* PublicFunction */,
 				4855BCF51830B03D00F02A3E /* LocalData */,
@@ -3249,6 +3281,7 @@
 				CE075A3D1750821E00C57E27 /* save_sleepview.m in Sources */,
 				CE075A401750822D00C57E27 /* save_playview.m in Sources */,
 				4855BC9E182CCCB900F02A3E /* MMProgressHUD+Animations.m in Sources */,
+				48013D37185ADFC300F483A6 /* BLEController.m in Sources */,
 				4855BD011830C8C000F02A3E /* InformationCenterViewController.m in Sources */,
 				CE075A431750824100C57E27 /* save_bathview.m in Sources */,
 				48357E2618472BB500BCF799 /* AdviseLevel.m in Sources */,
@@ -3384,8 +3417,8 @@
 		7215974117453680006FD415 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Amoycare Information Technology Co., Ltd (D6MQ5ZWZVN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amoycare Information Technology Co., Ltd (D6MQ5ZWZVN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: LI TINGBIN (FV378L5RHS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: LI TINGBIN (FV378L5RHS)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -3410,6 +3443,7 @@
 					"$(SRCROOT)/UMSocial_Sdk_3.1/SocialSDKXib",
 					"$(SRCROOT)/UMSocial_Sdk_3.1/frameworks/Wechat",
 					"$(SRCROOT)/Parenting/UMengContact",
+					"/Users/vlll00/开发/Code/MyCode/Code/Baby_Care_Lite_-CN-/Parenting/Parenting/UartLib",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
@@ -3417,8 +3451,8 @@
 					"-Objc",
 				);
 				PRODUCT_NAME = "Amoy Baby Care";
-				PROVISIONING_PROFILE = "7D99526B-E829-434E-AF3C-997AC6CB0C89";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7D99526B-E829-434E-AF3C-997AC6CB0C89";
+				PROVISIONING_PROFILE = "50AA14CB-54AC-44E0-968A-DFE1C2AD8759";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "50AA14CB-54AC-44E0-968A-DFE1C2AD8759";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = armv7;
@@ -3429,8 +3463,8 @@
 		7215974217453680006FD415 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Amoycare Information Technology Co., Ltd (D6MQ5ZWZVN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amoycare Information Technology Co., Ltd (D6MQ5ZWZVN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: LI TINGBIN (FV378L5RHS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: LI TINGBIN (FV378L5RHS)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -3455,6 +3489,7 @@
 					"$(SRCROOT)/UMSocial_Sdk_3.1/SocialSDKXib",
 					"$(SRCROOT)/UMSocial_Sdk_3.1/frameworks/Wechat",
 					"$(SRCROOT)/Parenting/UMengContact",
+					"/Users/vlll00/开发/Code/MyCode/Code/Baby_Care_Lite_-CN-/Parenting/Parenting/UartLib",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
@@ -3462,8 +3497,8 @@
 					"-Objc",
 				);
 				PRODUCT_NAME = "Amoy Baby Care";
-				PROVISIONING_PROFILE = "7D99526B-E829-434E-AF3C-997AC6CB0C89";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7D99526B-E829-434E-AF3C-997AC6CB0C89";
+				PROVISIONING_PROFILE = "50AA14CB-54AC-44E0-968A-DFE1C2AD8759";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "50AA14CB-54AC-44E0-968A-DFE1C2AD8759";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = armv7;

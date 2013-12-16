@@ -13,6 +13,7 @@
 #import "defaultAppDelegate.h"
 #import "UMFeedbackViewController.h"
 #import "MyLocalNofityViewController.h"
+#import "MyDevicesViewController.h"
 
 @interface SettingViewController ()
 @property (strong, nonatomic) UITableView *settingTable;
@@ -80,7 +81,7 @@ messageView;
     SettingItem *_item2 = [[SettingItem alloc]init];
     SettingItem *_item3 = [[SettingItem alloc]init];
     SettingItem *_item4=[[SettingItem alloc]init];
-    //SettingItem *_item5=[[SettingItem alloc]init];
+    SettingItem *_item5=[[SettingItem alloc]init];
     SettingItem *_item6 = [[SettingItem alloc]init];
     SettingItem *_item7 = [[SettingItem alloc]init];
     SettingItem *_item8 = [[SettingItem alloc]init];
@@ -91,7 +92,7 @@ messageView;
     _item3.name=NSLocalizedString(@"Notifications",nil);
     _item4.name=NSLocalizedString(@"Submit feedback online",nil);
     //    _item4.name=NSLocalizedString(@"Facebook",nil);
-    //_item5.name=NSLocalizedString(@"Review App",nil);
+    _item5.name=NSLocalizedString(@"My Deivces",nil);
     _item6.name=NSLocalizedString(@"Submit feedback/improvements",nil);
     _item7.name=NSLocalizedString(@"Copyright",nil);
     _item8.name=NSLocalizedString(@"Clear all logged data",nil);

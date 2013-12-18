@@ -190,6 +190,15 @@
 		7215975417453C52006FD415 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7215975317453C52006FD415 /* libsqlite3.dylib */; };
 		72FAFD9D174694F500901B8B /* LogDBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FAFD9C174694F500901B8B /* LogDBUtil.m */; };
 		72FAFDA01746A14400901B8B /* CacheFileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FAFD9F1746A14400901B8B /* CacheFileUtil.m */; };
+		BE5997C71861930A008D3F6C /* BindingDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5997C01861930A008D3F6C /* BindingDeviceViewController.m */; };
+		BE5997C81861930A008D3F6C /* BindingDeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE5997C11861930A008D3F6C /* BindingDeviceViewController.xib */; };
+		BE5997C91861930A008D3F6C /* LookingForDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5997C31861930A008D3F6C /* LookingForDeviceViewController.m */; };
+		BE5997CA1861930A008D3F6C /* MyDevicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5997C51861930A008D3F6C /* MyDevicesTableViewController.m */; };
+		BE5997CB1861930A008D3F6C /* MyDevicesTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE5997C61861930A008D3F6C /* MyDevicesTableViewController.xib */; };
+		BE5997CF18619320008D3F6C /* TipsMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5997CD18619320008D3F6C /* TipsMasterViewController.m */; };
+		BE5997D018619320008D3F6C /* TipsMasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE5997CE18619320008D3F6C /* TipsMasterViewController.xib */; };
+		BE5997D418619339008D3F6C /* lookingDevice.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BE5997D218619339008D3F6C /* lookingDevice.jpg */; };
+		BE5997D518619339008D3F6C /* scanfail_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BE5997D318619339008D3F6C /* scanfail_1.jpg */; };
 		CE0167B3174B059000462363 /* btn_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = CE01679D174B059000462363 /* btn_delete.png */; };
 		CE0167B4174B059000462363 /* btn_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE01679E174B059000462363 /* btn_delete@2x.png */; };
 		CE0167B5174B059000462363 /* btn_delete_focus.png in Resources */ = {isa = PBXBuildFile; fileRef = CE01679F174B059000462363 /* btn_delete_focus.png */; };
@@ -820,6 +829,19 @@
 		72FAFD9C174694F500901B8B /* LogDBUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogDBUtil.m; sourceTree = "<group>"; };
 		72FAFD9E1746A14400901B8B /* CacheFileUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheFileUtil.h; sourceTree = "<group>"; };
 		72FAFD9F1746A14400901B8B /* CacheFileUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheFileUtil.m; sourceTree = "<group>"; };
+		BE5997BF1861930A008D3F6C /* BindingDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindingDeviceViewController.h; sourceTree = "<group>"; };
+		BE5997C01861930A008D3F6C /* BindingDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindingDeviceViewController.m; sourceTree = "<group>"; };
+		BE5997C11861930A008D3F6C /* BindingDeviceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BindingDeviceViewController.xib; sourceTree = "<group>"; };
+		BE5997C21861930A008D3F6C /* LookingForDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookingForDeviceViewController.h; sourceTree = "<group>"; };
+		BE5997C31861930A008D3F6C /* LookingForDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookingForDeviceViewController.m; sourceTree = "<group>"; };
+		BE5997C41861930A008D3F6C /* MyDevicesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDevicesTableViewController.h; sourceTree = "<group>"; };
+		BE5997C51861930A008D3F6C /* MyDevicesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDevicesTableViewController.m; sourceTree = "<group>"; };
+		BE5997C61861930A008D3F6C /* MyDevicesTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDevicesTableViewController.xib; sourceTree = "<group>"; };
+		BE5997CC18619320008D3F6C /* TipsMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipsMasterViewController.h; sourceTree = "<group>"; };
+		BE5997CD18619320008D3F6C /* TipsMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipsMasterViewController.m; sourceTree = "<group>"; };
+		BE5997CE18619320008D3F6C /* TipsMasterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipsMasterViewController.xib; sourceTree = "<group>"; };
+		BE5997D218619339008D3F6C /* lookingDevice.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lookingDevice.jpg; sourceTree = "<group>"; };
+		BE5997D318619339008D3F6C /* scanfail_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = scanfail_1.jpg; sourceTree = "<group>"; };
 		CE01679D174B059000462363 /* btn_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_delete.png; sourceTree = "<group>"; };
 		CE01679E174B059000462363 /* btn_delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_delete@2x.png"; sourceTree = "<group>"; };
 		CE01679F174B059000462363 /* btn_delete_focus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_delete_focus.png; sourceTree = "<group>"; };
@@ -1586,6 +1608,9 @@
 		4855BCA8183075B100F02A3E /* Tips */ = {
 			isa = PBXGroup;
 			children = (
+				BE5997CC18619320008D3F6C /* TipsMasterViewController.h */,
+				BE5997CD18619320008D3F6C /* TipsMasterViewController.m */,
+				BE5997CE18619320008D3F6C /* TipsMasterViewController.xib */,
 				48B4C0B617DEEF7C0099D986 /* AdviseMasterViewController.h */,
 				48B4C0B717DEEF7D0099D986 /* AdviseMasterViewController.m */,
 				48B4C0B817DEEF7E0099D986 /* AdviseMasterViewController.xib */,
@@ -2021,6 +2046,7 @@
 		72159747174536B8006FD415 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BE5997D118619339008D3F6C /* bluetooth */,
 				48152DD418486AFB009A4900 /* guide */,
 				485749C618332860000D921B /* liteicon_cn */,
 				48DEA79617F45E0C00A11316 /* TipsImage */,
@@ -2046,6 +2072,7 @@
 		72159748174536C0006FD415 /* ClassFiles */ = {
 			isa = PBXGroup;
 			children = (
+				BE5997BE1861927B008D3F6C /* Bluetooth */,
 				4855BCAB183076BD00F02A3E /* Main */,
 				48152E2A18487204009A4900 /* Guide */,
 				7215974F17453980006FD415 /* Home */,
@@ -2159,6 +2186,30 @@
 				72FAFD9F1746A14400901B8B /* CacheFileUtil.m */,
 			);
 			name = cacheUtil;
+			sourceTree = "<group>";
+		};
+		BE5997BE1861927B008D3F6C /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				BE5997BF1861930A008D3F6C /* BindingDeviceViewController.h */,
+				BE5997C01861930A008D3F6C /* BindingDeviceViewController.m */,
+				BE5997C11861930A008D3F6C /* BindingDeviceViewController.xib */,
+				BE5997C21861930A008D3F6C /* LookingForDeviceViewController.h */,
+				BE5997C31861930A008D3F6C /* LookingForDeviceViewController.m */,
+				BE5997C41861930A008D3F6C /* MyDevicesTableViewController.h */,
+				BE5997C51861930A008D3F6C /* MyDevicesTableViewController.m */,
+				BE5997C61861930A008D3F6C /* MyDevicesTableViewController.xib */,
+			);
+			name = Bluetooth;
+			sourceTree = "<group>";
+		};
+		BE5997D118619339008D3F6C /* bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				BE5997D218619339008D3F6C /* lookingDevice.jpg */,
+				BE5997D318619339008D3F6C /* scanfail_1.jpg */,
+			);
+			path = bluetooth;
 			sourceTree = "<group>";
 		};
 		CE01679C174B059000462363 /* 设置 */ = {
@@ -2832,11 +2883,13 @@
 				CE016841174B49D300462363 /* bg_yellow.png in Resources */,
 				48DEA7C217F46C3E00A11316 /* Diaper_3.jpg in Resources */,
 				CE016842174B49D300462363 /* bg_yellow@2x.png in Resources */,
+				BE5997D418619339008D3F6C /* lookingDevice.jpg in Resources */,
 				CE016843174B49D300462363 /* breast_l.png in Resources */,
 				480C04CE18239FC100846E13 /* DurationPickerView.xib in Resources */,
 				48152E43184C65AE009A4900 /* 960.2.png in Resources */,
 				CE016844174B49D300462363 /* breast_l@2x.png in Resources */,
 				CE016845174B49D300462363 /* breast_r.png in Resources */,
+				BE5997C81861930A008D3F6C /* BindingDeviceViewController.xib in Resources */,
 				48152E1118486C66009A4900 /* icon_rightArrow@2x.png in Resources */,
 				48574A99183B366B000D921B /* UMSShareListController.xib in Resources */,
 				489AABEC180D141B00EB607E /* icon_uv.png in Resources */,
@@ -2860,6 +2913,7 @@
 				CE016854174B49D300462363 /* btn_start_breast_focus@2x.png in Resources */,
 				CE016855174B49D300462363 /* btn_start_focus.png in Resources */,
 				48152E46184C65AE009A4900 /* 1136.2.png in Resources */,
+				BE5997CB1861930A008D3F6C /* MyDevicesTableViewController.xib in Resources */,
 				CE016856174B49D300462363 /* btn_start_focus@2x.png in Resources */,
 				CE016858174B49D300462363 /* btn_stop_breast.png in Resources */,
 				CE016859174B49D300462363 /* btn_stop_breast@2x.png in Resources */,
@@ -2878,6 +2932,7 @@
 				CE016861174B49D300462363 /* btn_wed_focus@2x.png in Resources */,
 				CE016862174B49D300462363 /* diaper_time.png in Resources */,
 				CE016863174B49D300462363 /* diaper_time@2x.png in Resources */,
+				BE5997D518619339008D3F6C /* scanfail_1.jpg in Resources */,
 				CE016864174B49D300462363 /* feed_bottle_time.png in Resources */,
 				CE016865174B49D300462363 /* feed_bottle_time@2x.png in Resources */,
 				CE016866174B49D300462363 /* feedway_left.png in Resources */,
@@ -3077,6 +3132,7 @@
 				CE638B0D174F4FC2009A60AB /* btn_day_focus@2x.png in Resources */,
 				CE638B0E174F4FC2009A60AB /* btn_diaper.png in Resources */,
 				CE638B0F174F4FC2009A60AB /* btn_diaper@2x.png in Resources */,
+				BE5997D018619320008D3F6C /* TipsMasterViewController.xib in Resources */,
 				CE638B10174F4FC2009A60AB /* btn_diaper_focus.png in Resources */,
 				CE638B11174F4FC2009A60AB /* btn_diaper_focus@2x.png in Resources */,
 				485F3F4E17F16E3800BD876F /* DataCustomCell.xib in Resources */,
@@ -3232,6 +3288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE5997CF18619320008D3F6C /* TipsMasterViewController.m in Sources */,
 				48B78141182A20610073EEBD /* CustomURLCache.m in Sources */,
 				48152E4E1851B842009A4900 /* MyLocalNofityViewController.m in Sources */,
 				485749961831C3D1000D921B /* NotifyViewController.m in Sources */,
@@ -3266,6 +3323,7 @@
 				CE3826F8174DEB0B009AD8DA /* playViewController.m in Sources */,
 				CE3826FD174DEB22009AD8DA /* bathViewController.m in Sources */,
 				CE638AB3174F4899009A60AB /* FMDatabase.m in Sources */,
+				BE5997C91861930A008D3F6C /* LookingForDeviceViewController.m in Sources */,
 				CE638AB4174F4899009A60AB /* FMDatabaseAdditions.m in Sources */,
 				485749A4183205A3000D921B /* NotifyItem.m in Sources */,
 				489AABF1180D2D1100EB607E /* ChineseToPinyin.m in Sources */,
@@ -3305,9 +3363,11 @@
 				485749A01831C423000D921B /* MissionViewController.m in Sources */,
 				48152E3B18487EB0009A4900 /* DXAlertView.m in Sources */,
 				CE0C33DC17618AF100B1B683 /* SummaryViewController.m in Sources */,
+				BE5997CA1861930A008D3F6C /* MyDevicesTableViewController.m in Sources */,
 				CE69F1B6176AAAF600E26333 /* SummaryItem.m in Sources */,
 				F365CADC176C537900EA1406 /* CustumCell.m in Sources */,
 				CE239796176EE4A50096E033 /* BabyinfoViewController.m in Sources */,
+				BE5997C71861930A008D3F6C /* BindingDeviceViewController.m in Sources */,
 				CE1D69C81772958900561EBF /* AdviseScrollview.m in Sources */,
 				48B4C0B917DEEF7F0099D986 /* AdviseMasterViewController.m in Sources */,
 				48140BC217E03EBA0049EE17 /* AdviseData.m in Sources */,
@@ -3443,7 +3503,7 @@
 					"$(SRCROOT)/UMSocial_Sdk_3.1/SocialSDKXib",
 					"$(SRCROOT)/UMSocial_Sdk_3.1/frameworks/Wechat",
 					"$(SRCROOT)/Parenting/UMengContact",
-					"/Users/vlll00/开发/Code/MyCode/Code/Baby_Care_Lite_-CN-/Parenting/Parenting/UartLib",
+					"$(SRCROOT)/Parenting/UartLib",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
@@ -3489,7 +3549,7 @@
 					"$(SRCROOT)/UMSocial_Sdk_3.1/SocialSDKXib",
 					"$(SRCROOT)/UMSocial_Sdk_3.1/frameworks/Wechat",
 					"$(SRCROOT)/Parenting/UMengContact",
-					"/Users/vlll00/开发/Code/MyCode/Code/Baby_Care_Lite_-CN-/Parenting/Parenting/UartLib",
+					"$(SRCROOT)/Parenting/UartLib",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (

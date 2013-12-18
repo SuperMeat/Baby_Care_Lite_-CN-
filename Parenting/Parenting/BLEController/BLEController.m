@@ -173,11 +173,11 @@
         NSLog(@"%@",startTime);
         
         //五个按钮:喂食,换尿布,洗澡,睡觉,玩耍
-#define BLUETOOTH_BUTTON_FEED @"01"
+#define BLUETOOTH_BUTTON_FEED   @"01"
 #define BLUETOOTH_BUTTON_DIAPER @"02"
-#define BLUETOOTH_BUTTON_BATH @"03"
-#define BLUETOOTH_BUTTON_SLEEP @"04"
-#define BLUETOOTH_BUTTON_PLAY @"05"
+#define BLUETOOTH_BUTTON_BATH   @"03"
+#define BLUETOOTH_BUTTON_SLEEP  @"04"
+#define BLUETOOTH_BUTTON_PLAY   @"05"
         
         if (startTime == nil){
             //数据格式错误，异常数据处理

@@ -21,8 +21,15 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        
     }
     return self;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.view setBackgroundColor:[UIColor colorWithRed:239.0/255 green:239.0/255 blue:239.0/255 alpha:1]];
+    self.hidesBottomBarWhenPushed = YES;
 }
 
 - (void)viewDidLoad

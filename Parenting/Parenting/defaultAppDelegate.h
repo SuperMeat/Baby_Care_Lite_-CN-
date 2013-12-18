@@ -10,7 +10,6 @@
 #import "SettingViewController.h"
 #import "SummaryViewController.h"
 #import "HomeViewController.h"
-#import "AdviseMasterViewController.h"
 #import "InformationCenterViewController.h"
 #import "GuideViewController.h"
 
@@ -23,7 +22,6 @@
 {
     MMXTabBarController         *TabbarController;
     SettingViewController       *settingViewController;
-    AdviseMasterViewController  *adviseViewController;
     InformationCenterViewController *icViewController;
     SummaryViewController       *summaryViewController;
     HomeViewController          *homeViewController;

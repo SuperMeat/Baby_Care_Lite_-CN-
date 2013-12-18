@@ -11,6 +11,7 @@
 #import "SocialCircleViewController.h"
 #import "NotifyViewController.h"
 #import "MissionViewController.h"
+#import "TipsMasterViewController.h"
 
 @interface InformationCenterViewController ()
 
@@ -196,8 +197,8 @@
         [self.navigationController pushViewController:notify animated:YES];
     }
     else if (indexPath.section == 0) {
-         AdviseMasterViewController *detailViewController = [[AdviseMasterViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        [self.navigationController pushViewController:detailViewController animated:YES];
+         TipsMasterViewController *tipsMasterViewController = [[TipsMasterViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        [self.navigationController pushViewController:tipsMasterViewController animated:YES];
     }
     else
     {

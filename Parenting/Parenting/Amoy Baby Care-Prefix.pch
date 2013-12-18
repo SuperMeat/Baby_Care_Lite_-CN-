@@ -96,3 +96,22 @@
 
 #define GuideVerson    @"1.4.0"
 
+//*** 蓝牙设备连接参数
+#define PRESS_KEY_DIAPER 1
+#define PRESS_KEY_SLEEP  2
+#define PRESS_KEY_FEED_BREAST 3
+#define PRESS_KEY_FEED_BOTTLE 4
+#define PRESS_KEY_BATH 5
+#define PRESS_KEY_PLAY 6
+
+#define GET_HISTORY_TYPE_START  0
+#define GET_HISTORY_TYPE_NEXT   1
+#define GET_HISTORY_TYPE_NEXT_DELETE_CURTERN 2
+
+#define PID_REQ_SET_SYS_TIME 1
+#define PID_RESP_SET_SYS_TIME 2
+#define PID_REQ_GET_HISTORY 3
+#define PID_RESP_GET_HISTORY 4
+#define PID_HEART_BEAT  254
+//*** end
+

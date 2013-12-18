@@ -13,7 +13,7 @@
 #import "defaultAppDelegate.h"
 #import "UMFeedbackViewController.h"
 #import "MyLocalNofityViewController.h"
-#import "MyDevicesViewController.h"
+#import "MyDevicesTableViewController.h"
 
 @interface SettingViewController ()
 @property (strong, nonatomic) UITableView *settingTable;
@@ -92,7 +92,7 @@ messageView;
     _item3.name=NSLocalizedString(@"Notifications",nil);
     _item4.name=NSLocalizedString(@"Submit feedback online",nil);
     //    _item4.name=NSLocalizedString(@"Facebook",nil);
-    _item5.name=NSLocalizedString(@"My Deivces",nil);
+    _item5.name=NSLocalizedString(@"My Devices",nil);
     _item6.name=NSLocalizedString(@"Submit feedback/improvements",nil);
     _item7.name=NSLocalizedString(@"Copyright",nil);
     _item8.name=NSLocalizedString(@"Clear all logged data",nil);
@@ -113,6 +113,10 @@ messageView;
     UIButton *feedbackOnline=[UIButton buttonWithType:UIButtonTypeCustom];
     [feedbackOnline setImage:[[UIImage imageNamed:@"btn_right.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(8, 8, 8, 8)] forState:UIControlStateNormal];
     feedbackOnline.frame=CGRectMake(0, 0, 20, 20);
+    
+    UIButton *myDevices=[UIButton buttonWithType:UIButtonTypeCustom];
+    [myDevices setImage:[[UIImage imageNamed:@"btn_right.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(8, 8, 8, 8)] forState:UIControlStateNormal];
+    myDevices.frame=CGRectMake(0, 0, 20, 20);
     
     UIButton *detailforSubmit=[UIButton buttonWithType:UIButtonTypeCustom];
     [detailforSubmit setImage:[[UIImage imageNamed:@"btn_right.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(8, 8, 8, 8)] forState:UIControlStateNormal];
@@ -180,8 +184,7 @@ messageView;
     _item2.accessView=segementForMetric;
     _item3.accessView=switchForNotifications;
     _item4.accessView=feedbackOnline;
-    //    _item4.accessView=buttonForFacebook;
-    //_item5.accessView=detailforReview;
+    _item5.accessView=myDevices;
     _item6.accessView=detailforSubmit;
     _item7.accessView=detailforCopyright;
     _item8.accessView=buttonForClear;
@@ -194,7 +197,7 @@ messageView;
     [_array2 addObject:_item3];
     [_array2 addObject:_item4];
 
-    //[_array2 addObject:_item5];
+    [_array2 addObject:_item5];
     [_array2 addObject:_item6];
     [_array2 addObject:_item7];
     [_array3 addObject:_item8];
@@ -323,6 +326,11 @@ messageView;
         navigationController.navigationBar.barStyle = UIBarStyleBlack;
         navigationController.navigationBar.translucent = NO;
         [self presentViewController:navigationController animated:YES completion:^{}];//        [self onlineFeedBack];
+    }
+    else if ([item.name isEqualToString:NSLocalizedString(@"My Devices", nil)]){
+        //undone feedback
+        MyDevicesTableViewController *myDevicesViewController = [[MyDevicesTableViewController alloc] initWithNibName:@"MyDevicesTableViewController" bundle:nil];
+        [self.navigationController pushViewController:myDevicesViewController animated:YES];
     }
     else if([item.name isEqualToString:NSLocalizedString(@"Submit feedback/improvements",nil)]){
         [self sendEMail];

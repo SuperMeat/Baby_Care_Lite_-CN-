@@ -7,14 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UartLib.h"
+
 @protocol BLEControllerDelegate<NSObject>
 @optional
+-(void)scanResult:(BOOL)result with:(NSMutableArray  *)foundPeripherals;
 -(void)BLEPowerOff:(BOOL)isPowerOff;
 -(void)DidConnected:(BOOL)isConnected;
 -(void)RecvBTData:(NSData*)recvdata;
 @end
 
-@interface BLEController : NSObject
+@interface BLEController : NSObject{
+    int isNext;
+    //****cwb****
+    BOOL isSaved;
+    int scanCount;
+}
 @property (assign) id<BLEControllerDelegate> bleControllerDelegate;
 
 -(void)startscan;

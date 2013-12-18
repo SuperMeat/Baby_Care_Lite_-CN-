@@ -334,4 +334,13 @@ void UncaughtExceptionHandler(NSException *exception) {
     [DataBase insertNotifyMessage:content];
 }
 
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    if (notification) {
+        NSLog(@"didFinishLaunchingWithOptions");
+        UIAlertView *alert =  [[UIAlertView alloc] initWithTitle:nil message:notification.alertBody delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
 @end

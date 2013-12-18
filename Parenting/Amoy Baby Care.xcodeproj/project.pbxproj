@@ -10,8 +10,6 @@
 		48013D37185ADFC300F483A6 /* BLEController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48013D36185ADFC300F483A6 /* BLEController.m */; };
 		48013D3B185AE3A000F483A6 /* libUartLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48013D39185AE3A000F483A6 /* libUartLib.a */; };
 		48013D3D185AE47900F483A6 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48013D3C185AE47900F483A6 /* CoreBluetooth.framework */; };
-		480C04CC18239F8F00846E13 /* DurationPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 480C04CB18239F8F00846E13 /* DurationPickerView.m */; };
-		480C04CE18239FC100846E13 /* DurationPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 480C04CD18239FC100846E13 /* DurationPickerView.xib */; };
 		480C04D11828C9E600846E13 /* Submit_Btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 480C04CF1828C9E600846E13 /* Submit_Btn.png */; };
 		480C04D21828C9E600846E13 /* Submit_Btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 480C04D01828C9E600846E13 /* Submit_Btn@2x.png */; };
 		48140BC217E03EBA0049EE17 /* AdviseData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48140BC117E03EB90049EE17 /* AdviseData.m */; };
@@ -113,7 +111,6 @@
 		485749E418332860000D921B /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 485749D418332860000D921B /* Icon@2x.png */; };
 		485749E518332860000D921B /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 485749D518332860000D921B /* iTunesArtwork.png */; };
 		485749E618332860000D921B /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 485749D618332860000D921B /* iTunesArtwork@2x.png */; };
-		48574A69183B33E8000D921B /* libPushSDK-Simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48574A67183B33E8000D921B /* libPushSDK-Simulator.a */; };
 		48574A6A183B33E8000D921B /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48574A68183B33E8000D921B /* libPushSDK.a */; };
 		48574A8D183B366B000D921B /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 48574A6C183B366B000D921B /* UMSocialLocalizable.strings */; };
 		48574A8E183B366B000D921B /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48574A70183B366B000D921B /* TencentOpenAPI.framework */; };
@@ -180,6 +177,12 @@
 		48DEA7DC17F4703400A11316 /* Play_11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 48DEA7CF17F4703400A11316 /* Play_11.jpg */; };
 		48DEA7DD17F4703400A11316 /* Play_12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 48DEA7D017F4703400A11316 /* Play_12.jpg */; };
 		48DEA7DE17F4703400A11316 /* Play_13.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 48DEA7D117F4703400A11316 /* Play_13.jpg */; };
+		48EC1DC4185EF4A300965254 /* DurationPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48EC1DC2185EF4A300965254 /* DurationPickerView.m */; };
+		48EC1DC5185EF4A300965254 /* DurationPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48EC1DC3185EF4A300965254 /* DurationPickerView.xib */; };
+		48EC1DC818603B3700965254 /* LocalNotifyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48EC1DC718603B3700965254 /* LocalNotifyCell.m */; };
+		48EC1DCC1860439100965254 /* LocalNotifyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48EC1DCB1860439100965254 /* LocalNotifyCell.xib */; };
+		48EC1DD01861772300965254 /* CustomNotifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48EC1DCE1861772300965254 /* CustomNotifyViewController.m */; };
+		48EC1DD11861772300965254 /* CustomNotifyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48EC1DCF1861772300965254 /* CustomNotifyViewController.xib */; };
 		7215972117453680006FD415 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7215972017453680006FD415 /* UIKit.framework */; };
 		7215972317453680006FD415 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7215972217453680006FD415 /* Foundation.framework */; };
 		7215972517453680006FD415 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7215972417453680006FD415 /* CoreGraphics.framework */; };
@@ -580,9 +583,6 @@
 		4802778317B8C90800A71D13 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		4802778517B8C91100A71D13 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		4802778717B8C91D00A71D13 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
-		480C04CA18239F8F00846E13 /* DurationPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DurationPickerView.h; sourceTree = "<group>"; };
-		480C04CB18239F8F00846E13 /* DurationPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DurationPickerView.m; sourceTree = "<group>"; };
-		480C04CD18239FC100846E13 /* DurationPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DurationPickerView.xib; sourceTree = "<group>"; };
 		480C04CF1828C9E600846E13 /* Submit_Btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Submit_Btn.png; sourceTree = "<group>"; };
 		480C04D01828C9E600846E13 /* Submit_Btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Submit_Btn@2x.png"; sourceTree = "<group>"; };
 		48140BC017E03EB70049EE17 /* AdviseData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdviseData.h; sourceTree = "<group>"; };
@@ -714,7 +714,6 @@
 		485749D518332860000D921B /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		485749D618332860000D921B /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		48574A66183B33E8000D921B /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
-		48574A67183B33E8000D921B /* libPushSDK-Simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-Simulator.a"; sourceTree = "<group>"; };
 		48574A68183B33E8000D921B /* libPushSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPushSDK.a; sourceTree = "<group>"; };
 		48574A6D183B366B000D921B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		48574A70183B366B000D921B /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
@@ -804,6 +803,15 @@
 		48DEA7CF17F4703400A11316 /* Play_11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Play_11.jpg; sourceTree = "<group>"; };
 		48DEA7D017F4703400A11316 /* Play_12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Play_12.jpg; sourceTree = "<group>"; };
 		48DEA7D117F4703400A11316 /* Play_13.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Play_13.jpg; sourceTree = "<group>"; };
+		48EC1DC1185EF4A300965254 /* DurationPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DurationPickerView.h; sourceTree = "<group>"; };
+		48EC1DC2185EF4A300965254 /* DurationPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DurationPickerView.m; sourceTree = "<group>"; };
+		48EC1DC3185EF4A300965254 /* DurationPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DurationPickerView.xib; sourceTree = "<group>"; };
+		48EC1DC618603B3700965254 /* LocalNotifyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNotifyCell.h; sourceTree = "<group>"; };
+		48EC1DC718603B3700965254 /* LocalNotifyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNotifyCell.m; sourceTree = "<group>"; };
+		48EC1DCB1860439100965254 /* LocalNotifyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocalNotifyCell.xib; sourceTree = "<group>"; };
+		48EC1DCD1861772300965254 /* CustomNotifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomNotifyViewController.h; path = CustomNotify/CustomNotifyViewController.h; sourceTree = "<group>"; };
+		48EC1DCE1861772300965254 /* CustomNotifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomNotifyViewController.m; path = CustomNotify/CustomNotifyViewController.m; sourceTree = "<group>"; };
+		48EC1DCF1861772300965254 /* CustomNotifyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomNotifyViewController.xib; path = CustomNotify/CustomNotifyViewController.xib; sourceTree = "<group>"; };
 		7215971C17453680006FD415 /* Amoy Baby Care.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Amoy Baby Care.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7215972017453680006FD415 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7215972217453680006FD415 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1350,7 +1358,6 @@
 				CE816B7817532B830064C08C /* MapKit.framework in Frameworks */,
 				CE816B76175329220064C08C /* CoreLocation.framework in Frameworks */,
 				48574A8F183B366B000D921B /* libWeChatSDK.a in Frameworks */,
-				48574A69183B33E8000D921B /* libPushSDK-Simulator.a in Frameworks */,
 				7215975417453C52006FD415 /* libsqlite3.dylib in Frameworks */,
 				7215972117453680006FD415 /* UIKit.framework in Frameworks */,
 				7215972317453680006FD415 /* Foundation.framework in Frameworks */,
@@ -1504,6 +1511,12 @@
 				48152E4B1851B842009A4900 /* MyLocalNofityViewController.h */,
 				48152E4C1851B842009A4900 /* MyLocalNofityViewController.m */,
 				48152E4D1851B842009A4900 /* MyLocalNofityViewController.xib */,
+				48EC1DC618603B3700965254 /* LocalNotifyCell.h */,
+				48EC1DC718603B3700965254 /* LocalNotifyCell.m */,
+				48EC1DCB1860439100965254 /* LocalNotifyCell.xib */,
+				48EC1DCD1861772300965254 /* CustomNotifyViewController.h */,
+				48EC1DCE1861772300965254 /* CustomNotifyViewController.m */,
+				48EC1DCF1861772300965254 /* CustomNotifyViewController.xib */,
 			);
 			name = LocalNofication;
 			sourceTree = "<group>";
@@ -1523,7 +1536,6 @@
 			isa = PBXGroup;
 			children = (
 				48574A66183B33E8000D921B /* APService.h */,
-				48574A67183B33E8000D921B /* libPushSDK-Simulator.a */,
 				48574A68183B33E8000D921B /* libPushSDK.a */,
 			);
 			path = JPushSDK;
@@ -1963,6 +1975,50 @@
 			path = TipsImage;
 			sourceTree = "<group>";
 		};
+		48EC1DBF185EF2D700965254 /* ActivityController */ = {
+			isa = PBXGroup;
+			children = (
+				CE0167D8174B45AB00462363 /* feedViewController.h */,
+				CE0167D9174B45AB00462363 /* feedViewController.m */,
+				CE0167DA174B45AB00462363 /* feedViewController.xib */,
+				CE3826EB174DEAE2009AD8DA /* diaperViewController.h */,
+				CE3826EC174DEAE2009AD8DA /* diaperViewController.m */,
+				CE3826ED174DEAE2009AD8DA /* diaperViewController.xib */,
+				CE3826F0174DEAFA009AD8DA /* sleepViewController.h */,
+				CE3826F1174DEAFA009AD8DA /* sleepViewController.m */,
+				CE3826F2174DEAFA009AD8DA /* sleepViewController.xib */,
+				CE3826F5174DEB0A009AD8DA /* playViewController.h */,
+				CE3826F6174DEB0A009AD8DA /* playViewController.m */,
+				CE3826F7174DEB0B009AD8DA /* playViewController.xib */,
+				CE3826FA174DEB21009AD8DA /* bathViewController.h */,
+				CE3826FB174DEB21009AD8DA /* bathViewController.m */,
+				CE3826FC174DEB22009AD8DA /* bathViewController.xib */,
+			);
+			name = ActivityController;
+			sourceTree = "<group>";
+		};
+		48EC1DC0185EF2F900965254 /* SaveController */ = {
+			isa = PBXGroup;
+			children = (
+				CE075A35175081AD00C57E27 /* save_feedview.h */,
+				CE075A36175081AD00C57E27 /* save_feedview.m */,
+				CE075A381750820B00C57E27 /* save_diaperview.h */,
+				CE075A391750820C00C57E27 /* save_diaperview.m */,
+				CE075A3B1750821E00C57E27 /* save_sleepview.h */,
+				CE075A3C1750821E00C57E27 /* save_sleepview.m */,
+				CE075A3E1750822C00C57E27 /* save_playview.h */,
+				CE075A3F1750822D00C57E27 /* save_playview.m */,
+				CE075A411750824000C57E27 /* save_bathview.h */,
+				CE075A421750824000C57E27 /* save_bathview.m */,
+				CEF1F4951754AEAB005B3ECD /* ActivityItem.h */,
+				CEF1F4961754AEAC005B3ECD /* ActivityItem.m */,
+				48EC1DC1185EF4A300965254 /* DurationPickerView.h */,
+				48EC1DC2185EF4A300965254 /* DurationPickerView.m */,
+				48EC1DC3185EF4A300965254 /* DurationPickerView.xib */,
+			);
+			name = SaveController;
+			sourceTree = "<group>";
+		};
 		7215971117453680006FD415 = {
 			isa = PBXGroup;
 			children = (
@@ -2314,36 +2370,8 @@
 		CE0168AC174B682E00462363 /* ActivityClass */ = {
 			isa = PBXGroup;
 			children = (
-				CE0167D8174B45AB00462363 /* feedViewController.h */,
-				CE0167D9174B45AB00462363 /* feedViewController.m */,
-				CE0167DA174B45AB00462363 /* feedViewController.xib */,
-				CE3826EB174DEAE2009AD8DA /* diaperViewController.h */,
-				CE3826EC174DEAE2009AD8DA /* diaperViewController.m */,
-				CE3826ED174DEAE2009AD8DA /* diaperViewController.xib */,
-				CE3826F0174DEAFA009AD8DA /* sleepViewController.h */,
-				CE3826F1174DEAFA009AD8DA /* sleepViewController.m */,
-				CE3826F2174DEAFA009AD8DA /* sleepViewController.xib */,
-				CE3826F5174DEB0A009AD8DA /* playViewController.h */,
-				CE3826F6174DEB0A009AD8DA /* playViewController.m */,
-				CE3826F7174DEB0B009AD8DA /* playViewController.xib */,
-				CE3826FA174DEB21009AD8DA /* bathViewController.h */,
-				CE3826FB174DEB21009AD8DA /* bathViewController.m */,
-				CE3826FC174DEB22009AD8DA /* bathViewController.xib */,
-				CE075A35175081AD00C57E27 /* save_feedview.h */,
-				CE075A36175081AD00C57E27 /* save_feedview.m */,
-				CE075A381750820B00C57E27 /* save_diaperview.h */,
-				CE075A391750820C00C57E27 /* save_diaperview.m */,
-				CE075A3B1750821E00C57E27 /* save_sleepview.h */,
-				CE075A3C1750821E00C57E27 /* save_sleepview.m */,
-				CE075A3E1750822C00C57E27 /* save_playview.h */,
-				CE075A3F1750822D00C57E27 /* save_playview.m */,
-				CE075A411750824000C57E27 /* save_bathview.h */,
-				CE075A421750824000C57E27 /* save_bathview.m */,
-				CEF1F4951754AEAB005B3ECD /* ActivityItem.h */,
-				CEF1F4961754AEAC005B3ECD /* ActivityItem.m */,
-				480C04CA18239F8F00846E13 /* DurationPickerView.h */,
-				480C04CB18239F8F00846E13 /* DurationPickerView.m */,
-				480C04CD18239FC100846E13 /* DurationPickerView.xib */,
+				48EC1DBF185EF2D700965254 /* ActivityController */,
+				48EC1DC0185EF2F900965254 /* SaveController */,
 			);
 			name = ActivityClass;
 			sourceTree = "<group>";
@@ -2833,7 +2861,6 @@
 				48DEA7C217F46C3E00A11316 /* Diaper_3.jpg in Resources */,
 				CE016842174B49D300462363 /* bg_yellow@2x.png in Resources */,
 				CE016843174B49D300462363 /* breast_l.png in Resources */,
-				480C04CE18239FC100846E13 /* DurationPickerView.xib in Resources */,
 				48152E43184C65AE009A4900 /* 960.2.png in Resources */,
 				CE016844174B49D300462363 /* breast_l@2x.png in Resources */,
 				CE016845174B49D300462363 /* breast_r.png in Resources */,
@@ -3064,6 +3091,7 @@
 				CE638B06174F4FC2009A60AB /* btn_bath.png in Resources */,
 				CE638B07174F4FC2009A60AB /* btn_bath@2x.png in Resources */,
 				48DEA7B617F4699700A11316 /* Bath_2.jpg in Resources */,
+				48EC1DCC1860439100965254 /* LocalNotifyCell.xib in Resources */,
 				48DEA7DE17F4703400A11316 /* Play_13.jpg in Resources */,
 				CE638B08174F4FC2009A60AB /* btn_bath_focus.png in Resources */,
 				CE638B09174F4FC2009A60AB /* btn_bath_focus@2x.png in Resources */,
@@ -3106,6 +3134,7 @@
 				CE638B25174F4FC2009A60AB /* btn_play_focus@2x.png in Resources */,
 				CE638B26174F4FC2009A60AB /* btn_sleep.png in Resources */,
 				CE638B27174F4FC2009A60AB /* btn_sleep@2x.png in Resources */,
+				48EC1DD11861772300965254 /* CustomNotifyViewController.xib in Resources */,
 				CE638B28174F4FC2009A60AB /* btn_sleep_focus.png in Resources */,
 				48DEA7AC17F467A000A11316 /* Sleep_3.jpg in Resources */,
 				CE638B29174F4FC2009A60AB /* btn_sleep_focus@2x.png in Resources */,
@@ -3119,6 +3148,7 @@
 				CE638B31174F4FC2009A60AB /* histogram_green@2x.png in Resources */,
 				CE638B32174F4FC2009A60AB /* histogram_orange.png in Resources */,
 				CE638B33174F4FC2009A60AB /* histogram_orange@2x.png in Resources */,
+				48EC1DC5185EF4A300965254 /* DurationPickerView.xib in Resources */,
 				CE638B34174F4FC2009A60AB /* histogram_red.png in Resources */,
 				CE638B35174F4FC2009A60AB /* histogram_red@2x.png in Resources */,
 				CE638B36174F4FC2009A60AB /* histogram_yellow.png in Resources */,
@@ -3236,9 +3266,11 @@
 				48152E4E1851B842009A4900 /* MyLocalNofityViewController.m in Sources */,
 				485749961831C3D1000D921B /* NotifyViewController.m in Sources */,
 				7215972D17453680006FD415 /* main.m in Sources */,
+				48EC1DD01861772300965254 /* CustomNotifyViewController.m in Sources */,
 				48152DF318486B13009A4900 /* UMFeedbackTableViewCellRight.m in Sources */,
 				7215973117453680006FD415 /* defaultAppDelegate.m in Sources */,
 				4855BCA2182CCCB900F02A3E /* MMProgressHUDViewController.m in Sources */,
+				48EC1DC818603B3700965254 /* LocalNotifyCell.m in Sources */,
 				F3F09B5D1745CBCE006CB06D /* SettingViewController.m in Sources */,
 				F3F09B6C1745CC15006CB06D /* HomeViewController.m in Sources */,
 				F3F09B841745DE64006CB06D /* MMXTabBarController.m in Sources */,
@@ -3248,7 +3280,6 @@
 				48DEA79317F4213500A11316 /* AdviseTableViewCell.m in Sources */,
 				4855BCA4182CCCB900F02A3E /* MMRadialProgressView.m in Sources */,
 				4855BC9D182CCCB900F02A3E /* MMHud.m in Sources */,
-				480C04CC18239F8F00846E13 /* DurationPickerView.m in Sources */,
 				4855BC9F182CCCB900F02A3E /* MMProgressHUD+Class.m in Sources */,
 				72FAFDA01746A14400901B8B /* CacheFileUtil.m in Sources */,
 				4855BD071830D80300F02A3E /* InfomationItem.m in Sources */,
@@ -3311,6 +3342,7 @@
 				CE1D69C81772958900561EBF /* AdviseScrollview.m in Sources */,
 				48B4C0B917DEEF7F0099D986 /* AdviseMasterViewController.m in Sources */,
 				48140BC217E03EBA0049EE17 /* AdviseData.m in Sources */,
+				48EC1DC4185EF4A300965254 /* DurationPickerView.m in Sources */,
 				4857499B1831C3FD000D921B /* SocialCircleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

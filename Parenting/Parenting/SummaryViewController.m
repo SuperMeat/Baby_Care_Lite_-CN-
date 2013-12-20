@@ -165,9 +165,9 @@
     List =[[UITableView alloc]initWithFrame:CGRectMake(0, 35 + G_YADDONVERSION, 320, menu.frame.size.height-60-30) style:UITableViewStylePlain];
     List.backgroundColor=[UIColor colorWithRed:239.0/255 green:239.0/255 blue:239.0/255 alpha:1];
     [self.view addSubview:List];
-    List.delegate=self;
-    List.dataSource=self;
-    List.separatorStyle=UITableViewCellSeparatorStyleNone;
+    List.delegate   = self;
+    List.dataSource = self;
+    List.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view bringSubviewToFront:self.ExplainView];
 
     List.allowsSelectionDuringEditing=YES;

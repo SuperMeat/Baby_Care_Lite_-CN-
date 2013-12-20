@@ -66,7 +66,6 @@ static int age = 0;
         [[NSUserDefaults standardUserDefaults] setObject:@"male" forKey:@"gender"];
     }
     
-    
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"name"]) {
         self.nametextfield.text=[[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
     }
@@ -161,10 +160,10 @@ static int age = 0;
     [super viewDidLoad];
     //[self.myScrollview setFrame:CGRectMake(0, G_YADDONVERSION, 320, 690)];
     [self.view addSubview:self.myScrollview];
-    self.myScrollview.contentSize=CGSizeMake(320, 690) ;
+    self.myScrollview.contentSize=CGSizeMake(320, 480) ;
     if ([UIScreen mainScreen].bounds.size.height==568) {
-        self.myScrollview.contentSize=CGSizeMake(320, 1200) ;
-        [self.myScrollview setFrame:CGRectMake(0, 0, 320, 800)];
+        self.myScrollview.contentSize=CGSizeMake(320, 568) ;
+        [self.myScrollview setFrame:CGRectMake(0, 0, 320, 568)];
     }
     _myScrollview.showsHorizontalScrollIndicator=NO;
     [self makeNav];
@@ -255,7 +254,6 @@ static int age = 0;
     self.gendertextfield.leftView=lable3;
     
     [self makeDatePicker];
-    
     
     [self.Malebutton setTitle:NSLocalizedString(@"Male",nil) forState:UIControlStateNormal];
     self.Malebutton.tag=101;

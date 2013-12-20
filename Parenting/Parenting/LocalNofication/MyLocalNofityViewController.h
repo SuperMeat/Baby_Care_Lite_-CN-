@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyLocalNofityViewController : UIViewController<UIActionSheetDelegate,UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource>
+@interface MyLocalNofityViewController : UIViewController<UIActionSheetDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     UIDatePicker  *datepicker;
     
@@ -16,14 +16,11 @@
     NSDate* notifyDate;
     
     UIPickerView *picker;
-    NSMutableArray *hours;
-    NSMutableArray *minutes;
     
     UITableView *notifytableview;
     
     NSMutableArray *notifylist;
-    int hour;
-    int minute;
+
 }
 
 

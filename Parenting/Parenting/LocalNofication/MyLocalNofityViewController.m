@@ -8,6 +8,7 @@
 
 #import "MyLocalNofityViewController.h"
 #import "LocalNotifyCell.h"
+#import "CustomNotifyViewController.h"
 
 @interface MyLocalNofityViewController ()
 
@@ -59,8 +60,7 @@
     [remind addTarget:self action:@selector(clock:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:remind];
     
-    hours = [[NSMutableArray alloc] init];
-    minutes = [[NSMutableArray alloc] init];
+   
     
     NSMutableArray *localnotify = [[NSUserDefaults standardUserDefaults] objectForKey:@"localnotifylist"];
     if (localnotify == nil) {
@@ -80,13 +80,6 @@
         [self.view addSubview:notifytableview];
     }
     
-    
-    for (int i = 0; i < 24; i ++) {
-        [hours addObject:[NSString stringWithFormat:@"%d",i]];
-    }
-    for (int i = 0; i < 60; i ++) {
-        [minutes addObject:[NSString stringWithFormat:@"%d",i]];
-    }
 
 }
 
@@ -160,7 +153,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self actionsheetShow];
+    //[self actionsheetShow];
+    CustomNotifyViewController *cnvc = [[CustomNotifyViewController alloc]init];
+    [self.navigationController pushViewController:cnvc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -210,39 +205,6 @@
         Cell.accessoryView.contentMode=UIViewContentModeScaleAspectFit;
         return Cell;
     }
-}
-
-#pragma mark UIPickerViewDelegate Methods
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    if (component == 0) {
-        
-        return [hours objectAtIndex:row];
-    }
-    else {
-        return [minutes objectAtIndex:row];
-    }
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    if (component == 0) {
-        hour = [[hours objectAtIndex:row] intValue];
-    }
-    if (component == 1) {
-        minute = [[minutes objectAtIndex:row] intValue];
-    }
-}
-
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 2;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return 1;
 }
 
 @end

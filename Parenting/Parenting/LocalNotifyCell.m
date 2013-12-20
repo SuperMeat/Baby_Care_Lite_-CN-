@@ -26,4 +26,9 @@
     // Configure the view for the selected state
 }
 
+- (void) layoutSubviews {
+    [super layoutSubviews];
+    self.backgroundView.frame = CGRectMake(9, 0, 302, 44);
+    self.selectedBackgroundView.frame = CGRectMake(9, 0, 302, 44);
+}
 @end

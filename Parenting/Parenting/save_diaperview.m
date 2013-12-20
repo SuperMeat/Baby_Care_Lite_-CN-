@@ -514,9 +514,6 @@
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    if (textField == datetext || textField == starttimetext) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoBoardHidden:) name:UIKeyboardWillShowNotification object:nil];
-    }
     
     return YES;
 }

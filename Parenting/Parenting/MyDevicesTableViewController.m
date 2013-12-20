@@ -119,7 +119,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ;
     if (indexPath.section == [arrData count] - 2) {
         //进入配件编辑页面
     }
@@ -129,7 +128,6 @@
         BindingDeviceViewController *binding = [[BindingDeviceViewController alloc] init];
         [self.navigationController pushViewController:binding animated:YES];
     }
-    
     
 }
 

@@ -183,6 +183,12 @@
 		48EC1DCC1860439100965254 /* LocalNotifyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48EC1DCB1860439100965254 /* LocalNotifyCell.xib */; };
 		48EC1DD01861772300965254 /* CustomNotifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48EC1DCE1861772300965254 /* CustomNotifyViewController.m */; };
 		48EC1DD11861772300965254 /* CustomNotifyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48EC1DCF1861772300965254 /* CustomNotifyViewController.xib */; };
+		48EC1DD61862CE2000965254 /* CustonTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48EC1DD41862CE2000965254 /* CustonTimeViewController.m */; };
+		48EC1DD71862CE2000965254 /* CustonTimeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48EC1DD51862CE2000965254 /* CustonTimeViewController.xib */; };
+		48EC1DDD1862F6E400965254 /* nofity_myadvise_day_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 48EC1DD91862F6E400965254 /* nofity_myadvise_day_up.png */; };
+		48EC1DDE1862F6E400965254 /* nofity_myadvise_day_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48EC1DDA1862F6E400965254 /* nofity_myadvise_day_up@2x.png */; };
+		48EC1DDF1862F6E400965254 /* nofity_myadvise_day.png in Resources */ = {isa = PBXBuildFile; fileRef = 48EC1DDB1862F6E400965254 /* nofity_myadvise_day.png */; };
+		48EC1DE01862F6E400965254 /* nofity_myadvise_day@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48EC1DDC1862F6E400965254 /* nofity_myadvise_day@2x.png */; };
 		7215972117453680006FD415 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7215972017453680006FD415 /* UIKit.framework */; };
 		7215972317453680006FD415 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7215972217453680006FD415 /* Foundation.framework */; };
 		7215972517453680006FD415 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7215972417453680006FD415 /* CoreGraphics.framework */; };
@@ -821,6 +827,13 @@
 		48EC1DCD1861772300965254 /* CustomNotifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomNotifyViewController.h; path = CustomNotify/CustomNotifyViewController.h; sourceTree = "<group>"; };
 		48EC1DCE1861772300965254 /* CustomNotifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomNotifyViewController.m; path = CustomNotify/CustomNotifyViewController.m; sourceTree = "<group>"; };
 		48EC1DCF1861772300965254 /* CustomNotifyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomNotifyViewController.xib; path = CustomNotify/CustomNotifyViewController.xib; sourceTree = "<group>"; };
+		48EC1DD31862CE2000965254 /* CustonTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustonTimeViewController.h; sourceTree = "<group>"; };
+		48EC1DD41862CE2000965254 /* CustonTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustonTimeViewController.m; sourceTree = "<group>"; };
+		48EC1DD51862CE2000965254 /* CustonTimeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustonTimeViewController.xib; sourceTree = "<group>"; };
+		48EC1DD91862F6E400965254 /* nofity_myadvise_day_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nofity_myadvise_day_up.png; sourceTree = "<group>"; };
+		48EC1DDA1862F6E400965254 /* nofity_myadvise_day_up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nofity_myadvise_day_up@2x.png"; sourceTree = "<group>"; };
+		48EC1DDB1862F6E400965254 /* nofity_myadvise_day.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nofity_myadvise_day.png; sourceTree = "<group>"; };
+		48EC1DDC1862F6E400965254 /* nofity_myadvise_day@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nofity_myadvise_day@2x.png"; sourceTree = "<group>"; };
 		7215971C17453680006FD415 /* Amoy Baby Care.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Amoy Baby Care.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7215972017453680006FD415 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7215972217453680006FD415 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1539,6 +1552,9 @@
 				48EC1DCD1861772300965254 /* CustomNotifyViewController.h */,
 				48EC1DCE1861772300965254 /* CustomNotifyViewController.m */,
 				48EC1DCF1861772300965254 /* CustomNotifyViewController.xib */,
+				48EC1DD31862CE2000965254 /* CustonTimeViewController.h */,
+				48EC1DD41862CE2000965254 /* CustonTimeViewController.m */,
+				48EC1DD51862CE2000965254 /* CustonTimeViewController.xib */,
 			);
 			name = LocalNofication;
 			sourceTree = "<group>";
@@ -2044,6 +2060,17 @@
 			name = SaveController;
 			sourceTree = "<group>";
 		};
+		48EC1DD81862F6CB00965254 /* notify */ = {
+			isa = PBXGroup;
+			children = (
+				48EC1DD91862F6E400965254 /* nofity_myadvise_day_up.png */,
+				48EC1DDA1862F6E400965254 /* nofity_myadvise_day_up@2x.png */,
+				48EC1DDB1862F6E400965254 /* nofity_myadvise_day.png */,
+				48EC1DDC1862F6E400965254 /* nofity_myadvise_day@2x.png */,
+			);
+			name = notify;
+			sourceTree = "<group>";
+		};
 		7215971117453680006FD415 = {
 			isa = PBXGroup;
 			children = (
@@ -2102,6 +2129,7 @@
 		72159747174536B8006FD415 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				48EC1DD81862F6CB00965254 /* notify */,
 				BE5997D118619339008D3F6C /* bluetooth */,
 				48152DD418486AFB009A4900 /* guide */,
 				485749C618332860000D921B /* liteicon_cn */,
@@ -3177,6 +3205,7 @@
 				48DEA7D317F4703400A11316 /* Play_2.jpg in Resources */,
 				CE638B1A174F4FC2009A60AB /* btn_month.png in Resources */,
 				CE638B1B174F4FC2009A60AB /* btn_month@2x.png in Resources */,
+				48EC1DDF1862F6E400965254 /* nofity_myadvise_day.png in Resources */,
 				CE638B1C174F4FC2009A60AB /* btn_month_focus.png in Resources */,
 				CE638B1D174F4FC2009A60AB /* btn_month_focus@2x.png in Resources */,
 				CE638B1E174F4FC2009A60AB /* btn_more.png in Resources */,
@@ -3185,6 +3214,7 @@
 				CE638B21174F4FC2009A60AB /* btn_more_focus@2x.png in Resources */,
 				CE638B22174F4FC2009A60AB /* btn_play.png in Resources */,
 				485749D818332860000D921B /* 120.png in Resources */,
+				48EC1DE01862F6E400965254 /* nofity_myadvise_day@2x.png in Resources */,
 				CE638B23174F4FC2009A60AB /* btn_play@2x.png in Resources */,
 				CE638B24174F4FC2009A60AB /* btn_play_focus.png in Resources */,
 				CE638B25174F4FC2009A60AB /* btn_play_focus@2x.png in Resources */,
@@ -3218,6 +3248,7 @@
 				CE638B3B174F4FC2009A60AB /* label1_sum_focus@2x.png in Resources */,
 				CE638B3C174F4FC2009A60AB /* label2_sum.png in Resources */,
 				CE638B3D174F4FC2009A60AB /* label2_sum@2x.png in Resources */,
+				48EC1DDD1862F6E400965254 /* nofity_myadvise_day_up.png in Resources */,
 				CE638B3E174F4FC2009A60AB /* label2_sum_focus.png in Resources */,
 				CE638B3F174F4FC2009A60AB /* label2_sum_focus@2x.png in Resources */,
 				48152E1918486C66009A4900 /* messages_tableview_background.png in Resources */,
@@ -3225,6 +3256,7 @@
 				CE638B41174F4FC2009A60AB /* label3_sum@2x.png in Resources */,
 				CE638B42174F4FC2009A60AB /* label3_sum_focus.png in Resources */,
 				48152E0E18486C66009A4900 /* background@2x.png in Resources */,
+				48EC1DD71862CE2000965254 /* CustonTimeViewController.xib in Resources */,
 				CE638B43174F4FC2009A60AB /* label3_sum_focus@2x.png in Resources */,
 				CE638B44174F4FC2009A60AB /* line.png in Resources */,
 				CE638B45174F4FC2009A60AB /* line@2x.png in Resources */,
@@ -3236,6 +3268,7 @@
 				CE638B4A174F4FC2009A60AB /* Yaxis@2x.png in Resources */,
 				4855BC1D182B237800F02A3E /* umFeedback.bundle in Resources */,
 				CE075A2917505AE100C57E27 /* save_dirty.png in Resources */,
+				48EC1DDE1862F6E400965254 /* nofity_myadvise_day_up@2x.png in Resources */,
 				CE075A2A17505AE100C57E27 /* save_dirty@2x.png in Resources */,
 				CE075A2B17505AE100C57E27 /* save_dry.png in Resources */,
 				48152E3818487EB0009A4900 /* btn_close_normal@2x.png in Resources */,
@@ -3331,6 +3364,7 @@
 				F3F09B5D1745CBCE006CB06D /* SettingViewController.m in Sources */,
 				F3F09B6C1745CC15006CB06D /* HomeViewController.m in Sources */,
 				F3F09B841745DE64006CB06D /* MMXTabBarController.m in Sources */,
+				48EC1DD61862CE2000965254 /* CustonTimeViewController.m in Sources */,
 				48152DD318486AEA009A4900 /* UMEGORefreshTableHeaderView.m in Sources */,
 				48152DED18486B13009A4900 /* UMContactViewController.m in Sources */,
 				72FAFD9D174694F500901B8B /* LogDBUtil.m in Sources */,
@@ -3608,7 +3642,7 @@
 				7215973F17453680006FD415 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		7215974017453680006FD415 /* Build configuration list for PBXNativeTarget "Amoy Baby Care" */ = {
 			isa = XCConfigurationList;
@@ -3617,7 +3651,7 @@
 				7215974217453680006FD415 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

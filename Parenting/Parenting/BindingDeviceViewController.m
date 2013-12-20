@@ -91,7 +91,6 @@
         cell.textLabel.textColor=[UIColor blueColor];
         
         cell.imageView.image = [UIImage imageNamed:@"icon_connected"];//此处添加硬件设备外观图
-        cell.accessoryType = UITableViewCellAccessoryDetailButton;
     }
     
     

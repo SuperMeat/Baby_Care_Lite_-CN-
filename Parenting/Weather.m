@@ -58,7 +58,9 @@
             if (city != nil) {
                 if ([currentLanguage compare:@"zh-Hans" options:NSCaseInsensitiveSearch]==NSOrderedSame || [currentLanguage compare:@"zh-Hant" options:NSCaseInsensitiveSearch]==NSOrderedSame) {
                     NSMutableString *mutableString = [[NSMutableString alloc] initWithString:city];
-                    [mutableString deleteCharactersInRange:NSMakeRange(2, 1)];
+                    
+                    [mutableString deleteCharactersInRange:NSMakeRange([mutableString length]-1, 1)];
+                    
                     mycity = mutableString;
                     //NSLog(@"%@, %d",mutableString, mutableString.length);
                     

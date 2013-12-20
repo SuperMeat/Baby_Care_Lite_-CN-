@@ -3507,8 +3507,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = NO;
-				PROVISIONING_PROFILE = "AA5D37BE-1C43-4A43-ABFB-1951060C9087";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AA5D37BE-1C43-4A43-ABFB-1951060C9087";
+				PROVISIONING_PROFILE = "50AA14CB-54AC-44E0-968A-DFE1C2AD8759";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "50AA14CB-54AC-44E0-968A-DFE1C2AD8759";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3523,8 +3523,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: LI TINGBIN (FV378L5RHS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: LI TINGBIN (FV378L5RHS)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Amoycare Information Technology Co., Ltd (D6MQ5ZWZVN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amoycare Information Technology Co., Ltd (D6MQ5ZWZVN)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -3533,8 +3533,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "AA5D37BE-1C43-4A43-ABFB-1951060C9087";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AA5D37BE-1C43-4A43-ABFB-1951060C9087";
+				PROVISIONING_PROFILE = "7D99526B-E829-434E-AF3C-997AC6CB0C89";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7D99526B-E829-434E-AF3C-997AC6CB0C89";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3543,8 +3543,8 @@
 		7215974117453680006FD415 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Amoycare Information Technology Co., Ltd (D6MQ5ZWZVN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amoycare Information Technology Co., Ltd (D6MQ5ZWZVN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: LI TINGBIN (FV378L5RHS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: LI TINGBIN (FV378L5RHS)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -3577,8 +3577,8 @@
 					"-Objc",
 				);
 				PRODUCT_NAME = "Amoy Baby Care";
-				PROVISIONING_PROFILE = "7D99526B-E829-434E-AF3C-997AC6CB0C89";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7D99526B-E829-434E-AF3C-997AC6CB0C89";
+				PROVISIONING_PROFILE = "50AA14CB-54AC-44E0-968A-DFE1C2AD8759";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "50AA14CB-54AC-44E0-968A-DFE1C2AD8759";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = armv7;
@@ -3642,7 +3642,7 @@
 				7215973F17453680006FD415 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		7215974017453680006FD415 /* Build configuration list for PBXNativeTarget "Amoy Baby Care" */ = {
 			isa = XCConfigurationList;
@@ -3651,7 +3651,7 @@
 				7215974217453680006FD415 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

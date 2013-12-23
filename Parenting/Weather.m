@@ -58,7 +58,9 @@
             if (city != nil) {
                 if ([currentLanguage compare:@"zh-Hans" options:NSCaseInsensitiveSearch]==NSOrderedSame || [currentLanguage compare:@"zh-Hant" options:NSCaseInsensitiveSearch]==NSOrderedSame) {
                     NSMutableString *mutableString = [[NSMutableString alloc] initWithString:city];
-                    [mutableString deleteCharactersInRange:NSMakeRange(2, 1)];
+                    
+                    [mutableString deleteCharactersInRange:NSMakeRange([mutableString length]-1, 1)];
+                    
                     mycity = mutableString;
                     //NSLog(@"%@, %d",mutableString, mutableString.length);
                     
@@ -151,25 +153,15 @@
                                      encoding:NSUTF8StringEncoding
                                      error:&error];
     
-    //NSLog(@"%@",stringFromFileAtURL);
-    
-//#if DEBUG
-//    NSString *debuginfo = [NSString stringWithFormat:@"mailto://amoycaretech@gmail.com?subject=调试报告&body=感谢您的配合!<br><br><br>"
-//                          "Debug Detail:<br>城市:%@<br><br>%@<br>--------------------------<br>",
-//                          location,stringFromFileAtURL];
-//    NSURL *url = [NSURL URLWithString:[debuginfo stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-//    [[UIApplication sharedApplication] openURL:url];
-//#endif
-    
     NSData *data = [stringFromFileAtURL dataUsingEncoding:NSUTF8StringEncoding];
     NSArray *weatherDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-    if (weatherDic.count == 1) {
-        //NSLog(@"error:%@",weatherDic);
+    if (weatherDic.count == 1)
+    {
         return nil;
     }
     else
     {
-        NSDictionary *dic = [weatherDic objectAtIndex:4];
+        NSDictionary *dic = [weatherDic lastObject];
     
         NSNumber *aqi = [dic objectForKey:@"aqi"];
         return [NSString stringWithFormat:@"%@", aqi];

@@ -25,6 +25,7 @@
 +(int)getSuggestionIdByIds:(NSString*)idsstr
 {
     NSArray *ids = [idsstr componentsSeparatedByString:@";"];
+    NSLog(@"%@",idsstr);
     int randomid = rand()%[ids count];
     return [[ids objectAtIndex:randomid] intValue];
 }
@@ -55,7 +56,7 @@
         }
     }
     
-    resultset = [db executeQuery:@"select * from sleep_suggestion_by_environment where temp_max = 0 and temp_min > ?",[NSNumber numberWithInt:temp]];
+    resultset = [db executeQuery:@"select * from sleep_suggestion_by_environment where temp_max = 0 and temp_min < ?",[NSNumber numberWithInt:temp]];
     if ([resultset next]) {
         NSString *str = [resultset stringForColumn:@"temp_suggestion_ids"];
         if (str != nil) {
@@ -68,7 +69,7 @@
         }
     }
     
-    resultset = [db executeQuery:@"select * from sleep_suggestion_by_environment where temp_min = 0 and temp_max < ?",[NSNumber numberWithInt:temp]];
+    resultset = [db executeQuery:@"select * from sleep_suggestion_by_environment where temp_min = 0 and temp_max > ?",[NSNumber numberWithInt:temp]];
     if ([resultset next]) {
         NSString *str = [resultset stringForColumn:@"temp_suggestion_ids"];
         if (str != nil) {
@@ -110,7 +111,7 @@
         }
     }
     
-    resultset = [db executeQuery:@"select * from feed_suggestion_by_environment where temp_max = 0 and temp_min > ?",[NSNumber numberWithInt:temp]];
+    resultset = [db executeQuery:@"select * from feed_suggestion_by_environment where temp_max = 0 and temp_min < ?",[NSNumber numberWithInt:temp]];
     if ([resultset next]) {
         NSString *str = [resultset stringForColumn:@"temp_suggestion_ids"];
         if (str != nil) {
@@ -123,7 +124,7 @@
         }
     }
     
-    resultset = [db executeQuery:@"select * from feed_suggestion_by_environment where temp_min = 0 and temp_max < ?",[NSNumber numberWithInt:temp]];
+    resultset = [db executeQuery:@"select * from feed_suggestion_by_environment where temp_min = 0 and temp_max > ?",[NSNumber numberWithInt:temp]];
     if ([resultset next]) {
         NSString *str = [resultset stringForColumn:@"temp_suggestion_ids"];
         if (str != nil) {
@@ -165,7 +166,7 @@
         }
     }
     
-    resultset = [db executeQuery:@"select * from play_suggestion_by_environment where temp_max = 0 and temp_min > ?",[NSNumber numberWithInt:temp]];
+    resultset = [db executeQuery:@"select * from play_suggestion_by_environment where temp_max = 0 and temp_min < ?",[NSNumber numberWithInt:temp]];
     if ([resultset next]) {
         NSString *str = [resultset stringForColumn:@"temp_suggestion_ids"];
         if (str != nil) {
@@ -178,7 +179,7 @@
         }
     }
     
-    resultset = [db executeQuery:@"select * from play_suggestion_by_environment where temp_min = 0 and temp_max < ?",[NSNumber numberWithInt:temp]];
+    resultset = [db executeQuery:@"select * from play_suggestion_by_environment where temp_min = 0 and temp_max > ?",[NSNumber numberWithInt:temp]];
     if ([resultset next]) {
         NSString *str = [resultset stringForColumn:@"temp_suggestion_ids"];
         if (str != nil) {
@@ -220,7 +221,7 @@
         }
     }
     
-    resultset = [db executeQuery:@"select * from bath_suggestion_by_environment where temp_max = 0 and temp_min > ?",[NSNumber numberWithInt:temp]];
+    resultset = [db executeQuery:@"select * from bath_suggestion_by_environment where temp_max = 0 and temp_min < ?",[NSNumber numberWithInt:temp]];
     if ([resultset next]) {
         NSString *str = [resultset stringForColumn:@"temp_suggestion_ids"];
         if (str != nil) {
@@ -233,7 +234,7 @@
         }
     }
     
-    resultset = [db executeQuery:@"select * from bath_suggestion_by_environment where temp_min = 0 and temp_max < ?",[NSNumber numberWithInt:temp]];
+    resultset = [db executeQuery:@"select * from bath_suggestion_by_environment where temp_min = 0 and temp_max > ?",[NSNumber numberWithInt:temp]];
     if ([resultset next]) {
         NSString *str = [resultset stringForColumn:@"temp_suggestion_ids"];
         if (str != nil) {
@@ -275,7 +276,7 @@
         }
     }
     
-    resultset = [db executeQuery:@"select * from diaper_suggestion_by_environment where temp_max = 0 and temp_min > ?",[NSNumber numberWithInt:temp]];
+    resultset = [db executeQuery:@"select * from diaper_suggestion_by_environment where temp_max = 0 and temp_min < ?",[NSNumber numberWithInt:temp]];
     if ([resultset next]) {
         NSString *str = [resultset stringForColumn:@"temp_suggestion_ids"];
         if (str != nil) {
@@ -288,7 +289,7 @@
         }
     }
     
-    resultset = [db executeQuery:@"select * from diaper_suggestion_by_environment where temp_min = 0 and temp_max < ?",[NSNumber numberWithInt:temp]];
+    resultset = [db executeQuery:@"select * from diaper_suggestion_by_environment where temp_min = 0 and temp_max > ?",[NSNumber numberWithInt:temp]];
     if ([resultset next]) {
         NSString *str = [resultset stringForColumn:@"temp_suggestion_ids"];
         if (str != nil) {
@@ -330,7 +331,7 @@
         }
     }
     
-    resultset = [db executeQuery:@"select * from feed_suggestion_by_environment where humi_max = 0 and humi_min > ?",[NSNumber numberWithInt:humi]];
+    resultset = [db executeQuery:@"select * from feed_suggestion_by_environment where humi_max = 0 and humi_min < ?",[NSNumber numberWithInt:humi]];
     if ([resultset next]) {
         NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
         if (str != nil) {
@@ -343,7 +344,7 @@
         }
     }
     
-    resultset = [db executeQuery:@"select * from feed_suggestion_by_environment where humi_min = 0 and humi_max < ?",[NSNumber numberWithInt:humi]];
+    resultset = [db executeQuery:@"select * from feed_suggestion_by_environment where humi_min = 0 and humi_max > ?",[NSNumber numberWithInt:humi]];
     if ([resultset next]) {
         NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
         if (str != nil) {
@@ -385,7 +386,7 @@
         }
     }
     
-    resultset = [db executeQuery:@"select * from play_suggestion_by_environment where humi_max = 0 and humi_min > ?",[NSNumber numberWithInt:humi]];
+    resultset = [db executeQuery:@"select * from play_suggestion_by_environment where humi_max = 0 and humi_min < ?",[NSNumber numberWithInt:humi]];
     if ([resultset next]) {
         NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
         if (str != nil) {
@@ -398,7 +399,7 @@
         }
     }
     
-    resultset = [db executeQuery:@"select * from play_suggestion_by_environment where humi_min = 0 and humi_max < ?",[NSNumber numberWithInt:humi]];
+    resultset = [db executeQuery:@"select * from play_suggestion_by_environment where humi_min = 0 and humi_max > ?",[NSNumber numberWithInt:humi]];
     if ([resultset next]) {
         NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
         if (str != nil) {
@@ -441,7 +442,7 @@
         }
     }
     
-    resultset = [db executeQuery:@"select * from bath_suggestion_by_environment where humi_max = 0 and humi_min > ?",[NSNumber numberWithInt:humi]];
+    resultset = [db executeQuery:@"select * from bath_suggestion_by_environment where humi_max = 0 and humi_min < ?",[NSNumber numberWithInt:humi]];
     if ([resultset next]) {
         NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
         if (str != nil) {
@@ -454,7 +455,7 @@
         }
     }
     
-    resultset = [db executeQuery:@"select * from bath_suggestion_by_environment where humi_min = 0 and humi_max < ?",[NSNumber numberWithInt:humi]];
+    resultset = [db executeQuery:@"select * from bath_suggestion_by_environment where humi_min = 0 and humi_max > ?",[NSNumber numberWithInt:humi]];
     if ([resultset next]) {
         NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
         if (str != nil) {
@@ -496,7 +497,7 @@
         }
     }
     
-    resultset = [db executeQuery:@"select * from sleep_suggestion_by_environment where humi_max = 0 and humi_min > ?",[NSNumber numberWithInt:humi]];
+    resultset = [db executeQuery:@"select * from sleep_suggestion_by_environment where humi_max = 0 and humi_min < ?",[NSNumber numberWithInt:humi]];
     if ([resultset next]) {
         NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
         if (str != nil) {
@@ -509,7 +510,7 @@
         }
     }
     
-    resultset = [db executeQuery:@"select * from sleep_suggestion_by_environment where humi_min = 0 and humi_max < ?",[NSNumber numberWithInt:humi]];
+    resultset = [db executeQuery:@"select * from sleep_suggestion_by_environment where humi_min = 0 and humi_max > ?",[NSNumber numberWithInt:humi]];
     if ([resultset next]) {
         NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
         if (str != nil) {
@@ -550,7 +551,7 @@
         }
     }
     
-    resultset = [db executeQuery:@"select * from diaper_suggestion_by_environment where humi_max = 0 and humi_min > ?",[NSNumber numberWithInt:humi]];
+    resultset = [db executeQuery:@"select * from diaper_suggestion_by_environment where humi_max = 0 and humi_min < ?",[NSNumber numberWithInt:humi]];
     if ([resultset next]) {
         NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
         if (str != nil) {
@@ -563,7 +564,7 @@
         }
     }
     
-    resultset = [db executeQuery:@"select * from diaper_suggestion_by_environment where humi_min = 0 and humi_max < ?",[NSNumber numberWithInt:humi]];
+    resultset = [db executeQuery:@"select * from diaper_suggestion_by_environment where humi_min = 0 and humi_max > ?",[NSNumber numberWithInt:humi]];
     if ([resultset next]) {
         NSString *str = [resultset stringForColumn:@"humi_suggestion_ids"];
         if (str != nil) {

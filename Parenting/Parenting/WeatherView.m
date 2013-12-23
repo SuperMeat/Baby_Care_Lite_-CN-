@@ -212,6 +212,7 @@
                 default:
                     break;
             }
+            
             if ([arr count]>0) {
                 AdviseLevel *al = [arr objectAtIndex:0];
                 NSArray *a2 = [EnvironmentAdviceDataBase selectsuggestionhumi:al.mAdviseId];

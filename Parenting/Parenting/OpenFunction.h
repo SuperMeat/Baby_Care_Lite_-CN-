@@ -18,4 +18,10 @@
 + (NSString*)getWeekBeginAndEndWith:(NSDate *)newDate;
 + (long)getTimeStampFromDate:(NSDate*)date;
 + (NSDate*)getDateFromTimeStamp:(long)timestamp;
+
++(void)addLocalNotificationWithMessage:(NSString *)message
+                              FireDate:(NSDate *) fireDate
+                              AlarmKey:(NSString *)alarmKey;
+
++(void)deleteLocalNotification:(NSString *) alarmKey;
 @end

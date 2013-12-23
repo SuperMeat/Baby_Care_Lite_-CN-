@@ -123,4 +123,44 @@
 {
        return [NSDate dateWithTimeIntervalSince1970:(NSTimeInterval)timestamp];
 }
+
+//添加本地通知的方法
+/*
+ message:显示的内容
+ firedate:闹钟的时间
+ alarmKey:闹钟的ID
+ */
++(void)addLocalNotificationWithMessage:(NSString *)message
+                              FireDate:(NSDate *) fireDate
+                              AlarmKey:(NSString *)alarmKey
+{
+    UILocalNotification *notification=[[UILocalNotification alloc] init];
+    if (notification!=nil) {
+        
+        notification.fireDate=fireDate;
+        
+        notification.timeZone=[NSTimeZone defaultTimeZone];
+        notification.soundName= UILocalNotificationDefaultSoundName;
+        
+        notification.alertBody=message;
+        notification.hasAction = NO;
+        notification.userInfo=[[NSDictionary alloc] initWithObjectsAndKeys:alarmKey,@"AlarmKey", nil];
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    }
+}
+
+/*
+ 删除本地通知
+ */
++(void)deleteLocalNotification:(NSString *) alarmKey
+{
+    NSArray * allLocalNotification=[[UIApplication sharedApplication] scheduledLocalNotifications];
+    
+    for (UILocalNotification * localNotification in allLocalNotification) {
+        NSString * alarmValue=[localNotification.userInfo objectForKey:@"AlarmKey"];
+        if ([alarmKey isEqualToString:alarmValue]) {
+            [[UIApplication sharedApplication] cancelLocalNotification:localNotification];
+        }
+    }
+}
 @end

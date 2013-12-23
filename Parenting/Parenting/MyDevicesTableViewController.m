@@ -21,8 +21,15 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        
     }
     return self;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.view setBackgroundColor:[UIColor colorWithRed:239.0/255 green:239.0/255 blue:239.0/255 alpha:1]];
+    self.hidesBottomBarWhenPushed = YES;
 }
 
 - (void)viewDidLoad
@@ -112,7 +119,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ;
     if (indexPath.section == [arrData count] - 2) {
         //进入配件编辑页面
     }
@@ -122,7 +128,6 @@
         BindingDeviceViewController *binding = [[BindingDeviceViewController alloc] init];
         [self.navigationController pushViewController:binding animated:YES];
     }
-    
     
 }
 

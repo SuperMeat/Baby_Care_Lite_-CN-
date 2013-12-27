@@ -102,7 +102,7 @@
     CLLocationCoordinate2D coordinate=userCoordinate;
     NSString *str=[NSString stringWithFormat:@"http://query.yahooapis.com/v1/public/yql?q=select woeid from geo.placefinder where text=\"%f,%f\" and gflags=\"R\"",coordinate.latitude,coordinate.longitude];
     str=[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-
+    NSLog(@"%@", str);
     
     str=[NSString stringWithContentsOfURL:[NSURL URLWithString:str] encoding:NSUTF8StringEncoding error:nil];
     return str;

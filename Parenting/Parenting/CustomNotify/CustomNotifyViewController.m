@@ -8,7 +8,7 @@
 
 #import "CustomNotifyViewController.h"
 #import "CustonTimeViewController.h"
-
+#import "AlarmKey.h"
 @interface CustomNotifyViewController ()
 
 @end
@@ -155,6 +155,13 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
+        //先删除所有
+        NSArray* delarray = [[NSArray alloc]initWithObjects:@"日",@"一",@"二",@"三",@"四",@"五",@"六", nil];
+        for (NSString *str in delarray) {
+            NSString *key = [NSString stringWithFormat:@"%@%@", self.ln.createtime, str];
+            [OpenFunction deleteLocalNotification:key];
+        }
+
         [DataBase deleteNotifyTime:self.ln.createtime];
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -171,20 +178,42 @@
         if (self.ln.redundant != nil && [self.ln.redundant isEqualToString:@"永不"]==NO) {
             NSString *str = [self.ln.redundant substringToIndex:([self.ln.redundant length]-1)];
             NSArray *array  = [str componentsSeparatedByString:@","];
-            for (NSString *str in array) {
-                [OpenFunction addLocalNotification:self.ln.title RepeatDay:str FireDate:self.ln.time AlarmKey:@"1"];
+            
+            if (self.ln.createtime != nil)
+            {
+                //先删除所有
+                NSArray* delarray = [[NSArray alloc]initWithObjects:@"日",@"一",@"二",@"三",@"四",@"五",@"六", nil];
+                for (NSString *str in delarray) {
+                    NSString *key = [NSString stringWithFormat:@"%@%@", self.ln.createtime, str];
+                    [OpenFunction deleteLocalNotification:key];
+                }
+                
+                //再重新更新
+                for (NSString *str in array) {
+                    NSString *key = [NSString stringWithFormat:@"%@%@", self.ln.createtime, str];
+                    [OpenFunction addLocalNotification:self.ln.title RepeatDay:str FireDate:self.ln.time AlarmKey:key];
+                }
             }
+            
+            if (self.ln.createtime == nil)
+            {
+                NSDate* createtime = [currentdate date];
+                self.ln.createtime = createtime;
+                NSString *str = [self.ln.redundant substringToIndex:([self.ln.redundant length]-1)];
+                NSArray *array  = [str componentsSeparatedByString:@","];
+                //再重新更新
+                for (NSString *str in array) {
+                    NSString *key = [NSString stringWithFormat:@"%@%@", self.ln.createtime, str];
+                    [OpenFunction addLocalNotification:self.ln.title RepeatDay:str FireDate:self.ln.time AlarmKey:key];
+                }
+                [DataBase insertNotifyTime:self.ln.createtime andNotifyTime:self.ln.time andRedundant:self.ln.redundant andTitle:self.ln.title];
+            }
+            else
+            {
+                [DataBase updateNotifyTime:self.ln.createtime andNotifyTime:self.ln.time andRedundant:self.ln.redundant andTitle:self.ln.title];
+            }
+            [self.navigationController popViewControllerAnimated:YES];
         }
-        
-        if (self.ln.createtime == nil)
-        {
-            [DataBase insertNotifyTime:[currentdate date] andNotifyTime:self.ln.time andRedundant:self.ln.redundant andTitle:self.ln.title];
-        }
-        else
-        {
-            [DataBase updateNotifyTime:self.ln.createtime andNotifyTime:self.ln.time andRedundant:self.ln.redundant andTitle:self.ln.title];
-        }
-        [self.navigationController popViewControllerAnimated:YES];
     }
     
 }
@@ -304,7 +333,7 @@
     
     if (textField == self.textfieldTitleTip) {
         self.ln.title = self.textfieldTitleTip.text;
-        ischanged = YES;
+        ischanged     = YES;
     }
     
     if (textField == self.textfieldTimeTip) {

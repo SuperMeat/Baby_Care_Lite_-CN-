@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "OpenFunction.h"
 #import "APService.h"
+#import "AlarmKey.h"
 
 @implementation OpenFunction
 
@@ -211,7 +212,7 @@
         notification.fireDate=fireDate;
         notification.repeatInterval = kCFCalendarUnitWeek;
         notification.timeZone=[NSTimeZone defaultTimeZone];
-        notification.soundName= @"风铃.m4a";
+        notification.soundName= @"竖琴.m4a";
         
         notification.alertBody=message;
         notification.hasAction = NO;
@@ -224,13 +225,14 @@
 /*
  删除本地通知
  */
-+(void)deleteLocalNotification:(NSString *) alarmKey
++(void)deleteLocalNotification:(NSString*) alarmKey
 {
     NSArray * allLocalNotification=[[UIApplication sharedApplication] scheduledLocalNotifications];
     
     for (UILocalNotification * localNotification in allLocalNotification) {
-        NSString * alarmValue=[localNotification.userInfo objectForKey:@"AlarmKey"];
-        if ([alarmKey isEqualToString:alarmValue]) {
+        NSString * alarmValue=[localNotification.userInfo objectForKey:alarmKey];
+
+        if ([alarmValue isEqualToString:@"AlarmKey"]) {
             [[UIApplication sharedApplication] cancelLocalNotification:localNotification];
         }
     }

@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "OpenFunction.h"
 #import "APService.h"
+#import "AlarmKey.h"
 
 @implementation OpenFunction
 
@@ -124,6 +125,77 @@
        return [NSDate dateWithTimeIntervalSince1970:(NSTimeInterval)timestamp];
 }
 
++(void)addLocalNotification:(NSString *)message
+                  RepeatDay:(NSString *)repeatday
+                   FireDate:(NSString *)fireDate
+                   AlarmKey:(NSString *)alarmKey
+{
+    NSDate *now = [currentdate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    NSInteger unitFlags = NSMonthCalendarUnit|NSDayCalendarUnit|NSWeekdayCalendarUnit|NSYearCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit;
+    [calendar setFirstWeekday:1];
+    comps=[calendar components:unitFlags fromDate:now];
+    int setweekday;
+    if ([repeatday isEqualToString:@"日"]) {
+        setweekday = 1;
+    }
+    if ([repeatday isEqualToString:@"一"]) {
+        setweekday = 2;
+    }
+    if ([repeatday isEqualToString:@"二"]) {
+        setweekday = 3;
+    }
+    if ([repeatday isEqualToString:@"三"]) {
+        setweekday = 4;
+    }
+    if ([repeatday isEqualToString:@"四"]) {
+        setweekday = 5;
+    }
+    if ([repeatday isEqualToString:@"五"]) {
+        setweekday = 6;
+    }
+    if ([repeatday isEqualToString:@"六"]) {
+        setweekday = 7;
+    }
+    
+    int n;
+    if ([comps weekday] > setweekday) {
+        n = 7 - [comps weekday] + setweekday;
+    }
+    else
+    {
+        n = setweekday - [comps weekday];
+    }
+    //NSLog(@"getdateformat : %@", time);
+    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[now timeIntervalSince1970]];
+    NSLog(@"timeSp:%@",timeSp); //时间戳的值
+    long time = [timeSp intValue] + 86400 * n;
+     NSLog(@"timeSpln:%ld",time); //时间戳的值
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:time];
+    
+    NSCalendar *calendar2 = [NSCalendar currentCalendar];
+    NSDateComponents *comps2 = [[NSDateComponents alloc] init];
+    NSInteger unitFlags2 = NSMonthCalendarUnit|NSDayCalendarUnit|NSWeekdayCalendarUnit|NSYearCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit;
+    [calendar2 setFirstWeekday:1];
+    comps2=[calendar2 components:unitFlags2 fromDate:date];
+    
+    NSString *settime = [NSString stringWithFormat:@"%d-%d-%d %@:00", [comps2 year], [comps2 month], [comps2 day], fireDate];
+    
+    UILocalNotification *notification=[[UILocalNotification alloc] init];
+    if (notification!=nil) {
+        notification.fireDate  = [currentdate dateFromString:settime];
+        notification.repeatInterval = kCFCalendarUnitWeek;
+        notification.timeZone  = [NSTimeZone defaultTimeZone];
+        notification.soundName = @"风铃.m4a";
+        notification.alertBody = message;
+        notification.hasAction = NO;
+        notification.userInfo  = [[NSDictionary alloc] initWithObjectsAndKeys:alarmKey,@"AlarmKey", nil];
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    }
+
+}
 //添加本地通知的方法
 /*
  message:显示的内容
@@ -138,27 +210,29 @@
     if (notification!=nil) {
         
         notification.fireDate=fireDate;
-        
+        notification.repeatInterval = kCFCalendarUnitWeek;
         notification.timeZone=[NSTimeZone defaultTimeZone];
-        notification.soundName= UILocalNotificationDefaultSoundName;
+        notification.soundName= @"竖琴.m4a";
         
         notification.alertBody=message;
         notification.hasAction = NO;
         notification.userInfo=[[NSDictionary alloc] initWithObjectsAndKeys:alarmKey,@"AlarmKey", nil];
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     }
+    
 }
 
 /*
  删除本地通知
  */
-+(void)deleteLocalNotification:(NSString *) alarmKey
++(void)deleteLocalNotification:(NSString*) alarmKey
 {
     NSArray * allLocalNotification=[[UIApplication sharedApplication] scheduledLocalNotifications];
     
     for (UILocalNotification * localNotification in allLocalNotification) {
-        NSString * alarmValue=[localNotification.userInfo objectForKey:@"AlarmKey"];
-        if ([alarmKey isEqualToString:alarmValue]) {
+        NSString * alarmValue=[localNotification.userInfo objectForKey:alarmKey];
+
+        if ([alarmValue isEqualToString:@"AlarmKey"]) {
             [[UIApplication sharedApplication] cancelLocalNotification:localNotification];
         }
     }

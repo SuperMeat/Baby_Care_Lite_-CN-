@@ -48,7 +48,47 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (_tag1 == 102) {
+        [self.btn1 setImage:[UIImage imageNamed:@"nofity_myadvise_day_up@2x.png"] forState:UIControlStateNormal];
+        self.btn1.tag = _tag1;
+    }
+    
+    if (_tag2 == 202) {
+        [self.btn2 setImage:[UIImage imageNamed:@"nofity_myadvise_day_up@2x.png"] forState:UIControlStateNormal];
+        self.btn2.tag = _tag2;
+    }
+    
+    if (_tag3 == 302) {
+        [self.btn3 setImage:[UIImage imageNamed:@"nofity_myadvise_day_up@2x.png"] forState:UIControlStateNormal];
+        self.btn3.tag = _tag3;
+    }
+    
+    if (_tag4 == 402) {
+        [self.btn4 setImage:[UIImage imageNamed:@"nofity_myadvise_day_up@2x.png"] forState:UIControlStateNormal];
+        self.btn4.tag = _tag4;
+    }
+    
+    if (_tag5 == 502) {
+        [self.btn5 setImage:[UIImage imageNamed:@"nofity_myadvise_day_up@2x.png"] forState:UIControlStateNormal];
+        self.btn5.tag = _tag5;
+    }
+    
+    if (_tag6 == 602) {
+        [self.btn6 setImage:[UIImage imageNamed:@"nofity_myadvise_day_up@2x.png"] forState:UIControlStateNormal];
+        self.btn6.tag = _tag6;
+    }
+    
+    if (_tag7 == 702) {
+        [self.btn7 setImage:[UIImage imageNamed:@"nofity_myadvise_day_up@2x.png"] forState:UIControlStateNormal];
+        self.btn7.tag = _tag7;
+    }
+    
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self.custonTimedelegate sendSelected:self.btn1.tag andbtn2tag:self.btn2.tag andbtn3tag:self.btn3.tag andbtn4tag:self.btn4.tag andbtn5tag:self.btn5.tag andbtn6tag:self.btn6.tag andbtn7tag:self.btn7.tag];
 }
 
 - (void)didReceiveMemoryWarning
@@ -146,4 +186,21 @@
         self.btn7.tag = 701;
     }
 }
+
+-(void)setCreatetime:(NSDate *)createtime
+{
+    self.createtime = createtime;
+}
+
+-(void)setSelected:(int)tag1 andbtn2tag:(int)tag2 andbtn3tag:(int)tag3 andbtn4tag:(int)tag4 andbtn5tag:(int)tag5 andbtn6tag:(int)tag6 andbtn7tag:(int)tag7
+{
+    _tag1 = tag1;
+    _tag2 = tag2;
+    _tag3 = tag3;
+    _tag4 = tag4;
+    _tag5 = tag5;
+    _tag6 = tag6;
+    _tag7 = tag7;
+}
+
 @end

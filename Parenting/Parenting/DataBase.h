@@ -149,4 +149,26 @@ typedef enum{
 
 +(BOOL)deleteNotifyMessage:(NSDate*) date;
 +(BOOL)deleteNotifyMessageById:(int)msgid;
+
+/**
+ *	自定义提醒模块
+ *
+ *	@param	notifytime	自定义提醒
+ *	@param	redundant	重复次数
+ *	@param	title	提醒主题
+ *
+ *	@return
+ */
++(BOOL)insertNotifyTime:(NSDate*)createtime andNotifyTime:(NSString*)notifytime andRedundant:(NSString*) redundant andTitle:(NSString*)title;
++(BOOL)updateNotifyTime:(NSDate*)createtime andNotifyTime:(NSString*)notifytime andRedundant:(NSString*) redundant andTitle:(NSString*)title;
++(BOOL)deleteNotifyTime:(NSDate*) createtime;
+/**
+ *	查询notifytime
+ *
+ *	@param	createtime	如果为空查询所有记录
+ *
+ *	@return	返回记录组
+ */
++(NSArray*)selectNotifyTime:(NSDate*)createtime;
+
 @end

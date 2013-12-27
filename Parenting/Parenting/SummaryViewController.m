@@ -1278,7 +1278,9 @@
         [plotArray addObject:plot];
         j++;
     }
+    
     [plotScrollView scrollRectToVisible:CGRectMake([DataBase scrollWidth:plotTag] * 320 - 320, 0, 320, rx.size.height - 40 - 35 - 49-20) animated:NO];
+    
     [self.view bringSubviewToFront:self.Mark];
 }
 

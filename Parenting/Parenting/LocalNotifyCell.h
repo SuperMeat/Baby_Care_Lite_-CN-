@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LocalNotify.h"
 
 @interface LocalNotifyCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UIImageView *image;
@@ -14,5 +15,5 @@
 @property (strong, nonatomic) IBOutlet UILabel *notifycontent;
 @property (strong, nonatomic) IBOutlet UILabel *timedetail;
 @property (strong, nonatomic) IBOutlet UISwitch *notifyswitch;
-
+@property (strong, nonatomic) LocalNotify *ln;
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class AlarmKey;
 @interface OpenFunction : NSObject
 
 + (float) getSystemVersion;
@@ -23,5 +23,10 @@
                               FireDate:(NSDate *) fireDate
                               AlarmKey:(NSString *)alarmKey;
 
-+(void)deleteLocalNotification:(NSString *) alarmKey;
++(void)deleteLocalNotification:(NSString*) alarmKey;
+
++(void)addLocalNotification:(NSString *)message
+                             RepeatDay:(NSString *)repeatday
+                              FireDate:(NSString *) fireDate
+                   AlarmKey:(NSString *) alarmKey;
 @end

@@ -10,16 +10,11 @@
 
 @interface MyLocalNofityViewController : UIViewController<UIActionSheetDelegate,UITableViewDelegate,UITableViewDataSource>
 {
-    UIDatePicker  *datepicker;
-    
-    UIActionSheet *action;
     NSDate* notifyDate;
-    
-    UIPickerView *picker;
     
     UITableView *notifytableview;
     
-    NSMutableArray *notifylist;
+    NSArray *notifylist;
 
 }
 

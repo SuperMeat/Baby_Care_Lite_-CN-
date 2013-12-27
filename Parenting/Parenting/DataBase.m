@@ -10,6 +10,7 @@
 #import "FMDatabase.h"
 #import "AdviseData.h"
 #import "NotifyItem.h"
+#import "LocalNotify.h"
 
 @implementation DataBase
 +(id)dataBase
@@ -1769,11 +1770,6 @@
         return res;
     }
     
-    if (!res) {
-        NSLog(@"表格创建失败");
-        return res;
-    }
-    
     res=[db executeUpdate:@"delete from notify_message where notify_time < ?",date];
     [db close];
     return res;
@@ -1790,14 +1786,122 @@
         return res;
     }
     
+    res=[db executeUpdate:@"delete from notify_message where msgid = ?", [NSNumber numberWithInt:msgid]];
+    [db close];
+    return res;
+}
+
++(BOOL)insertNotifyTime:(NSDate *)createtime andNotifyTime:(NSString *)notifytime andRedundant:(NSString *)redundant andTitle:(NSString *)title
+{
+    BOOL res;
+    FMDatabase *db=[FMDatabase databaseWithPath:DBPATH];
+    res=[db open];
+    res=[db executeUpdate:@"CREATE TABLE if not exists notify_time (createtime Timestamp PRIMARY KEY NOT NULL, notifytime Varchar DEFAULT NULL, redundant Varchar DEFAULT NULL,title Varchar DEFAULT NULL)"];
+    
     if (!res) {
         NSLog(@"表格创建失败");
         return res;
     }
     
-    res=[db executeUpdate:@"delete from notify_message where msgid = ?", [NSNumber numberWithInt:msgid]];
+    NSLog(@"%@ %@ %@ %@", createtime, notifytime, redundant, title);
+    res=[db executeUpdate:@"insert into notify_time(createtime, notifytime, redundant,title) values(?,?,?,?)",createtime,notifytime,redundant,title];
+    if (!res)
+    {
+        NSLog(@"插入失败");
+        return res;
+    }
+    [db close];
+    
+    return res;
+
+}
+
++(BOOL)updateNotifyTime:(NSDate*)createtime andNotifyTime:(NSString*)notifytime andRedundant:(NSString*) redundant andTitle:(NSString*)title
+{
+    BOOL res;
+    FMDatabase *db=[FMDatabase databaseWithPath:DBPATH];
+    res=[db open];
+    if (!res) {
+        NSLog(@"数据库打开失败");
+        return res;
+    }
+    
+    res=[db executeUpdate:@"update notify_time set notifytime = ?,redundant = ?,title = ? where createtime = ?",notifytime,redundant,title,createtime];
+
     [db close];
     return res;
+
+}
+
++(BOOL)deleteNotifyTime:(NSDate*) createtime
+{
+    BOOL res;
+    FMDatabase *db=[FMDatabase databaseWithPath:DBPATH];
+    res=[db open];
+    if (!res) {
+        NSLog(@"数据库打开失败");
+        return res;
+    }
+    
+    res=[db executeUpdate:@"delete from notify_time where createtime = ?", createtime];
+    [db close];
+    return res;
+}
+
+/**
+ *	查询notifytime
+ *
+ *	@param	createtime	如果为空查询所有记录
+ *
+ *	@return	返回记录组
+ */
++(NSArray*)selectNotifyTime:(NSDate*)createtime
+{
+    NSMutableArray *array=[[NSMutableArray alloc]initWithCapacity:0];
+    BOOL res;
+    FMDatabase *db=[FMDatabase databaseWithPath:DBPATH];
+    res=[db open];
+    if (!res) {
+        NSLog(@"数据库打开失败");
+        return nil;
+    }
+     res=[db executeUpdate:@"CREATE TABLE if not exists notify_time (createtime Timestamp PRIMARY KEY NOT NULL, notifytime Varchar DEFAULT NULL, redundant Varchar DEFAULT NULL,title Varchar DEFAULT NULL)"];
+    
+    if (!res) {
+        NSLog(@"表格创建失败");
+        return nil;
+        
+    }
+    
+    if (createtime == nil)
+    {
+        FMResultSet *set=[db executeQuery:@"select * from  notify_time order by createtime desc"];
+        while ([set next])
+        {
+            LocalNotify *item = [[LocalNotify alloc]init];
+            item.createtime = [set dateForColumn:@"createtime"];
+            item.title  = [set stringForColumn:@"title"];
+            item.time   = [set stringForColumn:@"notifytime"];
+            item.redundant = [set stringForColumn:@"redundant"];
+            [array addObject:item];
+        }
+        
+    }
+    else
+    {
+        FMResultSet *set=[db executeQuery:@"select * from  notify_message where createtime=? ", createtime];
+        while ([set next])
+        {
+            LocalNotify *item = [[LocalNotify alloc]init];
+            item.createtime = [set dateForColumn:@"createtime"];
+            item.title  = [set stringForColumn:@"title"];
+            item.time   = [set stringForColumn:@"notifytime"];
+            item.redundant = [set stringForColumn:@"redundant"];
+            [array addObject:item];
+        }
+    }
+    
+    return array;
 }
 
 @end

@@ -34,6 +34,7 @@ void UncaughtExceptionHandler(NSException *exception) {
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     application.applicationIconBadgeNumber = 0;
+
     // Override point for customization after application launch.
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
        

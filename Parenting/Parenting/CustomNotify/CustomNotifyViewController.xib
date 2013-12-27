@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -9,8 +9,11 @@
             <connections>
                 <outlet property="btnredundant" destination="Exw-9u-RBt" id="XvV-Mg-3ig"/>
                 <outlet property="btnsave" destination="LKd-NA-ufk" id="5dj-r2-FRA"/>
+                <outlet property="labelRedundant" destination="FHy-by-txp" id="qmN-Fe-o9d"/>
+                <outlet property="labelTime" destination="fGC-qM-cMz" id="UKT-uc-6w6"/>
+                <outlet property="labelTitle" destination="fsZ-Ed-tCd" id="hxW-1a-4H1"/>
                 <outlet property="myScrollView" destination="Q47-IF-jrU" id="1Dc-P7-MLc"/>
-                <outlet property="textfieldTimeTip" destination="Cou-Q4-Mu5" id="nWo-Fr-B9b"/>
+                <outlet property="textfieldTimeTip" destination="zHp-gX-Jcr" id="qbl-9r-IfO"/>
                 <outlet property="textfieldTitleTip" destination="XQk-9a-YHy" id="qOR-rn-udH"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -27,20 +30,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="   主题" minimumFontSize="17" background="input1.png" id="Crb-vS-Xg5">
-                    <rect key="frame" x="10" y="175" width="300" height="45"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="   提醒时间" minimumFontSize="17" background="input2.png" id="Cou-Q4-Mu5">
-                    <rect key="frame" x="10" y="220" width="300" height="45"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="input3.png" id="SCI-I0-sGI">
                     <rect key="frame" x="10" y="310" width="300" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -62,44 +51,52 @@
                         <action selector="save:" destination="-1" eventType="touchUpInside" id="reT-RQ-ScL"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="   重复" minimumFontSize="17" background="input2.png" id="amo-5z-GJL">
-                    <rect key="frame" x="10" y="265" width="300" height="45"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
-                </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" background="input1.png" id="XQk-9a-YHy" userLabel="inputtitle">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入主题" textAlignment="center" minimumFontSize="17" background="input1.png" id="XQk-9a-YHy" userLabel="inputtitle">
                     <rect key="frame" x="10" y="175" width="300" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" background="input2.png" id="zHp-gX-Jcr" userLabel="inputtime">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择时间" textAlignment="center" minimumFontSize="17" background="input2.png" id="zHp-gX-Jcr" userLabel="inputtime">
                     <rect key="frame" x="10" y="220" width="300" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="Exw-9u-RBt">
-                    <rect key="frame" x="19" y="265" width="283" height="45"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Exw-9u-RBt">
+                    <rect key="frame" x="10" y="265" width="300" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal">
-                        <attributedString key="attributedTitle">
-                            <fragment content="永不">
-                                <attributes>
-                                    <color key="NSColor" red="1" green="0.53500944500000003" blue="0.81042085370000005" alpha="1" colorSpace="calibratedRGB"/>
-                                    <font key="NSFont" size="13" name="STHeitiSC-Light"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
+                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
+                    <state key="normal" title="永不" backgroundImage="input2.png">
+                        <color key="titleColor" red="1" green="0.53500944500000003" blue="0.81042085370000005" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="setredundant:" destination="-1" eventType="touchUpInside" id="YHi-Hk-5EJ"/>
                     </connections>
                 </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重复" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FHy-by-txp">
+                    <rect key="frame" x="20" y="265" width="45" height="45"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
+                    <color key="textColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="主题" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fsZ-Ed-tCd">
+                    <rect key="frame" x="20" y="175" width="45" height="45"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
+                    <color key="textColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时间" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fGC-qM-cMz">
+                    <rect key="frame" x="20" y="220" width="45" height="45"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
+                    <color key="textColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </scrollView>

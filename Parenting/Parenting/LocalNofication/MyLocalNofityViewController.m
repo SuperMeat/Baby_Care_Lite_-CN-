@@ -9,6 +9,7 @@
 #import "MyLocalNofityViewController.h"
 #import "LocalNotifyCell.h"
 #import "CustomNotifyViewController.h"
+#import "LocalNotify.h"
 
 @interface MyLocalNofityViewController ()
 
@@ -48,6 +49,12 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    notifylist = [DataBase selectNotifyTime:nil];
+    [notifytableview reloadData];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -60,18 +67,11 @@
     [remind addTarget:self action:@selector(clock:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:remind];
     
-   
-    
-    NSMutableArray *localnotify = [[NSUserDefaults standardUserDefaults] objectForKey:@"localnotifylist"];
-    if (localnotify == nil) {
-        [[NSUserDefaults standardUserDefaults] setObject:[[NSMutableArray alloc]initWithCapacity:0] forKey:@"localnotifylist"];
-    }
-    
-    notifylist = localnotify;
+    notifylist = [DataBase selectNotifyTime:nil];
     
     if (notifytableview == nil) {
         notifytableview =[[UITableView alloc]initWithFrame:CGRectMake(0, 15, 320, self.view.frame.size.height) style:UITableViewStyleGrouped];
-        notifytableview.backgroundColor=[UIColor colorWithRed:239.0/255 green:239.0/255 blue:239.0/255 alpha:1];
+        notifytableview.backgroundColor=[UIColor colorWithRed:240.0f/255.0f green:240.0f/255.0f blue:240.0f/255.0f alpha:1.0f];
         notifytableview.delegate=self;
         notifytableview.dataSource=self;
         notifytableview.showsVerticalScrollIndicator =NO;
@@ -89,40 +89,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)addNotify
-{
-    NSLog(@"addNotify");
-    [self actionsheetShow];
-}
-
-- (void)clock:(UIButton *)button
-{
-    [self actionsheetShow];
-    
-}
-
--(void)actionsheetShow
-{
-    action=[[UIActionSheet alloc]initWithTitle:@"\n\n\n\n\n\n\n\n" delegate:self cancelButtonTitle:@"OK" destructiveButtonTitle:nil otherButtonTitles:nil];
-    
-    if (datepicker==nil) {
-        datepicker=[[UIDatePicker alloc]initWithFrame:CGRectMake(0, 45, 320, 100)];
-        datepicker.datePickerMode=UIDatePickerModeDateAndTime;
-        [datepicker addTarget:self action:@selector(updatedate:) forControlEvents:UIControlEventValueChanged];
-    }
-    
-    datepicker.frame=CGRectMake(0, 0, 320, 100);
-    
-    action.bounds=CGRectMake(0, 0, 320, 200);
-    [action addSubview:datepicker];
-    UIWindow* window = [[UIApplication sharedApplication] keyWindow];
-    if ([window.subviews containsObject:self]) {
-        [action showInView:self.view];
-    } else {
-        [action showInView:window];
-    }
-}
-
 -(void)updatedate:(UIDatePicker*)sender
 {
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
@@ -136,8 +102,8 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
 {
     [OpenFunction addLocalNotificationWithMessage:@"干嘛干嘛" FireDate:notifyDate AlarmKey:@"ddd"];
-    
 }
+
 /**
  *	table view delegate
  */
@@ -155,6 +121,10 @@
 {
     //[self actionsheetShow];
     CustomNotifyViewController *cnvc = [[CustomNotifyViewController alloc]init];
+    if (indexPath.section < [notifylist count]) {
+        LocalNotifyCell* tvc = (LocalNotifyCell*)[tableView cellForRowAtIndexPath:indexPath];
+        [cnvc setLocalNotify:tvc.ln];
+    }
     [self.navigationController pushViewController:cnvc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -166,7 +136,8 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section < [notifylist count]) {
+    if (indexPath.section < [notifylist count])
+    {
         return 90.0f;
     }
     return 50;
@@ -175,16 +146,29 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section < [notifylist count] ) {
+    if (indexPath.section < [notifylist count] )
+    {
         LocalNotifyCell *Cell=[tableView dequeueReusableCellWithIdentifier:@"Notify"];
         if (Cell == nil) {
             Cell = [[[NSBundle mainBundle] loadNibNamed:@"LocalNotifyCell" owner:self options:nil] lastObject];
             Cell.selectionStyle=UITableViewCellSelectionStyleNone;
             
         }
-        Cell.title.text      = @"玩耍";
-        Cell.timedetail.text = @"周一 20:20";
-        Cell.notifycontent.text    = @"五天后提醒";
+        LocalNotify *ln      = [notifylist objectAtIndex:indexPath.section];
+        Cell.title.text      = ln.title;
+        NSMutableString *strredundant = [[NSMutableString alloc] init];
+        if (ln.redundant != nil && [ln.redundant isEqualToString:@"永不"] == NO) {
+            [strredundant appendString:@"每周"];
+            [strredundant appendString:ln.redundant];
+            Cell.timedetail.text = [NSString stringWithFormat:@"%@ %@", [strredundant substringToIndex:([strredundant length]-1)], ln.time];
+        }
+        else
+        {
+            Cell.timedetail.text = @"暂无提醒时间";
+        }
+
+        //Cell.notifycontent.text    = @"还有1天提醒";
+        Cell.ln              = ln;
         Cell.notifyswitch.selected = YES;
         Cell.accessoryView.contentMode=UIViewContentModeScaleAspectFit;
         return Cell;
@@ -199,9 +183,8 @@
             Cell.textLabel.textColor=[UIColor colorWithRed:0xAF/255.0 green:0xAF/255.0 blue:0xAF/255.0 alpha:0xFF/255.0];
             Cell.textLabel.textAlignment = NSTextAlignmentCenter;
             Cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
         }
-        Cell.textLabel.text      = @"添加提醒";
+        Cell.textLabel.text = @"添加提醒";
         Cell.accessoryView.contentMode=UIViewContentModeScaleAspectFit;
         return Cell;
     }

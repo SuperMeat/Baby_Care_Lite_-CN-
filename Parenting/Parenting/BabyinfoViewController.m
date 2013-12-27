@@ -160,11 +160,12 @@ static int age = 0;
     [super viewDidLoad];
     //[self.myScrollview setFrame:CGRectMake(0, G_YADDONVERSION, 320, 690)];
     [self.view addSubview:self.myScrollview];
-    self.myScrollview.contentSize=CGSizeMake(320, 480) ;
+    self.myScrollview.contentSize=CGSizeMake(320, 690) ;
     if ([UIScreen mainScreen].bounds.size.height==568) {
-        self.myScrollview.contentSize=CGSizeMake(320, 568) ;
+        self.myScrollview.contentSize=CGSizeMake(320, 778) ;
         [self.myScrollview setFrame:CGRectMake(0, 0, 320, 568)];
     }
+    [self.myScrollview setScrollEnabled:YES];
     _myScrollview.showsHorizontalScrollIndicator=NO;
     [self makeNav];
     self.nametextfield.leftViewMode=UITextFieldViewModeAlways;

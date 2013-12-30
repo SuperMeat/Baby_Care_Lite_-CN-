@@ -13,4 +13,5 @@
 @property (copy, nonatomic)   NSString *title;
 @property (strong, nonatomic) NSString *time;
 @property (strong, nonatomic) NSString *redundant;
+@property int status;
 @end

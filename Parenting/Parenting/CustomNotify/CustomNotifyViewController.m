@@ -53,6 +53,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     if (self.ln.createtime != NULL) {
+       [self changelocalnotify];
         [DataBase updateNotifyTime:self.ln.createtime andNotifyTime:self.ln.time andRedundant:self.ln.redundant andTitle:self.ln.title];
     }
 }
@@ -190,56 +191,43 @@
     self.ln.title     = self.textfieldTitleTip.text;
     self.ln.time      = self.textfieldTimeTip.text;
     
-    if (self.ln.title != nil && self.ln.time != nil) {
+    if (self.ln.title != nil && self.ln.time != nil)
+    {
         if (self.ln.redundant != nil && [self.ln.redundant isEqualToString:@"永不"]==NO) {
-            NSString *str = [self.ln.redundant substringToIndex:([self.ln.redundant length]-1)];
-            NSArray *array  = [str componentsSeparatedByString:@","];
-            
             if (self.ln.createtime != nil)
             {
-                //先删除所有
-                NSArray* delarray = [[NSArray alloc]initWithObjects:@"日",@"一",@"二",@"三",@"四",@"五",@"六", nil];
-                for (NSString *str in delarray) {
-                    NSString *key = [NSString stringWithFormat:@"%@%@", self.ln.createtime, str];
-                    [OpenFunction deleteLocalNotification:key];
-                }
-                
-                //再重新更新
-                for (NSString *str in array) {
-                    NSString *key = [NSString stringWithFormat:@"%@%@", self.ln.createtime, str];
-                    [OpenFunction addLocalNotification:self.ln.title RepeatDay:str FireDate:self.ln.time AlarmKey:key];
-                }
+                [self changelocalnotify];
             }
             
             if (self.ln.createtime == nil)
             {
                 NSDate* createtime = [currentdate date];
                 self.ln.createtime = createtime;
-                NSString *str = [self.ln.redundant substringToIndex:([self.ln.redundant length]-1)];
-                NSArray *array  = [str componentsSeparatedByString:@","];
-                //再重新更新
-                for (NSString *str in array) {
-                    NSString *key = [NSString stringWithFormat:@"%@%@", self.ln.createtime, str];
-                    [OpenFunction addLocalNotification:self.ln.title RepeatDay:str FireDate:self.ln.time AlarmKey:key];
-                }
+                [self changelocalnotify];
                 [DataBase insertNotifyTime:self.ln.createtime andNotifyTime:self.ln.time andRedundant:self.ln.redundant andTitle:self.ln.title];
             }
             else
             {
+                [self changelocalnotify];
                 [DataBase updateNotifyTime:self.ln.createtime andNotifyTime:self.ln.time andRedundant:self.ln.redundant andTitle:self.ln.title];
             }
         }
         
-        if ([self.ln.redundant isEqualToString:@"永不"] == YES && self.ln.createtime != nil) {
-            //先删除所有
-            NSArray* delarray = [[NSArray alloc]initWithObjects:@"日",@"一",@"二",@"三",@"四",@"五",@"六", nil];
-            for (NSString *str in delarray) {
-                NSString *key = [NSString stringWithFormat:@"%@%@", self.ln.createtime, str];
-                [OpenFunction deleteLocalNotification:key];
+        if (self.ln.redundant == nil || [self.ln.redundant isEqualToString:@"永不"] == YES) {
+            if (self.ln.createtime == nil)
+            {
+                NSDate* createtime = [currentdate date];
+                self.ln.createtime = createtime;
+                [self changelocalnotify];
+                [DataBase insertNotifyTime:self.ln.createtime andNotifyTime:self.ln.time andRedundant:self.ln.redundant andTitle:self.ln.title];
             }
-            
+        }
+        
+        if ([self.ln.redundant isEqualToString:@"永不"] == YES && self.ln.createtime != nil) {
+            [self changelocalnotify];
             [DataBase updateNotifyTime:self.ln.createtime andNotifyTime:self.ln.time andRedundant:self.ln.redundant andTitle:self.ln.title];
         }
+        
         
         [self.navigationController popViewControllerAnimated:YES];
 
@@ -349,6 +337,7 @@
 {
     if (actionSheet == action3) {
         self.textfieldTimeTip.text = [NSString stringWithFormat:@"%02d:%02d", self.durationhour,self.durationmin];
+        self.ln.time = self.textfieldTimeTip.text;
         ischanged = YES;
     }
 }
@@ -551,7 +540,7 @@
     else
     {
         if (self.labelredundant == nil) {
-            self.labelredundant = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, 250, 45)];
+            self.labelredundant = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, 200, 45)];
         }
         
         [self.labelredundant setTextAlignment:NSTextAlignmentCenter];
@@ -580,8 +569,22 @@
         ischanged = YES;
     }
     
-    //[DataBase updateNotifyTime:self.ln.createtime andNotifyTime:self.ln.time andRedundant:self.ln.redundant andTitle:self.ln.title];
-    
 }
 
+-(void)changelocalnotify
+{
+    if (self.ln.redundant != nil && [self.ln.redundant isEqualToString:@"永不"] == NO)
+    {
+        NSString *str = [self.ln.redundant substringToIndex:([self.ln.redundant length]-1)];
+        NSArray *array  = [str componentsSeparatedByString:@","];
+        if (self.ln.status == 1) {
+            //再重新更新
+            for (NSString *str in array) {
+                NSString *key = [NSString stringWithFormat:@"%@%@", self.ln.createtime, str];
+                [OpenFunction addLocalNotification:self.ln.title RepeatDay:str FireDate:self.ln.time AlarmKey:key];
+            }
+        }
+
+    }
+}
 @end

@@ -75,7 +75,6 @@
         notifytableview.delegate=self;
         notifytableview.dataSource=self;
         notifytableview.showsVerticalScrollIndicator =NO;
-        //    _settingTable.bounces=NO;
         notifytableview.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight;
         [self.view addSubview:notifytableview];
     }
@@ -161,6 +160,14 @@
         }
         LocalNotify *ln      = [notifylist objectAtIndex:indexPath.section];
         Cell.title.text      = ln.title;
+        if (ln.status == 1) {
+            [Cell.notifyswitch setOn:YES];
+        }
+        else
+        {
+            [Cell.notifyswitch setOn:NO];
+        }
+        
         NSMutableString *strredundant = [[NSMutableString alloc] init];
         if (ln.redundant != nil && [ln.redundant isEqualToString:@"永不"] == NO) {
             if ([ln.redundant isEqualToString:@"日,六,"] == YES) {
@@ -187,9 +194,7 @@
             Cell.timedetail.text = @"暂无提醒时间";
         }
 
-        //Cell.notifycontent.text    = @"还有1天提醒";
         Cell.ln              = ln;
-        Cell.notifyswitch.selected = YES;
         Cell.accessoryView.contentMode=UIViewContentModeScaleAspectFit;
         return Cell;
 

@@ -44,6 +44,7 @@
             [OpenFunction addLocalNotification:self.ln.title RepeatDay:str FireDate:self.ln.time AlarmKey:key];
         }
 
+        [DataBase updateNotifyTimeStatus:self.ln.createtime andStatus:1];
         NSLog(@"on");
     }
     else
@@ -53,6 +54,7 @@
             NSString *key = [NSString stringWithFormat:@"%@%@", self.ln.createtime, str];
             [OpenFunction deleteLocalNotification:key];
         }
+        [DataBase updateNotifyTimeStatus:self.ln.createtime andStatus:0];
         NSLog(@"off");
     }
 

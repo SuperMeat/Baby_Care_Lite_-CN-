@@ -83,6 +83,33 @@
         self.btn7.tag = _tag7;
     }
     
+    self.imageview1.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapgesture1=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectbtn1)];
+    [self.imageview1 addGestureRecognizer:tapgesture1];
+    
+    self.imageview2.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapgesture2=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectbtn2)];
+    [self.imageview2 addGestureRecognizer:tapgesture2];
+    
+    self.imageview3.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapgesture3=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectbtn3)];
+    [self.imageview3 addGestureRecognizer:tapgesture3];
+    
+    self.imageview4.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapgesture4=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectbtn4)];
+    [self.imageview4 addGestureRecognizer:tapgesture4];
+    
+    self.imageview5.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapgesture5=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectbtn5)];
+    [self.imageview5 addGestureRecognizer:tapgesture5];
+    
+    self.imageview6.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapgesture6=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectbtn6)];
+    [self.imageview6 addGestureRecognizer:tapgesture6];
+    
+    self.imageview7.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapgesture7=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectbtn7)];
+    [self.imageview7 addGestureRecognizer:tapgesture7];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -107,6 +134,97 @@
     {
         [self.btn1 setImage:[UIImage imageNamed:@"nofity_myadvise_day@2x.png"] forState:UIControlStateNormal];
         self.btn1.tag = 101;
+    }
+}
+
+- (void)selectbtn1
+{
+    if (self.btn1.tag == 101) {
+        [self.btn1 setImage:[UIImage imageNamed:@"nofity_myadvise_day_up@2x.png"] forState:UIControlStateNormal];
+        self.btn1.tag = 102;
+    }
+    else
+    {
+        [self.btn1 setImage:[UIImage imageNamed:@"nofity_myadvise_day@2x.png"] forState:UIControlStateNormal];
+        self.btn1.tag = 101;
+    }
+}
+
+- (void)selectbtn2
+{
+    if (self.btn2.tag == 201) {
+        [self.btn2 setImage:[UIImage imageNamed:@"nofity_myadvise_day_up@2x.png"] forState:UIControlStateNormal];
+        self.btn2.tag = 202;
+    }
+    else
+    {
+        [self.btn2 setImage:[UIImage imageNamed:@"nofity_myadvise_day@2x.png"] forState:UIControlStateNormal];
+        self.btn2.tag = 201;
+    }
+}
+
+- (void)selectbtn3
+{
+    if (self.btn3.tag == 301) {
+        [self.btn3 setImage:[UIImage imageNamed:@"nofity_myadvise_day_up@2x.png"] forState:UIControlStateNormal];
+        self.btn3.tag = 302;
+    }
+    else
+    {
+        [self.btn3 setImage:[UIImage imageNamed:@"nofity_myadvise_day@2x.png"] forState:UIControlStateNormal];
+        self.btn3.tag = 301;
+    }
+}
+
+- (void)selectbtn4
+{
+    if (self.btn4.tag == 401) {
+        [self.btn4 setImage:[UIImage imageNamed:@"nofity_myadvise_day_up@2x.png"] forState:UIControlStateNormal];
+        self.btn4.tag = 402;
+    }
+    else
+    {
+        [self.btn4 setImage:[UIImage imageNamed:@"nofity_myadvise_day@2x.png"] forState:UIControlStateNormal];
+        self.btn4.tag = 401;
+    }
+}
+
+- (void)selectbtn5
+{
+    if (self.btn5.tag == 501) {
+        [self.btn5 setImage:[UIImage imageNamed:@"nofity_myadvise_day_up@2x.png"] forState:UIControlStateNormal];
+        self.btn5.tag = 502;
+    }
+    else
+    {
+        [self.btn5 setImage:[UIImage imageNamed:@"nofity_myadvise_day@2x.png"] forState:UIControlStateNormal];
+        self.btn5.tag = 501;
+    }
+}
+
+- (void)selectbtn6
+{
+    if (self.btn6.tag == 601) {
+        [self.btn6 setImage:[UIImage imageNamed:@"nofity_myadvise_day_up@2x.png"] forState:UIControlStateNormal];
+        self.btn6.tag = 602;
+    }
+    else
+    {
+        [self.btn6 setImage:[UIImage imageNamed:@"nofity_myadvise_day@2x.png"] forState:UIControlStateNormal];
+        self.btn6.tag = 601;
+    }
+}
+
+- (void)selectbtn7
+{
+    if (self.btn7.tag == 701) {
+        [self.btn7 setImage:[UIImage imageNamed:@"nofity_myadvise_day_up@2x.png"] forState:UIControlStateNormal];
+        self.btn7.tag = 702;
+    }
+    else
+    {
+        [self.btn7 setImage:[UIImage imageNamed:@"nofity_myadvise_day@2x.png"] forState:UIControlStateNormal];
+        self.btn7.tag = 701;
     }
 }
 

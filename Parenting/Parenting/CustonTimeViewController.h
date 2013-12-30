@@ -47,6 +47,13 @@
 - (IBAction)selectbtn7:(UIButton *)sender;
 
 -(void)setCreatetime:(NSDate *)createtime;
+@property (strong, nonatomic) IBOutlet UIImageView *imageview1;
+@property (strong, nonatomic) IBOutlet UIImageView *imageview2;
+@property (strong, nonatomic) IBOutlet UIImageView *imageview3;
+@property (strong, nonatomic) IBOutlet UIImageView *imageview4;
+@property (strong, nonatomic) IBOutlet UIImageView *imageview5;
+@property (strong, nonatomic) IBOutlet UIImageView *imageview6;
+@property (strong, nonatomic) IBOutlet UIImageView *imageview7;
 
 -(void)setSelected:(int)tag1 andbtn2tag:(int)tag2 andbtn3tag:(int)tag3 andbtn4tag:(int)tag4 andbtn5tag:(int)tag5 andbtn6tag:(int)tag6 andbtn7tag:(int)tag7;
 

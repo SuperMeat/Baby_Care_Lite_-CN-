@@ -131,7 +131,12 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 0;
+    return 10;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -158,9 +163,24 @@
         Cell.title.text      = ln.title;
         NSMutableString *strredundant = [[NSMutableString alloc] init];
         if (ln.redundant != nil && [ln.redundant isEqualToString:@"永不"] == NO) {
-            [strredundant appendString:@"每周"];
-            [strredundant appendString:ln.redundant];
-            Cell.timedetail.text = [NSString stringWithFormat:@"%@ %@", [strredundant substringToIndex:([strredundant length]-1)], ln.time];
+            if ([ln.redundant isEqualToString:@"日,六,"] == YES) {
+                Cell.timedetail.text = [NSString stringWithFormat:@"周末 %@", ln.time];
+            }
+            else if ([ln.redundant isEqualToString:@"一,二,三,四,五,"] == YES)
+            {
+                Cell.timedetail.text = [NSString stringWithFormat:@"工作日 %@", ln.time];
+            }
+            else if ([ln.redundant isEqualToString:@"日,一,二,三,四,五,六,"]==YES)
+            {
+                Cell.timedetail.text = [NSString stringWithFormat:@"每天 %@", ln.time];
+
+            }
+            else
+            {
+                [strredundant appendString:@"每周"];
+                [strredundant appendString:ln.redundant];
+                Cell.timedetail.text = [NSString stringWithFormat:@"%@ %@", [strredundant substringToIndex:([strredundant length]-1)], ln.time];
+            }
         }
         else
         {

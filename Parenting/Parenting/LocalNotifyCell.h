@@ -16,4 +16,5 @@
 @property (strong, nonatomic) IBOutlet UILabel *timedetail;
 @property (strong, nonatomic) IBOutlet UISwitch *notifyswitch;
 @property (strong, nonatomic) LocalNotify *ln;
+- (IBAction)changeValue:(UISwitch *)sender;
 @end

@@ -14,6 +14,13 @@
                 <outlet property="btn5" destination="XFr-Sa-hd6" id="YrF-dQ-nib"/>
                 <outlet property="btn6" destination="iAd-mf-9B4" id="7iG-wH-ggh"/>
                 <outlet property="btn7" destination="iUj-Du-BhP" id="SQp-Y4-quh"/>
+                <outlet property="imageview1" destination="ghM-Wd-28B" id="cOh-0w-ajF"/>
+                <outlet property="imageview2" destination="6VY-LC-YaP" id="kvI-Yf-gfG"/>
+                <outlet property="imageview3" destination="PDz-DT-6kt" id="QkF-yx-pSr"/>
+                <outlet property="imageview4" destination="Wm5-zg-PcT" id="fhy-9O-33b"/>
+                <outlet property="imageview5" destination="RKe-rp-ofp" id="jwq-Xy-tLf"/>
+                <outlet property="imageview6" destination="q6S-dm-we1" id="Lfu-dn-9Cd"/>
+                <outlet property="imageview7" destination="MdK-6c-x5L" id="t5C-cj-kQc"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>

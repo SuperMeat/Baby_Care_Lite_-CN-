@@ -1796,7 +1796,7 @@
     BOOL res;
     FMDatabase *db=[FMDatabase databaseWithPath:DBPATH];
     res=[db open];
-    res=[db executeUpdate:@"CREATE TABLE if not exists notify_time (createtime Timestamp PRIMARY KEY NOT NULL, notifytime Varchar DEFAULT NULL, redundant Varchar DEFAULT NULL,title Varchar DEFAULT NULL)"];
+    res=[db executeUpdate:@"CREATE TABLE if not exists notify_time (createtime Timestamp PRIMARY KEY NOT NULL, notifytime Varchar DEFAULT NULL, redundant Varchar DEFAULT NULL,title Varchar DEFAULT NULL,status INTEGER NOT NULL)"];
     
     if (!res) {
         NSLog(@"表格创建失败");
@@ -1804,7 +1804,7 @@
     }
     
     NSLog(@"%@ %@ %@ %@", createtime, notifytime, redundant, title);
-    res=[db executeUpdate:@"insert into notify_time(createtime, notifytime, redundant,title) values(?,?,?,?)",createtime,notifytime,redundant,title];
+    res=[db executeUpdate:@"insert into notify_time(createtime, notifytime, redundant,title,status) values(?,?,?,?,?)",createtime,notifytime,redundant,title,[NSNumber numberWithInt:1]];
     if (!res)
     {
         NSLog(@"插入失败");
@@ -1831,6 +1831,23 @@
     [db close];
     return res;
 
+}
+
++(BOOL)updateNotifyTimeStatus:(NSDate*)createtime andStatus:(int)status
+{
+    BOOL res;
+    FMDatabase *db=[FMDatabase databaseWithPath:DBPATH];
+    res=[db open];
+    if (!res) {
+        NSLog(@"数据库打开失败");
+        return res;
+    }
+    
+    res=[db executeUpdate:@"update notify_time set status = ? where createtime = ?",[NSNumber numberWithInt:status],createtime];
+    
+    [db close];
+    return res;
+    
 }
 
 +(BOOL)deleteNotifyTime:(NSDate*) createtime
@@ -1865,7 +1882,7 @@
         NSLog(@"数据库打开失败");
         return nil;
     }
-     res=[db executeUpdate:@"CREATE TABLE if not exists notify_time (createtime Timestamp PRIMARY KEY NOT NULL, notifytime Varchar DEFAULT NULL, redundant Varchar DEFAULT NULL,title Varchar DEFAULT NULL)"];
+     res=[db executeUpdate:@"CREATE TABLE if not exists notify_time (createtime Timestamp PRIMARY KEY NOT NULL, notifytime Varchar DEFAULT NULL, redundant Varchar DEFAULT NULL,title Varchar DEFAULT NULL,status INTEGER NOT NULL)"];
     
     if (!res) {
         NSLog(@"表格创建失败");
@@ -1883,6 +1900,7 @@
             item.title  = [set stringForColumn:@"title"];
             item.time   = [set stringForColumn:@"notifytime"];
             item.redundant = [set stringForColumn:@"redundant"];
+            item.status    = [set intForColumn:@"status"];
             [array addObject:item];
         }
         
@@ -1897,6 +1915,7 @@
             item.title  = [set stringForColumn:@"title"];
             item.time   = [set stringForColumn:@"notifytime"];
             item.redundant = [set stringForColumn:@"redundant"];
+            item.status    = [set intForColumn:@"status"];
             [array addObject:item];
         }
     }

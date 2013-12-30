@@ -50,6 +50,13 @@
     return self;
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    if (self.ln.createtime != NULL) {
+       [self changelocalnotify];
+        [DataBase updateNotifyTime:self.ln.createtime andNotifyTime:self.ln.time andRedundant:self.ln.redundant andTitle:self.ln.title];
+    }
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -78,6 +85,7 @@
     [self.textfieldTimeTip setValue:[NSNumber numberWithInt:5] forKey:@"paddingBottom"];
     [self.textfieldTimeTip setValue:[NSNumber numberWithInt:5] forKey:@"paddingRight"];
     self.textfieldTimeTip.userInteractionEnabled = YES;
+    [self.textfieldTimeTip setTextColor:[UIColor colorWithRed:0xAF/255.0 green:0xAF/255.0 blue:0xAF/255.0 alpha:0xFF/255.0]];
     self.textfieldTimeTip.delegate = self;
     
     [self.textfieldTitleTip setValue:[NSNumber numberWithInt:5] forKey:@"paddingTop"];
@@ -85,21 +93,17 @@
     [self.textfieldTitleTip setValue:[NSNumber numberWithInt:5] forKey:@"paddingBottom"];
     [self.textfieldTitleTip setValue:[NSNumber numberWithInt:5] forKey:@"paddingRight"];
     self.textfieldTitleTip.userInteractionEnabled = YES;
+    [self.textfieldTitleTip setTextColor:[UIColor colorWithRed:0xAF/255.0 green:0xAF/255.0 blue:0xAF/255.0 alpha:0xFF/255.0]];
     
-    self.textfieldRedundant.leftViewMode = UITextFieldViewModeAlways;
-    self.textfieldRedundant.leftView = self.labelRedundant;
-    [self.textfieldRedundant setValue:[NSNumber numberWithInt:5] forKey:@"paddingTop"];
-    [self.textfieldRedundant setValue:[NSNumber numberWithInt:5] forKey:@"paddingLeft"];
-    [self.textfieldRedundant setValue:[NSNumber numberWithInt:5] forKey:@"paddingBottom"];
-    [self.textfieldRedundant setValue:[NSNumber numberWithInt:5] forKey:@"paddingRight"];
-    self.textfieldRedundant.userInteractionEnabled = YES;
+    [self.btnredundant.titleLabel setTextAlignment:NSTextAlignmentCenter];
+
     
     if (self.ln.createtime != nil) {
         self.textfieldTitleTip.text = self.ln.title;
         self.textfieldTimeTip.text  = self.ln.time;
         
         if (self.labelredundant == nil) {
-            self.labelredundant = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, 250, 45)];
+            self.labelredundant = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, 200, 45)];
         }
         
         if (self.ln.redundant != nil && [self.ln.redundant isEqualToString:@"永不"] == NO) {
@@ -111,7 +115,22 @@
             [self.labelredundant setTextColor:[UIColor colorWithRed:0.906 green:0.623 blue:0.599 alpha:1.000]];
             [self.labelredundant setFont:[UIFont fontWithName:@"ArialRoundedMTBold" size:15]];
             [self.labelredundant setBackgroundColor:[UIColor clearColor]];
-            [self.labelredundant setText:[lnStr substringToIndex:([lnStr length]-1)]];
+            if ([self.ln.redundant isEqualToString:@"日,六,"]==YES) {
+               [self.labelredundant setText:@"周末"];
+            }
+            else if ([self.ln.redundant isEqualToString:@"一,二,三,四,五,"]==YES)
+            {
+                [self.labelredundant setText:@"工作日"];
+            }
+            else if ([self.ln.redundant isEqualToString:@"日,一,二,三,四,五,六,"]==YES)
+            {
+                [self.labelredundant setText:@"每天"];
+            }
+            else
+            {
+              [self.labelredundant setText:[lnStr substringToIndex:([lnStr length]-1)]];
+            }
+            
             [self.btnredundant addSubview:self.labelredundant];
             
             self.btnredundant.titleLabel.text = @"";
@@ -155,7 +174,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
-        //先删除所有
+        //先取消所有
         NSArray* delarray = [[NSArray alloc]initWithObjects:@"日",@"一",@"二",@"三",@"四",@"五",@"六", nil];
         for (NSString *str in delarray) {
             NSString *key = [NSString stringWithFormat:@"%@%@", self.ln.createtime, str];
@@ -172,48 +191,46 @@
     self.ln.title     = self.textfieldTitleTip.text;
     self.ln.time      = self.textfieldTimeTip.text;
     
-    if (self.ln.title != nil && self.ln.time != nil) {
-        NSLog(@"%@ %@ %@ %@ %@ %@", self.textfieldTimeTip.text, self.textfieldTitleTip.text, self.btnredundant.titleLabel.text,self.ln.title,self.ln.time, self.ln.redundant);
-        
+    if (self.ln.title != nil && self.ln.time != nil)
+    {
         if (self.ln.redundant != nil && [self.ln.redundant isEqualToString:@"永不"]==NO) {
-            NSString *str = [self.ln.redundant substringToIndex:([self.ln.redundant length]-1)];
-            NSArray *array  = [str componentsSeparatedByString:@","];
-            
             if (self.ln.createtime != nil)
             {
-                //先删除所有
-                NSArray* delarray = [[NSArray alloc]initWithObjects:@"日",@"一",@"二",@"三",@"四",@"五",@"六", nil];
-                for (NSString *str in delarray) {
-                    NSString *key = [NSString stringWithFormat:@"%@%@", self.ln.createtime, str];
-                    [OpenFunction deleteLocalNotification:key];
-                }
-                
-                //再重新更新
-                for (NSString *str in array) {
-                    NSString *key = [NSString stringWithFormat:@"%@%@", self.ln.createtime, str];
-                    [OpenFunction addLocalNotification:self.ln.title RepeatDay:str FireDate:self.ln.time AlarmKey:key];
-                }
+                [self changelocalnotify];
             }
             
             if (self.ln.createtime == nil)
             {
                 NSDate* createtime = [currentdate date];
                 self.ln.createtime = createtime;
-                NSString *str = [self.ln.redundant substringToIndex:([self.ln.redundant length]-1)];
-                NSArray *array  = [str componentsSeparatedByString:@","];
-                //再重新更新
-                for (NSString *str in array) {
-                    NSString *key = [NSString stringWithFormat:@"%@%@", self.ln.createtime, str];
-                    [OpenFunction addLocalNotification:self.ln.title RepeatDay:str FireDate:self.ln.time AlarmKey:key];
-                }
+                [self changelocalnotify];
                 [DataBase insertNotifyTime:self.ln.createtime andNotifyTime:self.ln.time andRedundant:self.ln.redundant andTitle:self.ln.title];
             }
             else
             {
+                [self changelocalnotify];
                 [DataBase updateNotifyTime:self.ln.createtime andNotifyTime:self.ln.time andRedundant:self.ln.redundant andTitle:self.ln.title];
             }
-            [self.navigationController popViewControllerAnimated:YES];
         }
+        
+        if (self.ln.redundant == nil || [self.ln.redundant isEqualToString:@"永不"] == YES) {
+            if (self.ln.createtime == nil)
+            {
+                NSDate* createtime = [currentdate date];
+                self.ln.createtime = createtime;
+                [self changelocalnotify];
+                [DataBase insertNotifyTime:self.ln.createtime andNotifyTime:self.ln.time andRedundant:self.ln.redundant andTitle:self.ln.title];
+            }
+        }
+        
+        if ([self.ln.redundant isEqualToString:@"永不"] == YES && self.ln.createtime != nil) {
+            [self changelocalnotify];
+            [DataBase updateNotifyTime:self.ln.createtime andNotifyTime:self.ln.time andRedundant:self.ln.redundant andTitle:self.ln.title];
+        }
+        
+        
+        [self.navigationController popViewControllerAnimated:YES];
+
     }
     
 }
@@ -320,6 +337,7 @@
 {
     if (actionSheet == action3) {
         self.textfieldTimeTip.text = [NSString stringWithFormat:@"%02d:%02d", self.durationhour,self.durationmin];
+        self.ln.time = self.textfieldTimeTip.text;
         ischanged = YES;
     }
 }
@@ -516,12 +534,13 @@
     
     if ([redundant isEqualToString:@"每周"]) {
         [self.labelredundant removeFromSuperview];
+        self.ln.redundant = @"永不";
         self.btnredundant.titleLabel.text = @"永不";
     }
     else
     {
         if (self.labelredundant == nil) {
-            self.labelredundant = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, 250, 45)];
+            self.labelredundant = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, 200, 45)];
         }
         
         [self.labelredundant setTextAlignment:NSTextAlignmentCenter];
@@ -529,14 +548,43 @@
         [self.labelredundant setFont:[UIFont fontWithName:@"ArialRoundedMTBold" size:15]];
         [self.labelredundant setBackgroundColor:[UIColor clearColor]];
         self.ln.redundant = dbredundant;
-        [self.labelredundant setText:[redundant substringToIndex:([redundant length]-1)]];
+        if ([self.ln.redundant isEqualToString:@"日,六,"]==YES) {
+            [self.labelredundant setText:@"周末"];
+        }
+        else if ([self.ln.redundant isEqualToString:@"一,二,三,四,五,"]==YES)
+        {
+            [self.labelredundant setText:@"工作日"];
+        }
+        else if ([self.ln.redundant isEqualToString:@"日,一,二,三,四,五,六,"]==YES)
+        {
+            [self.labelredundant setText:@"每天"];
+        }
+        else
+        {
+            [self.labelredundant setText:[redundant substringToIndex:([redundant length]-1)]];
+        }
+
         [self.btnredundant addSubview:self.labelredundant];
         self.btnredundant.titleLabel.text = @"";
         ischanged = YES;
     }
     
-    [DataBase updateNotifyTime:self.ln.createtime andNotifyTime:self.ln.time andRedundant:self.ln.redundant andTitle:self.ln.title];
-    
 }
 
+-(void)changelocalnotify
+{
+    if (self.ln.redundant != nil && [self.ln.redundant isEqualToString:@"永不"] == NO)
+    {
+        NSString *str = [self.ln.redundant substringToIndex:([self.ln.redundant length]-1)];
+        NSArray *array  = [str componentsSeparatedByString:@","];
+        if (self.ln.status == 1) {
+            //再重新更新
+            for (NSString *str in array) {
+                NSString *key = [NSString stringWithFormat:@"%@%@", self.ln.createtime, str];
+                [OpenFunction addLocalNotification:self.ln.title RepeatDay:str FireDate:self.ln.time AlarmKey:key];
+            }
+        }
+
+    }
+}
 @end

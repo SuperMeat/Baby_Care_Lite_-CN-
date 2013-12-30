@@ -161,6 +161,7 @@ typedef enum{
  */
 +(BOOL)insertNotifyTime:(NSDate*)createtime andNotifyTime:(NSString*)notifytime andRedundant:(NSString*) redundant andTitle:(NSString*)title;
 +(BOOL)updateNotifyTime:(NSDate*)createtime andNotifyTime:(NSString*)notifytime andRedundant:(NSString*) redundant andTitle:(NSString*)title;
++(BOOL)updateNotifyTimeStatus:(NSDate*)createtime andStatus:(int)status;
 +(BOOL)deleteNotifyTime:(NSDate*) createtime;
 /**
  *	查询notifytime

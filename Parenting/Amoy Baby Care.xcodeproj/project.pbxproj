@@ -190,13 +190,13 @@
 		48EC1DDF1862F6E400965254 /* nofity_myadvise_day.png in Resources */ = {isa = PBXBuildFile; fileRef = 48EC1DDB1862F6E400965254 /* nofity_myadvise_day.png */; };
 		48EC1DE01862F6E400965254 /* nofity_myadvise_day@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48EC1DDC1862F6E400965254 /* nofity_myadvise_day@2x.png */; };
 		48F6AB931867D3AC0032045E /* LocalNotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F6AB921867D3AC0032045E /* LocalNotify.m */; };
-		48F6AB97186AD0000032045E /* diary_bt_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F6AB95186AD0000032045E /* diary_bt_delete.png */; };
-		48F6AB98186AD0000032045E /* diary_bt_delete_pre.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F6AB96186AD0000032045E /* diary_bt_delete_pre.png */; };
 		48F6AB9A186AD7470032045E /* task_top_delet.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F6AB99186AD7470032045E /* task_top_delet.png */; };
-		48F6AB9F186C13500032045E /* 竖琴.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 48F6AB9C186C13500032045E /* 竖琴.m4a */; };
-		48F6ABA0186C13500032045E /* 钟琴.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 48F6AB9D186C13500032045E /* 钟琴.m4a */; };
-		48F6ABA1186C13500032045E /* 风铃.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 48F6AB9E186C13500032045E /* 风铃.m4a */; };
 		48F6ABA4186D191C0032045E /* AlarmKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F6ABA3186D191C0032045E /* AlarmKey.m */; };
+		48F6ABA718710AE40032045E /* myadvise_me.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F6ABA518710AE40032045E /* myadvise_me.png */; };
+		48F6ABA818710AE40032045E /* myadvise_me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F6ABA618710AE40032045E /* myadvise_me@2x.png */; };
+		48F6ABAA18710CBB0032045E /* set_switch_on_off_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F6ABA918710CBB0032045E /* set_switch_on_off_bg@2x.png */; };
+		48F6ABAC187146D20032045E /* 竖琴.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 48F6ABAB187146D20032045E /* 竖琴.m4a */; };
+		48F6ABAE187154E70032045E /* 钟琴.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 48F6ABAD187154E70032045E /* 钟琴.m4a */; };
 		7215972117453680006FD415 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7215972017453680006FD415 /* UIKit.framework */; };
 		7215972317453680006FD415 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7215972217453680006FD415 /* Foundation.framework */; };
 		7215972517453680006FD415 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7215972417453680006FD415 /* CoreGraphics.framework */; };
@@ -863,14 +863,14 @@
 		48EC1DDC1862F6E400965254 /* nofity_myadvise_day@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nofity_myadvise_day@2x.png"; sourceTree = "<group>"; };
 		48F6AB911867D3AB0032045E /* LocalNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNotify.h; sourceTree = "<group>"; };
 		48F6AB921867D3AC0032045E /* LocalNotify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNotify.m; sourceTree = "<group>"; };
-		48F6AB95186AD0000032045E /* diary_bt_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diary_bt_delete.png; sourceTree = "<group>"; };
-		48F6AB96186AD0000032045E /* diary_bt_delete_pre.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diary_bt_delete_pre.png; sourceTree = "<group>"; };
 		48F6AB99186AD7470032045E /* task_top_delet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task_top_delet.png; sourceTree = "<group>"; };
-		48F6AB9C186C13500032045E /* 竖琴.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "竖琴.m4a"; sourceTree = "<group>"; };
-		48F6AB9D186C13500032045E /* 钟琴.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "钟琴.m4a"; sourceTree = "<group>"; };
-		48F6AB9E186C13500032045E /* 风铃.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "风铃.m4a"; sourceTree = "<group>"; };
 		48F6ABA2186D191C0032045E /* AlarmKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmKey.h; sourceTree = "<group>"; };
 		48F6ABA3186D191C0032045E /* AlarmKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmKey.m; sourceTree = "<group>"; };
+		48F6ABA518710AE40032045E /* myadvise_me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myadvise_me.png; sourceTree = "<group>"; };
+		48F6ABA618710AE40032045E /* myadvise_me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myadvise_me@2x.png"; sourceTree = "<group>"; };
+		48F6ABA918710CBB0032045E /* set_switch_on_off_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "set_switch_on_off_bg@2x.png"; sourceTree = "<group>"; };
+		48F6ABAB187146D20032045E /* 竖琴.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "竖琴.m4a"; sourceTree = "<group>"; };
+		48F6ABAD187154E70032045E /* 钟琴.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "钟琴.m4a"; sourceTree = "<group>"; };
 		7215971C17453680006FD415 /* Amoy Baby Care.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Amoy Baby Care.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7215972017453680006FD415 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7215972217453680006FD415 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -2156,9 +2156,10 @@
 		48F6AB94186AD0000032045E /* 自定义提醒 */ = {
 			isa = PBXGroup;
 			children = (
+				48F6ABA918710CBB0032045E /* set_switch_on_off_bg@2x.png */,
+				48F6ABA518710AE40032045E /* myadvise_me.png */,
+				48F6ABA618710AE40032045E /* myadvise_me@2x.png */,
 				48F6AB99186AD7470032045E /* task_top_delet.png */,
-				48F6AB95186AD0000032045E /* diary_bt_delete.png */,
-				48F6AB96186AD0000032045E /* diary_bt_delete_pre.png */,
 			);
 			path = "自定义提醒";
 			sourceTree = "<group>";
@@ -2166,9 +2167,8 @@
 		48F6AB9B186C13500032045E /* 铃声 */ = {
 			isa = PBXGroup;
 			children = (
-				48F6AB9C186C13500032045E /* 竖琴.m4a */,
-				48F6AB9D186C13500032045E /* 钟琴.m4a */,
-				48F6AB9E186C13500032045E /* 风铃.m4a */,
+				48F6ABAD187154E70032045E /* 钟琴.m4a */,
+				48F6ABAB187146D20032045E /* 竖琴.m4a */,
 			);
 			path = "铃声";
 			sourceTree = "<group>";
@@ -3056,6 +3056,7 @@
 				CE0167C1174B059000462363 /* input_single.png in Resources */,
 				BE7C699318699B8C00C4B675 /* temp_icon_ADD@2x.png in Resources */,
 				48152DDB18486AFB009A4900 /* guide_3.png in Resources */,
+				48F6ABAA18710CBB0032045E /* set_switch_on_off_bg@2x.png in Resources */,
 				485749E118332860000D921B /* Icon-Small.png in Resources */,
 				48DEA7DD17F4703400A11316 /* Play_12.jpg in Resources */,
 				CE0167C2174B059000462363 /* input_single@2x.png in Resources */,
@@ -3080,12 +3081,14 @@
 				485749E218332860000D921B /* Icon-Small@2x.png in Resources */,
 				48B78136182A0FD30073EEBD /* TipsWebViewController.xib in Resources */,
 				CE016839174B49D300462363 /* bg_green.png in Resources */,
+				48F6ABAC187146D20032045E /* 竖琴.m4a in Resources */,
 				CE01683A174B49D300462363 /* bg_green@2x.png in Resources */,
 				CE01683B174B49D300462363 /* bg_index.png in Resources */,
 				CE01683C174B49D300462363 /* bg_index@2x.png in Resources */,
 				48152E42184C65AE009A4900 /* 960.1.png in Resources */,
 				CE01683D174B49D300462363 /* bg_orange.png in Resources */,
 				CE01683E174B49D300462363 /* bg_orange@2x.png in Resources */,
+				48F6ABA718710AE40032045E /* myadvise_me.png in Resources */,
 				CE01683F174B49D300462363 /* bg_red.png in Resources */,
 				CE016840174B49D300462363 /* bg_red@2x.png in Resources */,
 				CE016841174B49D300462363 /* bg_yellow.png in Resources */,
@@ -3181,7 +3184,6 @@
 				CE016883174B49D300462363 /* label_right_focus@2x.png in Resources */,
 				CE016884174B49D300462363 /* play_time.png in Resources */,
 				CE016885174B49D300462363 /* play_time@2x.png in Resources */,
-				48F6AB97186AD0000032045E /* diary_bt_delete.png in Resources */,
 				CE016886174B49D300462363 /* sleep_time.png in Resources */,
 				CE016887174B49D300462363 /* sleep_time@2x.png in Resources */,
 				CE016899174B4CCB00462363 /* bg_advice.png in Resources */,
@@ -3199,8 +3201,6 @@
 				48152E1518486C66009A4900 /* item_ok@2x.png in Resources */,
 				CE0168A1174B4CCB00462363 /* title_green.png in Resources */,
 				CE0168A2174B4CCB00462363 /* title_green@2x.png in Resources */,
-				48F6ABA1186C13500032045E /* 风铃.m4a in Resources */,
-				48F6ABA0186C13500032045E /* 钟琴.m4a in Resources */,
 				CE0168A3174B4CCB00462363 /* title_orange.png in Resources */,
 				485749D718332860000D921B /* 114.png in Resources */,
 				CE0168A4174B4CCB00462363 /* title_orange@2x.png in Resources */,
@@ -3276,6 +3276,7 @@
 				CE382761174E0A2F009AD8DA /* process_sleep_focus.png in Resources */,
 				CE382762174E0A2F009AD8DA /* process_sleep_focus@2x.png in Resources */,
 				CE382788174E1EDA009AD8DA /* bg_title.png in Resources */,
+				48F6ABA818710AE40032045E /* myadvise_me@2x.png in Resources */,
 				CE382789174E1EDA009AD8DA /* bg_title@2x.png in Resources */,
 				CE38278A174E1EDA009AD8DA /* btn1.png in Resources */,
 				CE38278B174E1EDA009AD8DA /* btn1@2x.png in Resources */,
@@ -3327,6 +3328,7 @@
 				CE638B04174F4FC2009A60AB /* btn_all_focus.png in Resources */,
 				CE638B05174F4FC2009A60AB /* btn_all_focus@2x.png in Resources */,
 				48DEA7B517F4699700A11316 /* Bath_1.jpg in Resources */,
+				48F6ABAE187154E70032045E /* 钟琴.m4a in Resources */,
 				CE638B06174F4FC2009A60AB /* btn_bath.png in Resources */,
 				CE638B07174F4FC2009A60AB /* btn_bath@2x.png in Resources */,
 				48DEA7B617F4699700A11316 /* Bath_2.jpg in Resources */,
@@ -3377,7 +3379,6 @@
 				CE638B26174F4FC2009A60AB /* btn_sleep.png in Resources */,
 				CE638B27174F4FC2009A60AB /* btn_sleep@2x.png in Resources */,
 				48EC1DD11861772300965254 /* CustomNotifyViewController.xib in Resources */,
-				48F6AB9F186C13500032045E /* 竖琴.m4a in Resources */,
 				CE638B28174F4FC2009A60AB /* btn_sleep_focus.png in Resources */,
 				48DEA7AC17F467A000A11316 /* Sleep_3.jpg in Resources */,
 				BE7C6986186836F000C4B675 /* Babyinfo-cwb.rdb in Resources */,
@@ -3386,7 +3387,6 @@
 				CE638B2B174F4FC2009A60AB /* btn_year@2x.png in Resources */,
 				CE638B2C174F4FC2009A60AB /* btn_year_focus.png in Resources */,
 				CE638B2D174F4FC2009A60AB /* btn_year_focus@2x.png in Resources */,
-				48F6AB98186AD0000032045E /* diary_bt_delete_pre.png in Resources */,
 				CE638B2E174F4FC2009A60AB /* histogram_blue.png in Resources */,
 				CE638B2F174F4FC2009A60AB /* histogram_blue@2x.png in Resources */,
 				CE638B30174F4FC2009A60AB /* histogram_green.png in Resources */,

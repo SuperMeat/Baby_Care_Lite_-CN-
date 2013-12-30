@@ -75,7 +75,6 @@
         notifytableview.delegate=self;
         notifytableview.dataSource=self;
         notifytableview.showsVerticalScrollIndicator =NO;
-        //    _settingTable.bounces=NO;
         notifytableview.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight;
         [self.view addSubview:notifytableview];
     }
@@ -131,7 +130,12 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 0;
+    return 10;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -156,20 +160,41 @@
         }
         LocalNotify *ln      = [notifylist objectAtIndex:indexPath.section];
         Cell.title.text      = ln.title;
+        if (ln.status == 1) {
+            [Cell.notifyswitch setOn:YES];
+        }
+        else
+        {
+            [Cell.notifyswitch setOn:NO];
+        }
+        
         NSMutableString *strredundant = [[NSMutableString alloc] init];
         if (ln.redundant != nil && [ln.redundant isEqualToString:@"永不"] == NO) {
-            [strredundant appendString:@"每周"];
-            [strredundant appendString:ln.redundant];
-            Cell.timedetail.text = [NSString stringWithFormat:@"%@ %@", [strredundant substringToIndex:([strredundant length]-1)], ln.time];
+            if ([ln.redundant isEqualToString:@"日,六,"] == YES) {
+                Cell.timedetail.text = [NSString stringWithFormat:@"周末 %@", ln.time];
+            }
+            else if ([ln.redundant isEqualToString:@"一,二,三,四,五,"] == YES)
+            {
+                Cell.timedetail.text = [NSString stringWithFormat:@"工作日 %@", ln.time];
+            }
+            else if ([ln.redundant isEqualToString:@"日,一,二,三,四,五,六,"]==YES)
+            {
+                Cell.timedetail.text = [NSString stringWithFormat:@"每天 %@", ln.time];
+
+            }
+            else
+            {
+                [strredundant appendString:@"每周"];
+                [strredundant appendString:ln.redundant];
+                Cell.timedetail.text = [NSString stringWithFormat:@"%@ %@", [strredundant substringToIndex:([strredundant length]-1)], ln.time];
+            }
         }
         else
         {
             Cell.timedetail.text = @"暂无提醒时间";
         }
 
-        //Cell.notifycontent.text    = @"还有1天提醒";
         Cell.ln              = ln;
-        Cell.notifyswitch.selected = YES;
         Cell.accessoryView.contentMode=UIViewContentModeScaleAspectFit;
         return Cell;
 

@@ -188,9 +188,9 @@
         notification.fireDate  = [currentdate dateFromString:settime];
         notification.repeatInterval = kCFCalendarUnitWeek;
         notification.timeZone  = [NSTimeZone defaultTimeZone];
-        notification.soundName = @"风铃.m4a";
+        notification.soundName = @"钟琴.m4a";
         notification.alertBody = message;
-        notification.hasAction = NO;
+        notification.hasAction = YES;
         notification.userInfo  = [[NSDictionary alloc] initWithObjectsAndKeys:alarmKey,@"AlarmKey", nil];
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     }
@@ -209,14 +209,13 @@
     UILocalNotification *notification=[[UILocalNotification alloc] init];
     if (notification!=nil) {
         
-        notification.fireDate=fireDate;
+        notification.fireDate       = fireDate;
         notification.repeatInterval = kCFCalendarUnitWeek;
-        notification.timeZone=[NSTimeZone defaultTimeZone];
-        notification.soundName= @"竖琴.m4a";
-        
-        notification.alertBody=message;
+        notification.timeZone  = [NSTimeZone defaultTimeZone];
+        notification.soundName = @"钟琴.m4a";
+        notification.alertBody = message;
         notification.hasAction = NO;
-        notification.userInfo=[[NSDictionary alloc] initWithObjectsAndKeys:alarmKey,@"AlarmKey", nil];
+        notification.userInfo  = [[NSDictionary alloc] initWithObjectsAndKeys:alarmKey,@"AlarmKey", nil];
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     }
     

@@ -51,16 +51,18 @@
                         <action selector="save:" destination="-1" eventType="touchUpInside" id="reT-RQ-ScL"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入主题" textAlignment="center" minimumFontSize="17" background="input1.png" id="XQk-9a-YHy" userLabel="inputtitle">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="请输入主题" textAlignment="center" minimumFontSize="17" background="input1.png" id="XQk-9a-YHy" userLabel="inputtitle">
                     <rect key="frame" x="10" y="175" width="300" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="textColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择时间" textAlignment="center" minimumFontSize="17" background="input2.png" id="zHp-gX-Jcr" userLabel="inputtime">
                     <rect key="frame" x="10" y="220" width="300" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="textColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
@@ -71,6 +73,7 @@
                     <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
                     <state key="normal" title="永不" backgroundImage="input2.png">
                         <color key="titleColor" red="1" green="0.53500944500000003" blue="0.81042085370000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="setredundant:" destination="-1" eventType="touchUpInside" id="YHi-Hk-5EJ"/>

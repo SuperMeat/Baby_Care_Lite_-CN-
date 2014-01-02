@@ -142,8 +142,14 @@ void UncaughtExceptionHandler(NSException *exception) {
     NSString *guideVerson =[[NSUserDefaults standardUserDefaults] stringForKey:@"GuideVerson"];
     if (![guideVerson  isEqual: GuideVerson])
     {
+        guideViewController = [[GuideViewController alloc] initWithRootViewController:TabbarController];        
+        if (guideVerson == nil) {
+            guideViewController.isLaunchBefore = NO;
+        }
+        else{
+            guideViewController.isLaunchBefore = YES;
+        }
         [[NSUserDefaults standardUserDefaults] setObject:GuideVerson forKey:@"GuideVerson"];
-        guideViewController = [[GuideViewController alloc] initWithRootViewController:TabbarController];
         self.window.rootViewController = guideViewController;
     }
     else{

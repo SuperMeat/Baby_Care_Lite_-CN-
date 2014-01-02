@@ -96,7 +96,7 @@
 
 #define JPUSHAPPKEY    @"415aa5c57db9b6d73d91c2af"
 
-#define GuideVerson    @"1.4.0"
+#define GuideVerson    @"1.7.6"
 
 #define ASIHTTPADDRESS @"http://192.168.1.138:8033/babycare/WCF/SyncSuggestionData.svc/" //接口IP
 #define ASIHTTPTOKEN @"5788024"  //令牌

@@ -16,6 +16,8 @@
 "tabbarsettings"="Settings";
 "navback"="Back";
 "navsummary"="Summary";
+"navLogin"="Login";
+"navRegister" = "Register";
 "All"="All";
 "Feed"="Feed";
 "Diaper"="Diaper";

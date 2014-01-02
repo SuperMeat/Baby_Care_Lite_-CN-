@@ -11,6 +11,7 @@
 
 @interface GuideViewController : UIViewController<UIScrollViewDelegate>
 
+@property BOOL isLaunchBefore;
 @property NSInteger fitHeight;
 @property (strong,nonatomic) UIScrollView *scrollView;
 @property (strong,nonatomic) NSMutableArray *slideImages;

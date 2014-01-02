@@ -7,15 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BLEController.h"
 @class AdviseData;
 @class AdviseLevel;
-@interface WeatherView : UIView <UITableViewDataSource,UITableViewDelegate>
+@interface WeatherView : UIView <UITableViewDataSource,UITableViewDelegate,BLEControllerDelegate>
 {
 
-    BOOL isgetted;
+    BOOL         isgetted;
     UITableView *table;
-    NSString *tempcontent;
-    int       templevel;
+    NSString    *tempcontent;
+    int          templevel;
     //温度建议
     AdviseData  *mAdTemp;
     AdviseLevel *mAlTemp;
@@ -24,10 +25,33 @@
     AdviseData  *mAdHumi;
     AdviseLevel *mAlHumi;
     
+    //bluetooth data
+    short errorCode;
+    short dataLength;
+    long humidityHigh;
+    long humidityLow;
+    long humidity;
+    long temperatureHigh;
+    long temperatureLow;
+    long temperature;
+    
+    //light
+    long lowlightChannel0;
+    long highlightChannel0;
+    long lowlightChannel1;
+    long highlightChannel1;
+    
+    //uv
+    long lowuv;
+    long highuv;
+    
+    NSTimer *timer;
+    NSTimeInterval getDataTimeInterval;
 }
 +(id)weatherview;
-@property(nonatomic,strong)NSMutableArray  *dataarray;
+@property (nonatomic,strong)  NSMutableArray  *dataarray;
 @property (nonatomic, weak )id delete;
+@property (strong, nonatomic) BLEController *blecontroller;
 @property int chooseType;
 -(void)refreshweather;
 @end

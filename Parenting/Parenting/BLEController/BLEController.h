@@ -16,6 +16,9 @@
 -(void)DidConnected:(BOOL)isConnected;
 -(void)RecvBTData:(NSData*)recvdata;
 -(void)RecvDataFinish:(BOOL)isFinished;
+-(void)RecvHumiAndTempDada:(NSData*)data;
+-(void)RecvLightData:(NSData*)data;
+-(void)RecvUVData:(NSData*)data;
 @end
 
 @interface BLEController : NSObject{
@@ -32,5 +35,13 @@
 -(void)bledisconnect;
 -(void)senddata:(NSData*)sendData;
 -(void)setSystemTime;
-- (void)getPressKeyHistory:(int)type;
+-(void)getPressKeyHistory:(int)type;
+
++ (int) hexStringHighToInt:(NSString *)hexString;
++ (int) hexStringToInt:(NSString *)hexString;
+
+// 环境请求
+-(void)getTemperature;
+-(void)getLight;
+-(void)getUV;
 @end

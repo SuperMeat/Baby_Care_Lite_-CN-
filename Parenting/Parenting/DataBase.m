@@ -804,7 +804,16 @@
         //[self setWeekName:fileTag andTAble:table andpage:scrollpage];
         [self setWeekName:table andrange:rangeTitle];
     }else{
-        [self setTitleName:[NSString stringWithFormat:@"%@(%i.%i)",NSLocalizedString(table,nil), [currentdate getCurrentYear], month - scrollpage]];
+        int curmonth = 0;
+        if (month < scrollpage) {
+            curmonth = 12- scrollpage + month;
+        }
+        else
+        {
+            curmonth = month;
+        }
+        NSLog(@"scrollpage:%d, month:%d, curmonth:%d", scrollpage, month,curmonth);
+        [self setTitleName:[NSString stringWithFormat:@"%@(%i.%d)",NSLocalizedString(table,nil), [currentdate getCurrentYear]-scrollpage/12, curmonth]];
     }
     [db close];
     [array addObject:count];
@@ -814,9 +823,9 @@
 
 + (int)getMonthMax:(int)scrollpage
 {
-    int max = 31;
+    int max   = 31;
     int month = [currentdate getCurrentMonth];
-    BOOL res = YES;
+    BOOL res  = YES;
     NSString *sql;
     NSString *table = @"diaper";
     FMDatabase *db=[FMDatabase databaseWithPath:DBPATH];
@@ -839,7 +848,6 @@
         max = range.length;
     }
     [db close];
-    NSLog(@"%d", max);
 
     return max;
 }
@@ -949,7 +957,11 @@
     if (0 == fileTag) {
         [self setWeekName:fileTag andTAble:@"All" andpage:scrollpage];
     }else{
-        [self setTitleName:[NSString stringWithFormat:@"%@(%i.%i)",NSLocalizedString(@"All",nil), [currentdate getCurrentYear], month - scrollpage]];
+        int curmonth = 0;
+        if (month <= scrollpage ) {
+            curmonth = 12 - month + scrollpage;
+        }
+        [self setTitleName:[NSString stringWithFormat:@"%@(%i.%i)",NSLocalizedString(@"All",nil), [currentdate getCurrentYear], curmonth]];
     }
     [db close];
     NSLog(@"%@", arrayCount);
@@ -964,7 +976,8 @@
     }
 }
 
-+ (int)scrollWidth:(int)tag{
++ (int)scrollWidth:(int)tag
+{
     BOOL res = YES;
     FMDatabase *db=[FMDatabase databaseWithPath:DBPATH];
     res=[db open];
@@ -984,20 +997,109 @@
     for (NSString *table in arr) {
         int max = 0;
         int min = 0;
-        sql = [NSString stringWithFormat:@"select max(%@) from(select distinct(%@) from %@)", distinct, distinct, table];
+        //sql = [NSString stringWithFormat:@"select max(%@) from(select distinct(%@) from %@)", distinct, distinct, table];
+        sql = [NSString stringWithFormat:@"select max(starttime) from %@", table];
         FMResultSet *set=[db executeQuery:sql];
         if ([set next]) {
             max = [set intForColumnIndex:0];
         }
-        sql = [NSString stringWithFormat:@"select min(%@) from(select distinct(%@) from %@)", distinct, distinct, table];
+        //sql = [NSString stringWithFormat:@"select min(%@) from(select distinct(%@) from %@)", distinct, distinct, table];
+        sql = [NSString stringWithFormat:@"select min(starttime) from %@", table];
         set=[db executeQuery:sql];
         if ([set next]) {
             min = [set intForColumnIndex:0];
         }
-        if (max - min + 1 > ret) {
-            ret = max - min + 1;
+        
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:max];
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        NSDateComponents *comps = [[NSDateComponents alloc] init];
+        NSInteger unitFlags = NSMonthCalendarUnit|NSDayCalendarUnit|NSWeekdayCalendarUnit|NSYearCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit|NSWeekCalendarUnit;
+        [calendar setFirstWeekday:1];
+        comps=[calendar components:unitFlags fromDate:date];
+        int maxyear  = [comps year];
+        int maxmonth = [comps month];
+        int maxweek  = [comps week];
+        
+        NSDate *date2 = [NSDate dateWithTimeIntervalSince1970:min];
+        NSCalendar *calendar2 = [NSCalendar currentCalendar];
+        NSDateComponents *comps2 = [[NSDateComponents alloc] init];
+        NSInteger unitFlags2 = NSMonthCalendarUnit|NSDayCalendarUnit|NSWeekdayCalendarUnit|NSYearCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit|NSWeekCalendarUnit;
+        [calendar2 setFirstWeekday:1];
+        comps2=[calendar2 components:unitFlags2 fromDate:date2];
+        int minyear  = [comps2 year];
+        int minmonth = [comps2 month];
+        int minweek  = [comps2 week];
+        
+        int n = maxyear - minyear;
+        if (0 == tag) {
+            ret = maxweek + 52 * n - minweek + 1;
         }
+        else
+        {
+            ret = maxmonth + 12 * n - minmonth + 1;
+        }
+        //        if (max - min + 1 > ret) {
+//            ret = max - min + 1;
+//        }
+        NSLog(@"width:ret:%d", ret);
     }
+    [db close];
+    return ret;
+}
+
++ (int)scrollWidthWithTag:(int)tag andTableName:(NSString*)tablename
+{
+    BOOL res = YES;
+    FMDatabase *db=[FMDatabase databaseWithPath:DBPATH];
+    res=[db open];
+    if (!res) {
+        NSLog(@"数据库打开失败");
+        return nil;
+    }
+    NSString *sql;
+    int ret = 0;
+    int max = 0;
+    int min = 0;
+    sql = [NSString stringWithFormat:@"select max(starttime) from %@", tablename];
+    FMResultSet *set=[db executeQuery:sql];
+    if ([set next]) {
+        max = [set intForColumnIndex:0];
+    }
+    sql = [NSString stringWithFormat:@"select min(starttime) from %@", tablename];
+    set=[db executeQuery:sql];
+    if ([set next]) {
+        min = [set intForColumnIndex:0];
+    }
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:max];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    NSInteger unitFlags = NSMonthCalendarUnit|NSDayCalendarUnit|NSWeekdayCalendarUnit|NSYearCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit|NSWeekCalendarUnit;
+    [calendar setFirstWeekday:1];
+    comps=[calendar components:unitFlags fromDate:date];
+    int maxyear  = [comps year];
+    int maxmonth = [comps month];
+    int maxweek  = [comps week];
+    
+    NSDate *date2 = [NSDate dateWithTimeIntervalSince1970:min];
+    NSCalendar *calendar2 = [NSCalendar currentCalendar];
+    NSDateComponents *comps2 = [[NSDateComponents alloc] init];
+    NSInteger unitFlags2 = NSMonthCalendarUnit|NSDayCalendarUnit|NSWeekdayCalendarUnit|NSYearCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit|NSWeekCalendarUnit;
+    [calendar2 setFirstWeekday:1];
+    comps2=[calendar2 components:unitFlags2 fromDate:date2];
+    int minyear  = [comps2 year];
+    int minmonth = [comps2 month];
+    int minweek  = [comps2 week];
+    
+    int n = maxyear - minyear;
+    if (0 == tag) {
+        ret = maxweek + 52 * n - minweek + 1;
+    }
+    else
+    {
+        ret = maxmonth + 12 * n - minmonth + 1;
+    }
+    NSLog(@"table:%@ width:%d",tablename, ret);
     [db close];
     return ret;
 }

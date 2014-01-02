@@ -123,6 +123,7 @@ typedef enum{
 //+ (NSArray *)dataFromTable:(NSString *)table andFieldTag:(int)fileTag;
 //+ (NSArray *)dataSourceFromDatabase:(int)fileTag;
 + (int)scrollWidth:(int)tag;
++ (int)scrollWidthWithTag:(int)tag andTableName:(NSString*)tablename;
 + (NSArray *)scrollData:(int)scrollpage andTable:(NSString *)table andFieldTag:(int)fileTag;
 + (int)getMonthMax:(int)scrollpage;
 

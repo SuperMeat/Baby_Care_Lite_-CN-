@@ -124,6 +124,21 @@
 #define PID_RESP_SET_SYS_TIME 2
 #define PID_REQ_GET_HISTORY 3
 #define PID_RESP_GET_HISTORY 4
+
+#define PID_REQ_GET_TEMPHUMI 5
+#define PID_RESP_GET_TEMPHUMI 6
+#define PID_REQ_GET_LIGHT 7
+#define PID_RESP_GET_LIGHT 8
+#define PID_REQ_GET_UV 9
+#define PID_RESP_GET_UV 10
+
 #define PID_HEART_BEAT  254
+
+//五个按钮:喂食,换尿布,洗澡,睡觉,玩耍
+#define BLUETOOTH_BUTTON_FEED   @"04"
+#define BLUETOOTH_BUTTON_DIAPER @"05"
+#define BLUETOOTH_BUTTON_BATH   @"03"
+#define BLUETOOTH_BUTTON_SLEEP  @"01"
+#define BLUETOOTH_BUTTON_PLAY   @"02"
 //*** end
 

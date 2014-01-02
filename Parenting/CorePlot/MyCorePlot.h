@@ -21,7 +21,7 @@
 @property (retain, nonatomic)CPTXYGraph *graph;
 @property (retain, nonatomic)CPTXYPlotSpace *plotSpace;
 @property (retain, nonatomic)NSMutableArray *dataSource;
-@property (retain, nonatomic)CPTBarPlot *barPlot;
+@property (retain, nonatomic)CPTBarPlot     *barPlot;
 @property (retain, nonatomic)CPTScatterPlot *boundLinePlot;
 @property(nonatomic,strong)NSString *tablename;
 

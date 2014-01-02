@@ -195,8 +195,8 @@
 		48F6ABA718710AE40032045E /* myadvise_me.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F6ABA518710AE40032045E /* myadvise_me.png */; };
 		48F6ABA818710AE40032045E /* myadvise_me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F6ABA618710AE40032045E /* myadvise_me@2x.png */; };
 		48F6ABAA18710CBB0032045E /* set_switch_on_off_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F6ABA918710CBB0032045E /* set_switch_on_off_bg@2x.png */; };
-		48F6ABAC187146D20032045E /* 竖琴.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 48F6ABAB187146D20032045E /* 竖琴.m4a */; };
-		48F6ABAE187154E70032045E /* 钟琴.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 48F6ABAD187154E70032045E /* 钟琴.m4a */; };
+		48F6ABB2187269650032045E /* 竖琴.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 48F6ABB0187269650032045E /* 竖琴.m4a */; };
+		48F6ABB3187269650032045E /* 钟琴.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 48F6ABB1187269650032045E /* 钟琴.m4a */; };
 		7215972117453680006FD415 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7215972017453680006FD415 /* UIKit.framework */; };
 		7215972317453680006FD415 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7215972217453680006FD415 /* Foundation.framework */; };
 		7215972517453680006FD415 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7215972417453680006FD415 /* CoreGraphics.framework */; };
@@ -869,8 +869,8 @@
 		48F6ABA518710AE40032045E /* myadvise_me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myadvise_me.png; sourceTree = "<group>"; };
 		48F6ABA618710AE40032045E /* myadvise_me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myadvise_me@2x.png"; sourceTree = "<group>"; };
 		48F6ABA918710CBB0032045E /* set_switch_on_off_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "set_switch_on_off_bg@2x.png"; sourceTree = "<group>"; };
-		48F6ABAB187146D20032045E /* 竖琴.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "竖琴.m4a"; sourceTree = "<group>"; };
-		48F6ABAD187154E70032045E /* 钟琴.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "钟琴.m4a"; sourceTree = "<group>"; };
+		48F6ABB0187269650032045E /* 竖琴.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "竖琴.m4a"; sourceTree = "<group>"; };
+		48F6ABB1187269650032045E /* 钟琴.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "钟琴.m4a"; sourceTree = "<group>"; };
 		7215971C17453680006FD415 /* Amoy Baby Care.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Amoy Baby Care.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7215972017453680006FD415 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7215972217453680006FD415 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1908,7 +1908,7 @@
 		4855BCFD1830B1F500F02A3E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				48F6AB9B186C13500032045E /* 铃声 */,
+				48F6ABAF187269650032045E /* 铃声 */,
 				72159747174536B8006FD415 /* Images */,
 			);
 			name = Resource;
@@ -2164,11 +2164,11 @@
 			path = "自定义提醒";
 			sourceTree = "<group>";
 		};
-		48F6AB9B186C13500032045E /* 铃声 */ = {
+		48F6ABAF187269650032045E /* 铃声 */ = {
 			isa = PBXGroup;
 			children = (
-				48F6ABAD187154E70032045E /* 钟琴.m4a */,
-				48F6ABAB187146D20032045E /* 竖琴.m4a */,
+				48F6ABB0187269650032045E /* 竖琴.m4a */,
+				48F6ABB1187269650032045E /* 钟琴.m4a */,
 			);
 			path = "铃声";
 			sourceTree = "<group>";
@@ -3081,7 +3081,6 @@
 				485749E218332860000D921B /* Icon-Small@2x.png in Resources */,
 				48B78136182A0FD30073EEBD /* TipsWebViewController.xib in Resources */,
 				CE016839174B49D300462363 /* bg_green.png in Resources */,
-				48F6ABAC187146D20032045E /* 竖琴.m4a in Resources */,
 				CE01683A174B49D300462363 /* bg_green@2x.png in Resources */,
 				CE01683B174B49D300462363 /* bg_index.png in Resources */,
 				CE01683C174B49D300462363 /* bg_index@2x.png in Resources */,
@@ -3183,6 +3182,8 @@
 				CE016882174B49D300462363 /* label_right_focus.png in Resources */,
 				CE016883174B49D300462363 /* label_right_focus@2x.png in Resources */,
 				CE016884174B49D300462363 /* play_time.png in Resources */,
+				48F6ABB2187269650032045E /* 竖琴.m4a in Resources */,
+				48F6ABB3187269650032045E /* 钟琴.m4a in Resources */,
 				CE016885174B49D300462363 /* play_time@2x.png in Resources */,
 				CE016886174B49D300462363 /* sleep_time.png in Resources */,
 				CE016887174B49D300462363 /* sleep_time@2x.png in Resources */,
@@ -3328,7 +3329,6 @@
 				CE638B04174F4FC2009A60AB /* btn_all_focus.png in Resources */,
 				CE638B05174F4FC2009A60AB /* btn_all_focus@2x.png in Resources */,
 				48DEA7B517F4699700A11316 /* Bath_1.jpg in Resources */,
-				48F6ABAE187154E70032045E /* 钟琴.m4a in Resources */,
 				CE638B06174F4FC2009A60AB /* btn_bath.png in Resources */,
 				CE638B07174F4FC2009A60AB /* btn_bath@2x.png in Resources */,
 				48DEA7B617F4699700A11316 /* Bath_2.jpg in Resources */,
@@ -3725,7 +3725,6 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"$(SRCROOT)/UMSocial_Sdk_3.1/frameworks/TencentOpenAPI",
-					"/Users/chenweibin/源码学习/资源库",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Parenting/Amoy Baby Care-Prefix.pch";
@@ -3772,7 +3771,6 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"$(SRCROOT)/UMSocial_Sdk_3.1/frameworks/TencentOpenAPI",
-					"/Users/chenweibin/源码学习/资源库",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Parenting/Amoy Baby Care-Prefix.pch";

@@ -76,20 +76,6 @@
     
     tableView= [[UITableView alloc]initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStyleGrouped];
     tableView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight;
-    
-    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(60, 60, 60, 30)];
-    [btn setTitle:@"hahaha" forState:UIControlStateNormal    ];
-    [btn addTarget:self action:@selector(tempBtn) forControlEvents:UIControlEventTouchUpInside];
-    
-//    [self.view addSubview:btn];
-}
-
--(void)tempBtn
-{
-    [arrData removeAllObjects];
-    //载入数据
-    arrData = [NSMutableArray arrayWithObjects:@"aaa",@"bbb",nil];
-    [tableView reloadData];
 }
 
 -(void)dataInitialize{

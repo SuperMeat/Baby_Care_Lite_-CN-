@@ -39,7 +39,7 @@ typedef enum apiCall {
 {
     UIView *segementForMetric;
     UIAlertView *clearalert;
-
+    UIAlertView *logoutAlert;
 
     
     UIButton *buttonForFacebook;

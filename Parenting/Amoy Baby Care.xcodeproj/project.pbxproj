@@ -216,6 +216,21 @@
 		BE5997D018619320008D3F6C /* TipsMasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE5997CE18619320008D3F6C /* TipsMasterViewController.xib */; };
 		BE5997D418619339008D3F6C /* lookingDevice.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BE5997D218619339008D3F6C /* lookingDevice.jpg */; };
 		BE5997D518619339008D3F6C /* scanfail_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BE5997D318619339008D3F6C /* scanfail_1.jpg */; };
+		BE75CCFE1872BEC7001EF1C1 /* MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = BE75CCFD1872BEC7001EF1C1 /* MD5.m */; };
+		BE75CD031872C3CD001EF1C1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE75CD011872C3CD001EF1C1 /* LoginViewController.m */; };
+		BE75CD041872C3CD001EF1C1 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE75CD021872C3CD001EF1C1 /* LoginViewController.xib */; };
+		BE75CD081872C3FC001EF1C1 /* LoginMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE75CD061872C3FC001EF1C1 /* LoginMainViewController.m */; };
+		BE75CD091872C3FC001EF1C1 /* LoginMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE75CD071872C3FC001EF1C1 /* LoginMainViewController.xib */; };
+		BE75CD0D1872C46E001EF1C1 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE75CD0B1872C46E001EF1C1 /* RegisterViewController.m */; };
+		BE75CD0E1872C46E001EF1C1 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE75CD0C1872C46E001EF1C1 /* RegisterViewController.xib */; };
+		BE75CD181872CBA5001EF1C1 /* login_app.png in Resources */ = {isa = PBXBuildFile; fileRef = BE75CD101872CBA5001EF1C1 /* login_app.png */; };
+		BE75CD191872CBA5001EF1C1 /* login_app@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE75CD111872CBA5001EF1C1 /* login_app@2x.png */; };
+		BE75CD1A1872CBA5001EF1C1 /* login_sina.png in Resources */ = {isa = PBXBuildFile; fileRef = BE75CD121872CBA5001EF1C1 /* login_sina.png */; };
+		BE75CD1B1872CBA5001EF1C1 /* login_sina@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE75CD131872CBA5001EF1C1 /* login_sina@2x.png */; };
+		BE75CD1C1872CBA5001EF1C1 /* login_tencent.png in Resources */ = {isa = PBXBuildFile; fileRef = BE75CD141872CBA5001EF1C1 /* login_tencent.png */; };
+		BE75CD1D1872CBA5001EF1C1 /* login_tencent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE75CD151872CBA5001EF1C1 /* login_tencent@2x.png */; };
+		BE75CD1E1872CBA5001EF1C1 /* login_title.png in Resources */ = {isa = PBXBuildFile; fileRef = BE75CD161872CBA5001EF1C1 /* login_title.png */; };
+		BE75CD1F1872CBA5001EF1C1 /* login_title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE75CD171872CBA5001EF1C1 /* login_title@2x.png */; };
 		BE7C69341867D87000C4B675 /* ASIHTTPController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7C69331867D87000C4B675 /* ASIHTTPController.m */; };
 		BE7C69361867DCCE00C4B675 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE7C69351867DCCE00C4B675 /* MobileCoreServices.framework */; };
 		BE7C69771867F1B300C4B675 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7C69641867F1B300C4B675 /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -900,6 +915,25 @@
 		BE5997CE18619320008D3F6C /* TipsMasterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipsMasterViewController.xib; sourceTree = "<group>"; };
 		BE5997D218619339008D3F6C /* lookingDevice.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lookingDevice.jpg; sourceTree = "<group>"; };
 		BE5997D318619339008D3F6C /* scanfail_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = scanfail_1.jpg; sourceTree = "<group>"; };
+		BE75CCFC1872BEC7001EF1C1 /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5.h; sourceTree = "<group>"; };
+		BE75CCFD1872BEC7001EF1C1 /* MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5.m; sourceTree = "<group>"; };
+		BE75CD001872C3CD001EF1C1 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		BE75CD011872C3CD001EF1C1 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		BE75CD021872C3CD001EF1C1 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		BE75CD051872C3FC001EF1C1 /* LoginMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginMainViewController.h; sourceTree = "<group>"; };
+		BE75CD061872C3FC001EF1C1 /* LoginMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginMainViewController.m; sourceTree = "<group>"; };
+		BE75CD071872C3FC001EF1C1 /* LoginMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginMainViewController.xib; sourceTree = "<group>"; };
+		BE75CD0A1872C46E001EF1C1 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		BE75CD0B1872C46E001EF1C1 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		BE75CD0C1872C46E001EF1C1 /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
+		BE75CD101872CBA5001EF1C1 /* login_app.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_app.png; sourceTree = "<group>"; };
+		BE75CD111872CBA5001EF1C1 /* login_app@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_app@2x.png"; sourceTree = "<group>"; };
+		BE75CD121872CBA5001EF1C1 /* login_sina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_sina.png; sourceTree = "<group>"; };
+		BE75CD131872CBA5001EF1C1 /* login_sina@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_sina@2x.png"; sourceTree = "<group>"; };
+		BE75CD141872CBA5001EF1C1 /* login_tencent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_tencent.png; sourceTree = "<group>"; };
+		BE75CD151872CBA5001EF1C1 /* login_tencent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_tencent@2x.png"; sourceTree = "<group>"; };
+		BE75CD161872CBA5001EF1C1 /* login_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_title.png; sourceTree = "<group>"; };
+		BE75CD171872CBA5001EF1C1 /* login_title@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_title@2x.png"; sourceTree = "<group>"; };
 		BE7C69321867D87000C4B675 /* ASIHTTPController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIHTTPController.h; path = ASIHTTPController/ASIHTTPController.h; sourceTree = "<group>"; };
 		BE7C69331867D87000C4B675 /* ASIHTTPController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIHTTPController.m; path = ASIHTTPController/ASIHTTPController.m; sourceTree = "<group>"; };
 		BE7C69351867DCCE00C4B675 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -2232,6 +2266,7 @@
 		72159747174536B8006FD415 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BE75CD0F1872CBA5001EF1C1 /* 登录 */,
 				48F6AB94186AD0000032045E /* 自定义提醒 */,
 				48EC1DD81862F6CB00965254 /* notify */,
 				BE5997D118619339008D3F6C /* bluetooth */,
@@ -2260,6 +2295,7 @@
 		72159748174536C0006FD415 /* ClassFiles */ = {
 			isa = PBXGroup;
 			children = (
+				BE75CCFF1872C3CD001EF1C1 /* Login */,
 				BE5997BE1861927B008D3F6C /* Bluetooth */,
 				4855BCAB183076BD00F02A3E /* Main */,
 				48152E2A18487204009A4900 /* Guide */,
@@ -2277,6 +2313,7 @@
 		72159749174536D6006FD415 /* PublicClass */ = {
 			isa = PBXGroup;
 			children = (
+				BE75CCFB1872BEAC001EF1C1 /* MD5 */,
 				BE7C69311867D7D100C4B675 /* ASIHTTPController */,
 				48013D33185ADF7F00F483A6 /* BLEController */,
 				4855BCF81830B0CB00F02A3E /* MyTabBarController */,
@@ -2406,6 +2443,46 @@
 				BE5997D318619339008D3F6C /* scanfail_1.jpg */,
 			);
 			path = bluetooth;
+			sourceTree = "<group>";
+		};
+		BE75CCFB1872BEAC001EF1C1 /* MD5 */ = {
+			isa = PBXGroup;
+			children = (
+				BE75CCFC1872BEC7001EF1C1 /* MD5.h */,
+				BE75CCFD1872BEC7001EF1C1 /* MD5.m */,
+			);
+			name = MD5;
+			sourceTree = "<group>";
+		};
+		BE75CCFF1872C3CD001EF1C1 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				BE75CD0A1872C46E001EF1C1 /* RegisterViewController.h */,
+				BE75CD0B1872C46E001EF1C1 /* RegisterViewController.m */,
+				BE75CD0C1872C46E001EF1C1 /* RegisterViewController.xib */,
+				BE75CD001872C3CD001EF1C1 /* LoginViewController.h */,
+				BE75CD011872C3CD001EF1C1 /* LoginViewController.m */,
+				BE75CD021872C3CD001EF1C1 /* LoginViewController.xib */,
+				BE75CD051872C3FC001EF1C1 /* LoginMainViewController.h */,
+				BE75CD061872C3FC001EF1C1 /* LoginMainViewController.m */,
+				BE75CD071872C3FC001EF1C1 /* LoginMainViewController.xib */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		BE75CD0F1872CBA5001EF1C1 /* 登录 */ = {
+			isa = PBXGroup;
+			children = (
+				BE75CD101872CBA5001EF1C1 /* login_app.png */,
+				BE75CD111872CBA5001EF1C1 /* login_app@2x.png */,
+				BE75CD121872CBA5001EF1C1 /* login_sina.png */,
+				BE75CD131872CBA5001EF1C1 /* login_sina@2x.png */,
+				BE75CD141872CBA5001EF1C1 /* login_tencent.png */,
+				BE75CD151872CBA5001EF1C1 /* login_tencent@2x.png */,
+				BE75CD161872CBA5001EF1C1 /* login_title.png */,
+				BE75CD171872CBA5001EF1C1 /* login_title@2x.png */,
+			);
+			path = "登录";
 			sourceTree = "<group>";
 		};
 		BE7C69311867D7D100C4B675 /* ASIHTTPController */ = {
@@ -3096,6 +3173,7 @@
 				BE5997D418619339008D3F6C /* lookingDevice.jpg in Resources */,
 				CE016843174B49D300462363 /* breast_l.png in Resources */,
 				48152E43184C65AE009A4900 /* 960.2.png in Resources */,
+				BE75CD0E1872C46E001EF1C1 /* RegisterViewController.xib in Resources */,
 				CE016844174B49D300462363 /* breast_l@2x.png in Resources */,
 				CE016845174B49D300462363 /* breast_r.png in Resources */,
 				BE5997C81861930A008D3F6C /* BindingDeviceViewController.xib in Resources */,
@@ -3156,10 +3234,12 @@
 				CE01686F174B49D300462363 /* icon_humidity@2x.png in Resources */,
 				CE016870174B49D300462363 /* icon_index.png in Resources */,
 				CE016871174B49D300462363 /* icon_index@2x.png in Resources */,
+				BE75CD1D1872CBA5001EF1C1 /* login_tencent@2x.png in Resources */,
 				CE016872174B49D300462363 /* icon_light.png in Resources */,
 				4855BD021830C8C000F02A3E /* InformationCenterViewController.xib in Resources */,
 				CE016873174B49D300462363 /* icon_light@2x.png in Resources */,
 				48DEA7D717F4703400A11316 /* Play_6.jpg in Resources */,
+				BE75CD191872CBA5001EF1C1 /* login_app@2x.png in Resources */,
 				CE016874174B49D300462363 /* icon_pm2.5.png in Resources */,
 				CE016875174B49D300462363 /* icon_pm2.5@2x.png in Resources */,
 				48152E1318486C66009A4900 /* item_cancel@2x.png in Resources */,
@@ -3282,6 +3362,7 @@
 				CE38278A174E1EDA009AD8DA /* btn1.png in Resources */,
 				CE38278B174E1EDA009AD8DA /* btn1@2x.png in Resources */,
 				48DEA7DC17F4703400A11316 /* Play_11.jpg in Resources */,
+				BE75CD1A1872CBA5001EF1C1 /* login_sina.png in Resources */,
 				CE38278C174E1EDA009AD8DA /* btn1_focus.png in Resources */,
 				48DEA7C017F46C3E00A11316 /* Diaper_1.jpg in Resources */,
 				CE38278D174E1EDA009AD8DA /* btn1_focus@2x.png in Resources */,
@@ -3295,6 +3376,7 @@
 				485749DA18332860000D921B /* 57.png in Resources */,
 				CE382794174E1EDA009AD8DA /* btn3_focus.png in Resources */,
 				CE382795174E1EDA009AD8DA /* btn3_focus@2x.png in Resources */,
+				BE75CD181872CBA5001EF1C1 /* login_app.png in Resources */,
 				48152E1F18486C66009A4900 /* nav_btn_bg.png in Resources */,
 				CE382796174E1EDA009AD8DA /* btn_back.png in Resources */,
 				48152E2218486C66009A4900 /* send@2x.png in Resources */,
@@ -3346,6 +3428,7 @@
 				CE638B0D174F4FC2009A60AB /* btn_day_focus@2x.png in Resources */,
 				CE638B0E174F4FC2009A60AB /* btn_diaper.png in Resources */,
 				CE638B0F174F4FC2009A60AB /* btn_diaper@2x.png in Resources */,
+				BE75CD1F1872CBA5001EF1C1 /* login_title@2x.png in Resources */,
 				BE5997D018619320008D3F6C /* TipsMasterViewController.xib in Resources */,
 				CE638B10174F4FC2009A60AB /* btn_diaper_focus.png in Resources */,
 				CE638B11174F4FC2009A60AB /* btn_diaper_focus@2x.png in Resources */,
@@ -3365,6 +3448,7 @@
 				CE638B1B174F4FC2009A60AB /* btn_month@2x.png in Resources */,
 				48EC1DDF1862F6E400965254 /* nofity_myadvise_day.png in Resources */,
 				CE638B1C174F4FC2009A60AB /* btn_month_focus.png in Resources */,
+				BE75CD1B1872CBA5001EF1C1 /* login_sina@2x.png in Resources */,
 				CE638B1D174F4FC2009A60AB /* btn_month_focus@2x.png in Resources */,
 				CE638B1E174F4FC2009A60AB /* btn_more.png in Resources */,
 				CE638B1F174F4FC2009A60AB /* btn_more@2x.png in Resources */,
@@ -3376,6 +3460,7 @@
 				CE638B23174F4FC2009A60AB /* btn_play@2x.png in Resources */,
 				CE638B24174F4FC2009A60AB /* btn_play_focus.png in Resources */,
 				CE638B25174F4FC2009A60AB /* btn_play_focus@2x.png in Resources */,
+				BE75CD041872C3CD001EF1C1 /* LoginViewController.xib in Resources */,
 				CE638B26174F4FC2009A60AB /* btn_sleep.png in Resources */,
 				CE638B27174F4FC2009A60AB /* btn_sleep@2x.png in Resources */,
 				48EC1DD11861772300965254 /* CustomNotifyViewController.xib in Resources */,
@@ -3415,6 +3500,7 @@
 				CE638B40174F4FC2009A60AB /* label3_sum.png in Resources */,
 				CE638B41174F4FC2009A60AB /* label3_sum@2x.png in Resources */,
 				CE638B42174F4FC2009A60AB /* label3_sum_focus.png in Resources */,
+				BE75CD1E1872CBA5001EF1C1 /* login_title.png in Resources */,
 				48152E0E18486C66009A4900 /* background@2x.png in Resources */,
 				48EC1DD71862CE2000965254 /* CustonTimeViewController.xib in Resources */,
 				CE638B43174F4FC2009A60AB /* label3_sum_focus@2x.png in Resources */,
@@ -3427,6 +3513,7 @@
 				CE638B48174F4FC2009A60AB /* line_cutoff@2x.png in Resources */,
 				CE638B49174F4FC2009A60AB /* Xaxis@2x.png in Resources */,
 				CE638B4A174F4FC2009A60AB /* Yaxis@2x.png in Resources */,
+				BE75CD091872C3FC001EF1C1 /* LoginMainViewController.xib in Resources */,
 				4855BC1D182B237800F02A3E /* umFeedback.bundle in Resources */,
 				CE075A2917505AE100C57E27 /* save_dirty.png in Resources */,
 				48EC1DDE1862F6E400965254 /* nofity_myadvise_day_up@2x.png in Resources */,
@@ -3464,6 +3551,7 @@
 				CE0D0EBE17573B1A005A3200 /* btn_connect_focus@2x.png in Resources */,
 				CE0D0EBF17573B1A005A3200 /* icon_connected.png in Resources */,
 				CE0D0EC017573B1A005A3200 /* icon_connected@2x.png in Resources */,
+				BE75CD1C1872CBA5001EF1C1 /* login_tencent.png in Resources */,
 				CE0D0EC117573B1A005A3200 /* icon_notconnected.png in Resources */,
 				CE0D0EC217573B1A005A3200 /* icon_notconnected@2x.png in Resources */,
 				CE0D0EC317573B1A005A3200 /* line_nodate.png in Resources */,
@@ -3522,6 +3610,7 @@
 				48EC1DD01861772300965254 /* CustomNotifyViewController.m in Sources */,
 				48152DF318486B13009A4900 /* UMFeedbackTableViewCellRight.m in Sources */,
 				7215973117453680006FD415 /* defaultAppDelegate.m in Sources */,
+				BE75CD081872C3FC001EF1C1 /* LoginMainViewController.m in Sources */,
 				4855BCA2182CCCB900F02A3E /* MMProgressHUDViewController.m in Sources */,
 				48EC1DC818603B3700965254 /* LocalNotifyCell.m in Sources */,
 				F3F09B5D1745CBCE006CB06D /* SettingViewController.m in Sources */,
@@ -3537,6 +3626,8 @@
 				4855BC9D182CCCB900F02A3E /* MMHud.m in Sources */,
 				4855BC9F182CCCB900F02A3E /* MMProgressHUD+Class.m in Sources */,
 				72FAFDA01746A14400901B8B /* CacheFileUtil.m in Sources */,
+				BE75CD0D1872C46E001EF1C1 /* RegisterViewController.m in Sources */,
+				BE75CCFE1872BEC7001EF1C1 /* MD5.m in Sources */,
 				4855BD071830D80300F02A3E /* InfomationItem.m in Sources */,
 				4855BCA5182CCCB900F02A3E /* MMVectorImage.m in Sources */,
 				BE7C697D1867F1B300C4B675 /* ASIInputStream.m in Sources */,
@@ -3610,6 +3701,7 @@
 				BE5997C71861930A008D3F6C /* BindingDeviceViewController.m in Sources */,
 				BE7C697A1867F1B300C4B675 /* ASIDownloadCache.m in Sources */,
 				CE1D69C81772958900561EBF /* AdviseScrollview.m in Sources */,
+				BE75CD031872C3CD001EF1C1 /* LoginViewController.m in Sources */,
 				48B4C0B917DEEF7F0099D986 /* AdviseMasterViewController.m in Sources */,
 				48140BC217E03EBA0049EE17 /* AdviseData.m in Sources */,
 				48EC1DC4185EF4A300965254 /* DurationPickerView.m in Sources */,

@@ -14,6 +14,7 @@
 #import "UMFeedbackViewController.h"
 #import "MyLocalNofityViewController.h"
 #import "MyDevicesTableViewController.h"
+#import "LoginViewController.h"
 
 @interface SettingViewController ()
 @property (strong, nonatomic) UITableView *settingTable;
@@ -65,6 +66,9 @@ messageView;
     
     [super viewWillAppear:animated];
     
+    [self makeArray];
+    [self.settingTable reloadData];
+    
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([defaults objectForKey:@"FBAccessTokenKey"] && [defaults objectForKey:@"FBExpirationDateKey"]) {
@@ -86,6 +90,8 @@ messageView;
     SettingItem *_item7 = [[SettingItem alloc]init];
     SettingItem *_item8 = [[SettingItem alloc]init];
     SettingItem *_item9 = [[SettingItem alloc]init];
+    //cwb-AccountManage
+    SettingItem *_item10 = [[SettingItem alloc]init];
     
     _item1.name=NSLocalizedString(@"Baby information",nil);
     _item2.name=NSLocalizedString(@"Metric/Imperial",nil);
@@ -97,6 +103,28 @@ messageView;
     _item7.name=NSLocalizedString(@"Copyright",nil);
     _item8.name=NSLocalizedString(@"Clear all logged data",nil);
     _item9.name=NSLocalizedString(@"LocalNotify", nil);
+    
+    if ([[NSUserDefaults standardUserDefaults]objectForKey:@"ACCOUNT_NAME"]==nil) {
+        _item10.name=@"账号登录";
+        UIButton *buttonLogin=[UIButton buttonWithType:UIButtonTypeCustom];
+        [buttonLogin setTitle:@"登录" forState:UIControlStateNormal];
+        //FIXME:修改图片
+        [buttonLogin setBackgroundImage:[UIImage imageNamed:@"btn_setting.png"] forState:UIControlStateNormal];
+        [buttonLogin addTarget:self action:@selector(goLogin) forControlEvents:UIControlEventTouchUpInside];
+        buttonLogin.bounds=CGRectMake(0, 0, 95, 30);
+        _item10.accessView = buttonLogin;
+    }
+    else{
+        _item10.name=[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"ACCOUNT_NAME"]];
+        UIButton *buttonLoginOut=[UIButton buttonWithType:UIButtonTypeCustom];
+        [buttonLoginOut setTitle:@"登出" forState:UIControlStateNormal];
+        //FIXME:修改图片
+        [buttonLoginOut setBackgroundImage:[UIImage imageNamed:@"btn_delete.png"] forState:UIControlStateNormal];
+        [buttonLoginOut addTarget:self action:@selector(goLoginOut) forControlEvents:UIControlEventTouchUpInside];
+        buttonLoginOut.bounds=CGRectMake(0, 0, 95, 30);
+        _item10.accessView = buttonLoginOut;
+    }
+    
     
     UIButton *detailforbaby=[UIButton buttonWithType:UIButtonTypeCustom];
     [detailforbaby setImage:[[UIImage imageNamed:@"btn_right.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(8, 8, 8, 8)] forState:UIControlStateNormal];
@@ -201,10 +229,22 @@ messageView;
     [_array2 addObject:_item6];
     [_array2 addObject:_item7];
     [_array3 addObject:_item8];
+    [_array3 addObject:_item10];
     
     _settingArray=[[NSArray alloc]initWithObjects:_array1,_array2,_array3, nil];
 }
 
+-(void)goLogin
+{
+    LoginViewController *loginViewController = [[LoginViewController alloc] initWithRootViewController:self];
+    [self.navigationController pushViewController:loginViewController animated:NO];
+}
+
+-(void)goLoginOut
+{
+    logoutAlert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"是否同步本地数据至服务器?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"同步",@"不同步", nil];
+    [logoutAlert show];
+}
 
 -(void)setting
 {
@@ -306,6 +346,24 @@ messageView;
         }
     }
     
+    if (alertView==logoutAlert) {
+        //TODO:是否清楚本地数据
+        if (buttonIndex==1) {
+            //TODO:同步数据
+            [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"ACCOUNT_NAME"];
+            [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"ACCOUNT_TYPE"];
+            [self makeArray];
+            [self.settingTable reloadData];
+            
+        }
+        else if (buttonIndex==2){
+            //TODO:不同步数据
+            [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"ACCOUNT_NAME"];
+            [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"ACCOUNT_TYPE"];
+            [self makeArray];
+            [self.settingTable reloadData];
+        }
+    }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

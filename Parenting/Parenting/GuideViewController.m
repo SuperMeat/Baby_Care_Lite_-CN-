@@ -7,7 +7,7 @@
 //
 
 #import "GuideViewController.h"
-
+#import "LoginViewController.h"
 @interface GuideViewController ()
 
 @end
@@ -82,8 +82,14 @@
 }
 
 -(void)skipToMain:(id)sender{
-    _nextViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:_nextViewController animated:YES completion:^{}];
+    if (_isLaunchBefore) {
+        _nextViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        [self presentViewController:_nextViewController animated:YES completion:^{}];
+    }
+    else{
+        LoginViewController *loginViewController = [[LoginViewController alloc]initWithRootViewController:_nextViewController];
+        self.view.window.rootViewController= loginViewController;
+    }
 }
 
 // scrollview 委托函数

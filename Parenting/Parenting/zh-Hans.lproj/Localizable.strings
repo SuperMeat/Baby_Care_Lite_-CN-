@@ -16,6 +16,8 @@
 "tabbarsettings"="设置";
 "navback"="返回";
 "navsummary"="总结";
+"navLogin"="登录";
+"navRegister" = "注册";
 
 "All"="全部";
 "Feed"="喂养";

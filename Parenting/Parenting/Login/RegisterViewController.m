@@ -46,10 +46,8 @@
     title.font = [UIFont systemFontOfSize:14];
     [backbutton addSubview:title];
     
-    
     [backbutton addTarget:self action:@selector(doGoBack) forControlEvents:UIControlEventTouchUpInside];
     backbutton.frame=CGRectMake(0, 0, 44, 28);
-    
     
     UIBarButtonItem *backbar=[[UIBarButtonItem alloc]initWithCustomView:backbutton];
     self.navigationItem.leftBarButtonItem=backbar;
@@ -68,7 +66,6 @@
     UIBarButtonItem *rightBar = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightBar;
 
-    
     arrData = @[@"邮箱",@"密码",@"重复"];
 }
 

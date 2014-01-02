@@ -721,16 +721,28 @@
     if (0 == fileTag) {
         //week
         int max = 0;
-        if (week - scrollpage != [currentdate getCurrentWeek]) {
+        if (week-scrollpage != [currentdate getCurrentWeek]) {
             max = 7;
         }else{
             max = weekday;
         }
         for (int i = 1; i <= max; i++) {
-            NSString *sql = [NSString stringWithFormat:@"select count(*) from %@ where week = %i and weekday = %i", table, week - scrollpage, i];
-            NSString *sql1 = [NSString stringWithFormat:@"select sum(duration) from %@ where week = %i and weekday = %i", table, week - scrollpage, i];
+//            NSString *sql = [NSString stringWithFormat:@"select count(*) from %@ where week = %i and weekday = %i", table, week - scrollpage, i];
+//            NSString *sql1 = [NSString stringWithFormat:@"select sum(duration) from %@ where week = %i and weekday = %i", table, week - scrollpage, i];
+            int curweek = 0;
+            if (week <= scrollpage) {
+                curweek = 52- scrollpage + week;
+            }
+            else
+            {
+                curweek = week;
+            }
+
+            NSString *sql = [NSString stringWithFormat:@"select count(*) from %@ where week = %i and weekday = %i", table, curweek, i];
+            NSString *sql1 = [NSString stringWithFormat:@"select sum(duration) from %@ where week = %i and weekday = %i", table, curweek, i];
             if ([table isEqualToString:@"Diaper"]) {
-                sql1 = [NSString stringWithFormat:@"select count(*) from %@ where week = %i and weekday = %i", table, week - scrollpage, i];
+                //sql1 = [NSString stringWithFormat:@"select count(*) from %@ where week = %i and weekday = %i", table, week - scrollpage, i];
+                sql1 = [NSString stringWithFormat:@"select count(*) from %@ where week = %i and weekday = %i", table, curweek, i];
             }
             FMResultSet *set=[db executeQuery:sql];
             FMResultSet *set1=[db executeQuery:sql1];
@@ -755,6 +767,15 @@
     else
     {
         //month
+        int curmonth = 0;
+        if (month <= scrollpage) {
+            curmonth = 12- scrollpage + month;
+        }
+        else
+        {
+            curmonth = month;
+        }
+
         int nowDay = [currentdate getday:[currentdate date]];
         if ((month-scrollpage) == [currentdate getCurrentMonth]) {
             for (int i = 0; i <= (nowDay - 1) / 7; i++) {
@@ -762,16 +783,19 @@
                 [count addObject:str];
                 [duration addObject:str];
             }
-        }else
+        }
+        else
         {
             count = [NSMutableArray arrayWithObjects:@"0", @"0", @"0", @"0", @"0", nil];
             duration = [NSMutableArray arrayWithObjects:@"0", @"0", @"0", @"0", @"0", nil];
         }
         NSString *sql;
         if ([table isEqualToString:@"Diaper"]) {
-            sql = [NSString stringWithFormat:@"select starttime from %@ where month = %i", table, month - scrollpage];
+            //sql = [NSString stringWithFormat:@"select starttime from %@ where month = %i", table, month - scrollpage];
+            sql = [NSString stringWithFormat:@"select starttime from %@ where month = %i", table, curmonth];
         }else{
-            sql = [NSString stringWithFormat:@"select starttime,duration from %@ where month = %i", table, month - scrollpage];
+            //sql = [NSString stringWithFormat:@"select starttime,duration from %@ where month = %i", table, month - scrollpage];
+            sql = [NSString stringWithFormat:@"select starttime,duration from %@ where month = %i", table, curmonth];
         }
         FMResultSet *set = [db executeQuery:sql];
         
@@ -797,23 +821,28 @@
             }
         }
     }
+    
     if (0 == fileTag) {
         long timestamp = [OpenFunction getTimeStampFromDate:[currentdate date]];
         NSDate   *newDate    = [OpenFunction getDateFromTimeStamp:(timestamp-scrollpage*604800)];
         NSString *rangeTitle = [OpenFunction getWeekBeginAndEndWith:newDate];
         //[self setWeekName:fileTag andTAble:table andpage:scrollpage];
         [self setWeekName:table andrange:rangeTitle];
-    }else{
-        int curmonth = 0;
-        if (month < scrollpage) {
+    }
+    else
+    {
+        int curmonth = 0,curyear = 0;
+        if (month <= scrollpage) {
             curmonth = 12- scrollpage + month;
+            curyear  = [currentdate getCurrentYear]-scrollpage/12-1;
         }
         else
         {
             curmonth = month;
+            curyear  = [currentdate getCurrentYear];
         }
         NSLog(@"scrollpage:%d, month:%d, curmonth:%d", scrollpage, month,curmonth);
-        [self setTitleName:[NSString stringWithFormat:@"%@(%i.%d)",NSLocalizedString(table,nil), [currentdate getCurrentYear]-scrollpage/12, curmonth]];
+        [self setTitleName:[NSString stringWithFormat:@"%@(%i.%d)",NSLocalizedString(table,nil), curyear, curmonth]];
     }
     [db close];
     [array addObject:count];

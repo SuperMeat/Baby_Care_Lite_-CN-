@@ -151,7 +151,7 @@
     plotScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 35, 320, rx.size.height  - 35 - 49-20- G_YADDONVERSION + 5 + 23)];
     [self.view addSubview:plotScrollView];
     //plotScrollView.contentSize = CGSizeMake(320 * [DataBase scrollWidth:0], rx.size.height  - 35 - 49-20);
-    plotScrollView.contentSize = CGSizeMake(320 * [DataBase scrollWidth:0], 0);
+    plotScrollView.contentSize = CGSizeMake(320 * [DataBase scrollWidthWithTag:0 andTableName:[self tableName:selectIndex]], 0);
     plotScrollView.delegate = self;
     plotScrollView.pagingEnabled = YES;
     plotScrollView.showsHorizontalScrollIndicator = NO;
@@ -535,7 +535,7 @@
     //CGRect rx = [UIScreen mainScreen ].bounds;
     
     //plotScrollView.contentSize = CGSizeMake([DataBase scrollWidth:plotTag] * 320, rx.size.height  - 35 - 49-20);
-    plotScrollView.contentSize = CGSizeMake([DataBase scrollWidth:plotTag] * 320, 0);
+    plotScrollView.contentSize = CGSizeMake([DataBase scrollWidthWithTag:plotTag andTableName:[self tableName:selectIndex]] * 320, 0);
     
     for (MyCorePlot *plot_1 in plotArray) {
         [plot_1 removeFromSuperview];
@@ -1247,9 +1247,9 @@
 - (void)scrollUpadateData{
 
     CGRect rx = [UIScreen mainScreen ].bounds;
-    NSLog(@"scrollUpdateData:%@,%d, %d",[self tableName:selectIndex],plotTag,[DataBase scrollWidthWithTableName:plotTag andTableName:[self tableName:selectIndex]]);
+    NSLog(@"scrollUpdateData:%@,%d, %d",[self tableName:selectIndex],plotTag,[DataBase scrollWidthWithTag:plotTag andTableName:[self tableName:selectIndex]]);
     //int range = [DataBase scrollWidth:plotTag];
-    int range = [DataBase scrollWidthWithTableName:plotTag andTableName:[self tableName:selectIndex]];
+    int range = [DataBase scrollWidthWithTag:plotTag andTableName:[self tableName:selectIndex]];
     int j = 0;
     for (int i = range - 1; i >= 0;i--)
     {
@@ -1271,14 +1271,14 @@
             xLength = 6.0f;
         }
        
-        plot = [[MyCorePlot alloc] initWithFrame:CGRectMake(([DataBase scrollWidth:plotTag] - j - 1) * 320, 0, 320, rx.size.height - 40 - 35 - 49-20) andTitle:[self tableName:selectIndex] andXplotRangeWithLocation:0.0f andXlength:xLength andYplotRangeWithLocation:0.0f andYlength:maxyAxis * 1.5 andDataSource:data andXAxisTag:plotTag andMaxDay:maxmonthday];
+        plot = [[MyCorePlot alloc] initWithFrame:CGRectMake(([DataBase scrollWidthWithTag:plotTag andTableName:[self tableName:selectIndex]] - j - 1) * 320, 0, 320, rx.size.height - 40 - 35 - 49-20) andTitle:[self tableName:selectIndex] andXplotRangeWithLocation:0.0f andXlength:xLength andYplotRangeWithLocation:0.0f andYlength:maxyAxis * 1.5 andDataSource:data andXAxisTag:plotTag andMaxDay:maxmonthday];
         [plotScrollView addSubview:plot];
         [self setName];
         [plotArray addObject:plot];
         j++;
     }
     
-    [plotScrollView scrollRectToVisible:CGRectMake([DataBase scrollWidth:plotTag] * 320 - 320, 0, 320, rx.size.height - 40 - 35 - 49-20) animated:NO];
+    [plotScrollView scrollRectToVisible:CGRectMake([DataBase scrollWidthWithTag:plotTag andTableName:[self tableName:selectIndex]] * 320 - 320, 0, 320, rx.size.height - 40 - 35 - 49-20) animated:NO];
     
     [self.view bringSubviewToFront:self.Mark];
 }

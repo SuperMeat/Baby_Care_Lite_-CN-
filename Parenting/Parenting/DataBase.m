@@ -1047,7 +1047,7 @@
     return ret;
 }
 
-+ (int)scrollWidthWithTableName:(int)tag andTableName:(NSString*)tablename
++ (int)scrollWidthWithTag:(int)tag andTableName:(NSString*)tablename
 {
     BOOL res = YES;
     FMDatabase *db=[FMDatabase databaseWithPath:DBPATH];

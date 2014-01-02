@@ -243,23 +243,19 @@
         
         [self MenuSelectIndex:0];
         [backbutton setHidden:YES];
-        
     }
     else
     {
         [backbutton setHidden:NO];
     }
 
-    
     [self.view bringSubviewToFront:menu];
-    
     
     UILabel *sign1=(UILabel*)[self.Mark viewWithTag:601];
     UILabel *sign2=(UILabel*)[self.Mark viewWithTag:602];
     UILabel *sign3=(UILabel*)[self.Mark viewWithTag:603];
     UILabel *sign4=(UILabel*)[self.Mark viewWithTag:604];
     UILabel *sign5=(UILabel*)[self.Mark viewWithTag:605];
-    
     
     sign1.text=NSLocalizedString(@"Play", nil);
     sign2.text=NSLocalizedString(@"Bath", nil);
@@ -284,10 +280,12 @@
     [db synchronize];
     self.tabBarController.selectedIndex = 0;
 }
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [Sharetext resignFirstResponder];
 }
+
 - (void)ShareBtn{
     
     [self hidenshareview];
@@ -1250,7 +1248,8 @@
 
     CGRect rx = [UIScreen mainScreen ].bounds;
     NSLog(@"scrollUpdateData:%d, %d",plotTag,[DataBase scrollWidth:plotTag]);
-    int range = [DataBase scrollWidth:plotTag];
+    //int range = [DataBase scrollWidth:plotTag];
+    int range = 10;
     int j = 0;
     for (int i = range - 1; i >= 0;i--)
     {

@@ -358,9 +358,9 @@
                 break;
         }
         linePlot.dataLineStyle = lineStyle;
-        plotSymbol.size = CGSizeMake(2.0, 2.0);
-        plotSymbol.lineStyle = lineStyle;
-        linePlot.plotSymbol = plotSymbol;
+        plotSymbol.size        = CGSizeMake(2.0, 2.0);
+        plotSymbol.lineStyle   = lineStyle;
+        linePlot.plotSymbol    = plotSymbol;
         [graph addPlot:linePlot];
         [plotArray addObject:linePlot];
     }

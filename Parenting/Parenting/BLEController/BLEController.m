@@ -155,15 +155,15 @@
         //按键id值
         NSString *buttonID = [hexStr substringWithRange:NSMakeRange(2,2)];
         //按键持续时间,单位秒 2字节
-        int hDuration = [self hexStringToInt:[hexStr substringWithRange:NSMakeRange(4,4)]];
+        int hDuration = [BLEController hexStringToInt:[hexStr substringWithRange:NSMakeRange(4,4)]];
         
         //开始时间
-        int dYear = [self hexStringToInt:[hexStr substringWithRange:NSMakeRange(8,2)]];
-        int dMonth = [self hexStringToInt:[hexStr substringWithRange:NSMakeRange(10,2)]];
-        int dDay = [self hexStringToInt:[hexStr substringWithRange:NSMakeRange(12,2)]];
-        int dHour = [self hexStringToInt:[hexStr substringWithRange:NSMakeRange(14,2)]];
-        int dMinite = [self hexStringToInt:[hexStr substringWithRange:NSMakeRange(16,2)]];
-        int dSecond = [self hexStringToInt:[hexStr substringWithRange:NSMakeRange(18,2)]];
+        int dYear = [BLEController hexStringToInt:[hexStr substringWithRange:NSMakeRange(8,2)]];
+        int dMonth = [BLEController hexStringToInt:[hexStr substringWithRange:NSMakeRange(10,2)]];
+        int dDay = [BLEController hexStringToInt:[hexStr substringWithRange:NSMakeRange(12,2)]];
+        int dHour = [BLEController hexStringToInt:[hexStr substringWithRange:NSMakeRange(14,2)]];
+        int dMinite = [BLEController hexStringToInt:[hexStr substringWithRange:NSMakeRange(16,2)]];
+        int dSecond = [BLEController hexStringToInt:[hexStr substringWithRange:NSMakeRange(18,2)]];
         
         NSString *str_startTime = [NSString stringWithFormat:@"20%02d-%02d-%02d %02d:%02d:%02d",dYear,dMonth,dDay,dHour,dMinite,dSecond];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
@@ -172,12 +172,6 @@
         
         NSLog(@"%@",startTime);
         
-        //五个按钮:喂食,换尿布,洗澡,睡觉,玩耍
-#define BLUETOOTH_BUTTON_FEED   @"04"
-#define BLUETOOTH_BUTTON_DIAPER @"05"
-#define BLUETOOTH_BUTTON_BATH   @"03"
-#define BLUETOOTH_BUTTON_SLEEP  @"01"
-#define BLUETOOTH_BUTTON_PLAY   @"02"
         DataBase *db = [[DataBase alloc]init];
         if (startTime == nil){
             //数据格式错误，异常数据处理
@@ -213,6 +207,22 @@
     //******endcwb******
 }
 
+-(void)resp_get_temphumi:(NSData*)data
+{
+    [self.bleControllerDelegate RecvHumiAndTempDada:data];
+}
+
+-(void)resp_get_light:(NSData*)data
+{
+    [self.bleControllerDelegate RecvLightData:data];
+}
+
+-(void)resp_get_uv:(NSData*)data
+{
+    [self.bleControllerDelegate RecvUVData:data];
+}
+
+
 #pragma mark tools function
 -(void)RecvBTData:(NSData*)recvData
 {
@@ -226,16 +236,16 @@
         NSString *newHexStr = [NSString stringWithFormat:@"%02x",hexData[i]&0xff];
         // 提取协议号
         if (i == 2) {
-            pid = [self hexStringToInt:newHexStr];
+            pid = [BLEController hexStringToInt:newHexStr];
         }
         
         if (i == 3)
         {
-            datalength = [self hexStringToInt:newHexStr];
+            datalength = [BLEController hexStringToInt:newHexStr];
         }
         
         if (i >= 4) {
-            btData[j] = [self hexStringToInt:newHexStr];
+            btData[j] = [BLEController hexStringToInt:newHexStr];
             j++;
         }
         
@@ -250,6 +260,15 @@
         case PID_RESP_GET_HISTORY:
             [self resp_get_history:respData];
             break;
+        case PID_RESP_GET_TEMPHUMI:
+            [self resp_get_temphumi:respData];
+            break;
+        case PID_RESP_GET_LIGHT:
+            [self resp_get_light:respData];
+            break;
+        case PID_RESP_GET_UV:
+            [self resp_get_uv:respData];
+            break;
         default:
             //提取结束
             [self.bleControllerDelegate RecvDataFinish:YES];
@@ -258,7 +277,7 @@
     
 }
 
-- (int) hexStringToInt:(NSString *)hexString
++ (int) hexStringToInt:(NSString *)hexString
 {
     int int_ch = 0;  /// 两位16进制数转化后的10进制数
     // NSLog(@"str length: %d, %@ ", [hexString length], hexString);
@@ -291,7 +310,7 @@
     return int_ch;
 }
 
-- (int) hexStringHighToInt:(NSString *)hexString
++ (int) hexStringHighToInt:(NSString *)hexString
 {
     int int_ch = 0;  /// 两位16进制数转化后的10进制数
     //NSLog(@"str length: %d, %@ ", [hexString length], hexString);
@@ -428,7 +447,61 @@
 }
 
 
+#pragma -mark environment data request
+//温度请求
+- (void)getTemperature
+{
+    Byte ucaCmdData[10];
+    
+    memset(ucaCmdData, 0, 10);
+    ucaCmdData[0] = 0xab;
+    ucaCmdData[1] = 0xcd;
+    ucaCmdData[2] = 0x05;
+    ucaCmdData[3] = 0;
+    ucaCmdData[4] = calculateXor(ucaCmdData, 4);
+    
+    NSData *cmdData =[[NSData alloc] initWithBytes:ucaCmdData length:5];
+    NSLog(@"get temperature:%@", cmdData);
+    
+    [uartLib sendValue:connectPeripheral sendData:cmdData type:CBCharacteristicWriteWithoutResponse];
+}
 
+-(void)getLight
+{
+    Byte ucaCmdData[10];
+    
+    memset(ucaCmdData, 0, 10);
+    ucaCmdData[0] = 0xab;
+    ucaCmdData[1] = 0xcd;
+    ucaCmdData[2] = 0x07;
+    ucaCmdData[3] = 0;
+    ucaCmdData[4] = calculateXor(ucaCmdData, 4);
+    
+    NSData *cmdData =[[NSData alloc] initWithBytes:ucaCmdData length:5];
+    NSLog(@"get light:%@", cmdData);
+    
+    [uartLib sendValue:connectPeripheral sendData:cmdData type:CBCharacteristicWriteWithoutResponse];
+}
+
+-(void)getUV
+{
+    Byte ucaCmdData[10];
+    
+    memset(ucaCmdData, 0, 10);
+    ucaCmdData[0] = 0xab;
+    ucaCmdData[1] = 0xcd;
+    ucaCmdData[2] = 0x09;
+    ucaCmdData[3] = 0;
+    ucaCmdData[4] = calculateXor(ucaCmdData, 4);
+    
+    NSData *cmdData =[[NSData alloc] initWithBytes:ucaCmdData length:5];
+    NSLog(@"get uv:%@", cmdData);
+    
+    [uartLib sendValue:connectPeripheral sendData:cmdData type:CBCharacteristicWriteWithoutResponse];
+}
+
+#pragma -mark public function
+#pragma -mark tools  function
 Byte calculateXor(Byte *pcData, Byte ucDataLen){
     Byte ucXor = 0;
     Byte i;
@@ -440,8 +513,6 @@ Byte calculateXor(Byte *pcData, Byte ucDataLen){
     return ucXor;
 }
 
-
-#pragma -mark public function
 -(void)startscan
 {
     [uartLib scanStart];

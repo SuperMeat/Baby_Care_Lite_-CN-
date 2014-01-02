@@ -804,7 +804,16 @@
         //[self setWeekName:fileTag andTAble:table andpage:scrollpage];
         [self setWeekName:table andrange:rangeTitle];
     }else{
-        [self setTitleName:[NSString stringWithFormat:@"%@(%i.%i)",NSLocalizedString(table,nil), [currentdate getCurrentYear], month - scrollpage]];
+        int curmonth = 0;
+        if (month < scrollpage) {
+            curmonth = 12- scrollpage + month;
+        }
+        else
+        {
+            curmonth = month;
+        }
+        NSLog(@"scrollpage:%d, month:%d, curmonth:%d", scrollpage, month,curmonth);
+        [self setTitleName:[NSString stringWithFormat:@"%@(%i.%d)",NSLocalizedString(table,nil), [currentdate getCurrentYear]-scrollpage/12, curmonth]];
     }
     [db close];
     [array addObject:count];
@@ -949,7 +958,11 @@
     if (0 == fileTag) {
         [self setWeekName:fileTag andTAble:@"All" andpage:scrollpage];
     }else{
-        [self setTitleName:[NSString stringWithFormat:@"%@(%i.%i)",NSLocalizedString(@"All",nil), [currentdate getCurrentYear], month - scrollpage]];
+        int curmonth = 0;
+        if (month <= scrollpage ) {
+            curmonth = 12 - month + scrollpage;
+        }
+        [self setTitleName:[NSString stringWithFormat:@"%@(%i.%i)",NSLocalizedString(@"All",nil), [currentdate getCurrentYear], curmonth]];
     }
     [db close];
     NSLog(@"%@", arrayCount);

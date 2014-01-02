@@ -36,6 +36,12 @@
     return self;
 }
 
+-(void)setbluetooth
+{
+    self.blecontroller = [[BLEController alloc] init];
+    self.blecontroller.bleControllerDelegate = self;
+}
+
 -(void)makeView
 {
     dataarray =[[NSMutableArray alloc]init];
@@ -50,8 +56,8 @@
     humi.tag  = 2;
     light.tag = 3;
     sound.tag = 4;
-    pm.tag = 5;
-    uv.tag = 6;
+    pm.tag    = 5;
+    uv.tag    = 6;
     
     temp.title=NSLocalizedString(@"Temperature",nil);
     humi.title=NSLocalizedString(@"Humidity",nil);
@@ -357,6 +363,132 @@
         }
         DXAlertView *alert = [[DXAlertView alloc] initWithTitle:title contentText:mAdHumi.mContent leftButtonTitle:nil rightButtonTitle:@"OK"];
         [alert show];
+        
+    }
+
+}
+
+#pragma -mark bluetooth
+-(void)RecvHumiAndTempDada:(NSData*)data
+{
+    NSString *hexStr=@"";
+    
+    Byte *hexData = (Byte *)[data bytes];
+    errorCode = 0;
+    for(int i=0; i<[data length];i++)
+    {
+        NSString *newHexStr = [NSString stringWithFormat:@"%02x",hexData[i]&0xff];
+        int recv = [BLEController hexStringToInt:newHexStr];
+        if (i == 0) {
+            if (recv == 0) {
+                errorCode = recv;
+            }
+            else{
+                NSLog(@"error code : %d", recv);
+            }
+        }
+        if (errorCode == 0)
+        {
+            
+            ///16进制数
+            if (i == 1) {
+                humidityHigh = [BLEController hexStringHighToInt:newHexStr];
+            }
+            else if (i == 2)
+            {
+                humidityLow = [BLEController hexStringToInt:newHexStr];
+            }
+            else if (i == 3)
+            {
+                temperatureHigh = [BLEController hexStringHighToInt:newHexStr];
+            }
+            else if (i == 4)
+            {
+                temperatureLow = [BLEController hexStringToInt:newHexStr];
+            }
+            
+            if (i == 5) {
+                NSDateFormatter *dateFormator = [[NSDateFormatter alloc] init];
+                dateFormator.dateFormat = @"yyyy-MM-dd  HH:mm:ss";
+                NSString *date = [dateFormator stringFromDate:[NSDate date]];
+                humidity    = ((humidityHigh+humidityLow) * 1.0 )/ 16383 * 100;
+                temperature = ((temperatureHigh + temperatureLow) * 1.0 )/ 16383 / 4 * 165 - 40;
+                hexStr = [NSString stringWithCString:[[NSString stringWithFormat:@"%@ 采集到的湿度:%ld %%, 温度:%ld !", date,humidity,temperature] UTF8String] encoding:NSUTF8StringEncoding];
+                //[Weather setweatherfrombluetooth:temperature Humidity:humidity];
+                
+                [table reloadData];
+            }
+            
+        }
+    }
+
+}
+
+-(void)RecvLightData:(NSData*)data
+{
+    Byte *hexData = (Byte *)[data bytes];
+    for (int i=0;i<[data length];i++) {
+        NSString *newHexStr = [NSString stringWithFormat:@"%02x",hexData[i]&0xff];
+        int recv = [BLEController hexStringToInt:newHexStr];
+        if (i == 0) {
+            if (recv == 0) {
+                errorCode = recv;
+            }
+            else{
+                NSLog(@"error code : %d", recv);
+            }
+        }
+        if (errorCode == 0)
+        {
+            
+            ///16进制数
+            if (i == 1) {
+                lowlightChannel0 = [BLEController hexStringHighToInt:newHexStr];
+            }
+            else if (i == 2)
+            {
+                highlightChannel0 = [BLEController hexStringToInt:newHexStr];
+            }
+            else if (i == 3)
+            {
+                lowlightChannel1 = [BLEController hexStringHighToInt:newHexStr];
+            }
+            else
+            {
+                highlightChannel1 = [BLEController hexStringToInt:newHexStr];
+            }
+        }
+    }
+}
+
+-(void)RecvUVData:(NSData*)data
+{
+    Byte *hexData = (Byte *)[data bytes];
+    for (int i=0;i<[data length];i++)
+    {
+        NSString *newHexStr = [NSString stringWithFormat:@"%02x",hexData[i]&0xff];
+        int recv = [BLEController hexStringToInt:newHexStr];
+        if (i == 0) {
+            if (recv == 0) {
+                errorCode = recv;
+            }
+            else{
+                NSLog(@"error code : %d", recv);
+            }
+        }
+        
+        if (errorCode == 0)
+        {
+            
+            //16进制数
+            if (i == 1) {
+                lowuv  = [BLEController hexStringHighToInt:newHexStr];
+            }
+            else
+            {
+                highuv = [BLEController hexStringToInt:newHexStr];
+            }
+        }
         
     }
 

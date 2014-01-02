@@ -122,7 +122,7 @@
     // 小刻度线minor...
     yAxis.minorTickLineStyle = nil;
     yAxis.orthogonalCoordinateDecimal = CPTDecimalFromInt(0);
-    NSLog(@"ta = %d", tag);
+    //NSLog(@"ta = %d", tag);
     if (0 == moreLine) {
         if ([title isEqualToString:@"All"]) {
             first = 1;
@@ -158,7 +158,7 @@
         //NSRange range = [calendar rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:[NSDate date]];
         //NSUInteger numberOfDaysInMonth = range.length;
         NSUInteger numberOfDaysInMonth = maxday;
-        NSLog(@"setXaisLabel: %d",numberOfDaysInMonth);
+        //NSLog(@"setXaisLabel: %d",numberOfDaysInMonth);
         NSString *timerYf = [NSString stringWithFormat:@"29-%i", numberOfDaysInMonth];
         if (numberOfDaysInMonth < 29) {
             conArray = [NSArray arrayWithObjects:@"01-07", @"08-14", @"15-21", @"21-28", nil];

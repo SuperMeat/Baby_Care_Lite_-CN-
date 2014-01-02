@@ -1247,9 +1247,9 @@
 - (void)scrollUpadateData{
 
     CGRect rx = [UIScreen mainScreen ].bounds;
-    NSLog(@"scrollUpdateData:%d, %d",plotTag,[DataBase scrollWidth:plotTag]);
+    NSLog(@"scrollUpdateData:%@,%d, %d",[self tableName:selectIndex],plotTag,[DataBase scrollWidthWithTableName:plotTag andTableName:[self tableName:selectIndex]]);
     //int range = [DataBase scrollWidth:plotTag];
-    int range = 10;
+    int range = [DataBase scrollWidthWithTableName:plotTag andTableName:[self tableName:selectIndex]];
     int j = 0;
     for (int i = range - 1; i >= 0;i--)
     {

@@ -225,7 +225,7 @@ messageView;
     [_array2 addObject:_item3];
     [_array2 addObject:_item4];
 
-    [_array2 addObject:_item5];
+//    [_array2 addObject:_item5];
     [_array2 addObject:_item6];
     [_array2 addObject:_item7];
     [_array3 addObject:_item8];
@@ -338,7 +338,6 @@ messageView;
     if (alertView==clearalert) {
         if (buttonIndex==1) {
             [[NSFileManager defaultManager] removeItemAtPath:DBPATH error:nil];
-            
         }
     }
     else

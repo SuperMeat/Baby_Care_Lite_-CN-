@@ -48,7 +48,7 @@
     long lowuv;
     long highuv;
     long adcoutput;
-    short uv;
+    short uvvalue;
     
     NSTimer *timer;
     NSTimeInterval getDataTimeInterval;

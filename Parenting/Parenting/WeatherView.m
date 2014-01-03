@@ -424,6 +424,32 @@
 
 }
 
+-(double)getlightluxwithCH0:(double)ch0 andCH1:(double)ch1
+{
+    double lux = 0.0f;
+    int  rate  = ch1/ch0*100;
+    if (rate < 52) {
+        lux = (0.0315*ch0)-(0.0593*ch0*pow(ch1/ch0, 1.4));
+    }
+    else if (rate < 65)
+    {
+        lux = (0.0229*ch0) - (0.0291*ch1);
+    }
+    else if (rate < 80)
+    {
+        lux = (0.0157*ch0) - (0.0180*ch1);
+    }
+    else if (rate < 130)
+    {
+        lux = (0.00338*ch0) - (0.00260*ch1);
+    }
+    else
+    {
+        lux = 0;
+    }
+    return lux;
+}
+
 -(void)RecvLightData:(NSData*)data
 {
     Byte *hexData = (Byte *)[data bytes];
@@ -457,8 +483,104 @@
             {
                 highlightChannel1 = [BLEController hexStringToInt:newHexStr];
             }
+            
+            if ( 5 == i) {
+                CH0 = lowlightChannel0 + highlightChannel0;
+                CH1 = lowlightChannel1 + highlightChannel1;
+            }
         }
     }
+    curlux = [self getlightluxwithCH0:CH0 andCH1:CH1];
+}
+
+-(int)getuv:(long)output
+{
+    int ret = 0;
+    if (output < 1340) {
+        ret = 0;
+    }
+    else if (output < 1439)
+    {
+        ret = 1;
+    }
+    else if (output < 1539)
+    {
+        ret = 2;
+    }
+    else if (output < 1638)
+    {
+        ret = 3;
+    }
+    else if (output < 1737)
+    {
+        ret = 4;
+    }
+    else if (output < 1836)
+    {
+        ret = 5;
+    }
+    else if (output < 1936)
+    {
+        ret = 6;
+    }
+    else if (output < 2035)
+    {
+        ret = 7;
+    }
+    else if (output < 2134)
+    {
+        ret = 8;
+    }
+    else if (output < 2234)
+    {
+        ret = 9;
+    }
+    else if (output < 2333)
+    {
+        ret = 10;
+    }
+    else if (output < 2432)
+    {
+        ret = 11;
+    }
+    else if (output < 2532)
+    {
+        ret = 12;
+    }
+    else if (output < 2631)
+    {
+        ret = 13;
+    }
+    else if (output < 2730)
+    {
+        ret = 14;
+    }
+    else if (output < 2829)
+    {
+        ret = 15;
+    }
+    else if (output < 2929)
+    {
+        ret = 16;
+    }
+    else if (output < 3028)
+    {
+        ret = 17;
+    }
+    else if (output < 3127)
+    {
+        ret = 18;
+    }
+    else if (output < 3327)
+    {
+        ret = 19;
+    }
+    else
+    {
+        ret = 20;
+    }
+
+    return ret;
 }
 
 -(void)RecvUVData:(NSData*)data
@@ -484,14 +606,21 @@
             if (i == 1) {
                 lowuv  = [BLEController hexStringHighToInt:newHexStr];
             }
-            else
+            
+            if (2 == i)
             {
                 highuv = [BLEController hexStringToInt:newHexStr];
             }
+            
+            if (3 == i)
+            {
+                adcoutput = lowuv + highuv;
+            }
+            
         }
         
     }
-
+    uv = [self getuv:adcoutput];
 }
 
 @end

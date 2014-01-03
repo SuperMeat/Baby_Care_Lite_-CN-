@@ -744,8 +744,8 @@
                 //sql1 = [NSString stringWithFormat:@"select count(*) from %@ where week = %i and weekday = %i", table, week - scrollpage, i];
                 sql1 = [NSString stringWithFormat:@"select count(*) from %@ where week = %i and weekday = %i", table, curweek, i];
             }
-            FMResultSet *set=[db executeQuery:sql];
-            FMResultSet *set1=[db executeQuery:sql1];
+            FMResultSet *set  = [db executeQuery:sql];
+            FMResultSet *set1 = [db executeQuery:sql1];
             if ([set next]) {
                 [count addObject:[set objectForColumnIndex:0]];
             }

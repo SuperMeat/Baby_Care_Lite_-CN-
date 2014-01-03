@@ -40,10 +40,15 @@
     long highlightChannel0;
     long lowlightChannel1;
     long highlightChannel1;
+    long CH0;
+    long CH1;
+    double curlux;
     
     //uv
     long lowuv;
     long highuv;
+    long adcoutput;
+    short uv;
     
     NSTimer *timer;
     NSTimeInterval getDataTimeInterval;

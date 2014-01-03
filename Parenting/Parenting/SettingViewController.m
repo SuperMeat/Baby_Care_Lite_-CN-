@@ -229,7 +229,9 @@ messageView;
     [_array2 addObject:_item6];
     [_array2 addObject:_item7];
     [_array3 addObject:_item8];
-    [_array3 addObject:_item10];
+    
+    //FIXME:恢复注释
+//    [_array3 addObject:_item10];
     
     _settingArray=[[NSArray alloc]initWithObjects:_array1,_array2,_array3, nil];
 }

@@ -11,6 +11,7 @@
 #import "ASIHTTPRequest.h"
 #import "MBProgressHUD.h"
 #import "MD5.h"
+#import "APService.h"
 @interface RegisterViewController ()
 
 @end
@@ -123,19 +124,16 @@
     }
     
     //注册接口
-    NSString* strUrl = @"http://192.168.1.138:8033/babycare/WCF/BaseService.svc/register/token/";
-    strUrl = [strUrl stringByAppendingString:[MD5 md5:@"5788024"]];
-    //FIXME:OPENUDID
-    NSString* openudid = @"/openudid/000001";
+    NSString* strUrl = [ASIHTTPADDRESS stringByAppendingString:@"/BaseService.svc/register/"];
+    strUrl = [strUrl stringByAppendingString:[MD5 md5:ASIHTTPTOKEN]];
+    NSString* openudid = [@"/" stringByAppendingString:[APService openUDID]];
     strUrl = [strUrl stringByAppendingString:openudid];
     
-    NSString* parameter = [NSString stringWithFormat:@"/email/%@/password/%@/type/APP",inputEmail.text,[MD5 md5:inputPd.text]];
+    NSString* parameter = [NSString stringWithFormat:@"/%@/%@/APP",inputEmail.text,[MD5 md5:inputPd.text]];
     strUrl = [strUrl stringByAppendingString:parameter];
     strUrl = [strUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL *url = [NSURL URLWithString:strUrl];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-	[request setRequestMethod:@"POST"];
-    
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     //隐藏键盘
     [inputEmail resignFirstResponder];

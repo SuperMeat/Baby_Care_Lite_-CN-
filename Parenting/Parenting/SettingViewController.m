@@ -229,9 +229,7 @@ messageView;
     [_array2 addObject:_item6];
     [_array2 addObject:_item7];
     [_array3 addObject:_item8];
-    
-    //FIXME:恢复注释
-//    [_array3 addObject:_item10];
+    [_array3 addObject:_item10];
     
     _settingArray=[[NSArray alloc]initWithObjects:_array1,_array2,_array3, nil];
 }
@@ -244,7 +242,9 @@ messageView;
 
 -(void)goLoginOut
 {
-    logoutAlert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"是否同步本地数据至服务器?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"同步",@"不同步", nil];
+    //TODO:同步数据 实现AlertDelegate里面的同步方法
+//    logoutAlert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"是否同步本地数据至服务器?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"同步",@"不同步", nil];
+    logoutAlert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"是否同步本地数据至服务器?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"登出",nil];
     [logoutAlert show];
 }
 

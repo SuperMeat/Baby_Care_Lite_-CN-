@@ -620,7 +620,7 @@
         }
         
     }
-    uv = [self getuv:adcoutput];
+    uvvalue = [self getuv:adcoutput];
 }
 
 @end

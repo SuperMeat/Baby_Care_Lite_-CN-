@@ -338,7 +338,6 @@ messageView;
     if (alertView==clearalert) {
         if (buttonIndex==1) {
             [[NSFileManager defaultManager] removeItemAtPath:DBPATH error:nil];
-            
         }
     }
     else

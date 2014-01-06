@@ -818,7 +818,7 @@
         //[bleController getTemperature];
         //[bleController getLight];
         //[bleController getUV];
-        [bleController getMicrophone:0];
+        [bleController getMicrophone:1];
     }
 }
 

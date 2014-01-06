@@ -119,6 +119,7 @@
         [self RecvBTData:recvData];
     }
 }
+
 #pragma -mark pid deal
 - (void) resp_set_sys_time : (NSData*) data
 {
@@ -220,22 +221,22 @@
 
 -(void)resp_get_temphumi:(NSData*)data
 {
-  //  [self.bleControllerDelegate RecvHumiAndTempDada:data];
+    [self.bleControllerDelegate RecvHumiAndTempDada:data];
 }
 
 -(void)resp_get_light:(NSData*)data
 {
-  //  [self.bleControllerDelegate RecvLightData:data];
+    [self.bleControllerDelegate RecvLightData:data];
 }
 
 -(void)resp_get_uv:(NSData*)data
 {
-  //  [self.bleControllerDelegate RecvUVData:data];
+    [self.bleControllerDelegate RecvUVData:data];
 }
 
 -(void)resp_get_microphone:(NSData*)data
 {
-    //  [self.bleControllerDelegate RecvUVData:data];
+    [self.bleControllerDelegate RecvUVData:data];
 }
 
 #pragma mark tools function
@@ -285,7 +286,7 @@
             [self resp_get_uv:respData];
             break;
         case PID_RESP_GET_MICROPHONE:
-            [self resp_get_microphone:recvData];
+            [self resp_get_microphone:respData];
             break;
         default:
             //提取结束

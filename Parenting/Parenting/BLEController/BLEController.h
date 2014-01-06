@@ -26,6 +26,8 @@
     //****cwb****
     BOOL isSaved;
     int scanCount;
+    
+    int count;
 }
 @property (assign) id<BLEControllerDelegate> bleControllerDelegate;
 
@@ -44,4 +46,5 @@
 -(void)getTemperature;
 -(void)getLight;
 -(void)getUV;
+-(void)getMicrophone:(int)type;//0开启,1关闭
 @end

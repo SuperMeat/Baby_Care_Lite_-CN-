@@ -89,7 +89,10 @@
     connectPeripheral = peripheral;
     [self.bleControllerDelegate DidConnected:YES];
     
-    [self setSystemTime];
+    //[self setSystemTime];
+    //[self getTemperature];
+    [self getLight];
+    //[self getUV];
 }
 
 - (void) didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error{
@@ -106,7 +109,15 @@
 - (void) didReceiveData:(CBPeripheral *)peripheral recvData:(NSData *)recvData
 {
     NSLog(@"uart recv(%d):%@", [recvData length], recvData);
-    [self RecvBTData:recvData];
+    count++;
+    if (count>10)
+    {
+        [self getMicrophone:1];
+    }
+    else
+    {
+        [self RecvBTData:recvData];
+    }
 }
 #pragma -mark pid deal
 - (void) resp_set_sys_time : (NSData*) data
@@ -209,19 +220,23 @@
 
 -(void)resp_get_temphumi:(NSData*)data
 {
-    [self.bleControllerDelegate RecvHumiAndTempDada:data];
+  //  [self.bleControllerDelegate RecvHumiAndTempDada:data];
 }
 
 -(void)resp_get_light:(NSData*)data
 {
-    [self.bleControllerDelegate RecvLightData:data];
+  //  [self.bleControllerDelegate RecvLightData:data];
 }
 
 -(void)resp_get_uv:(NSData*)data
 {
-    [self.bleControllerDelegate RecvUVData:data];
+  //  [self.bleControllerDelegate RecvUVData:data];
 }
 
+-(void)resp_get_microphone:(NSData*)data
+{
+    //  [self.bleControllerDelegate RecvUVData:data];
+}
 
 #pragma mark tools function
 -(void)RecvBTData:(NSData*)recvData
@@ -268,6 +283,9 @@
             break;
         case PID_RESP_GET_UV:
             [self resp_get_uv:respData];
+            break;
+        case PID_RESP_GET_MICROPHONE:
+            [self resp_get_microphone:recvData];
             break;
         default:
             //提取结束
@@ -496,6 +514,24 @@
     
     NSData *cmdData =[[NSData alloc] initWithBytes:ucaCmdData length:5];
     NSLog(@"get uv:%@", cmdData);
+    
+    [uartLib sendValue:connectPeripheral sendData:cmdData type:CBCharacteristicWriteWithoutResponse];
+}
+
+-(void)getMicrophone:(int)type
+{
+    Byte ucaCmdData[10];
+    
+    memset(ucaCmdData, 0, 10);
+    ucaCmdData[0] = 0xab;
+    ucaCmdData[1] = 0xcd;
+    ucaCmdData[2] = 0x0b;
+    ucaCmdData[3] = 1;
+    ucaCmdData[4] = type;
+    ucaCmdData[5] = calculateXor(ucaCmdData, 5);
+    
+    NSData *cmdData =[[NSData alloc] initWithBytes:ucaCmdData length:6];
+    NSLog(@"get Micro:%@", cmdData);
     
     [uartLib sendValue:connectPeripheral sendData:cmdData type:CBCharacteristicWriteWithoutResponse];
 }

@@ -490,7 +490,7 @@
             }
         }
     }
-    curlux = [self getlightluxwithCH0:CH0 andCH1:CH1];
+    curlux = [self getlightluxwithCH0:CH0*1.0 andCH1:CH1*1.0];
 }
 
 -(int)getuv:(float)output
@@ -621,7 +621,50 @@
         
     }
     float adc_v = adcoutput/8192.0*3.32;
+    
     uvvalue = [self getuv:adc_v];
 }
 
+-(void)RecvMicroPhone:(NSData*)data
+{
+    Byte *hexData = (Byte *)[data bytes];
+    for (int i=0;i<=[data length];i++)
+    {
+        NSString *newHexStr = [NSString stringWithFormat:@"%02x",hexData[i]&0xff];
+        int recv = [BLEController hexStringToInt:newHexStr];
+        if (i == 0) {
+            if (recv == 0) {
+                errorCode = recv;
+            }
+            else{
+                NSLog(@"error code : %d", recv);
+            }
+        }
+        
+        if (errorCode == 0)
+        {
+            
+            //16进制数
+            if (i == 2) {
+                highphone  = [BLEController hexStringHighToInt:newHexStr];
+            }
+            
+            if (1 == i)
+            {
+                lowphone = [BLEController hexStringToInt:newHexStr];
+            }
+            
+            if (3 == i)
+            {
+                phonevalue = lowphone + highphone;
+                
+            }
+            
+        }
+        
+    }
+    
+    phonethrans = phonevalue*1.0/8192.0*3.32;
+    
+}
 @end

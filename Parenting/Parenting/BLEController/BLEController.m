@@ -236,7 +236,7 @@
 
 -(void)resp_get_microphone:(NSData*)data
 {
-    [self.bleControllerDelegate RecvUVData:data];
+    [self.bleControllerDelegate RecvMicroPhone:data];
 }
 
 #pragma mark tools function

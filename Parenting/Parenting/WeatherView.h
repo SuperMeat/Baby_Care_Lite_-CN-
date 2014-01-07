@@ -50,6 +50,12 @@
     long adcoutput;
     short uvvalue;
     
+    //microphone
+    long lowphone;
+    long highphone;
+    long phonevalue;
+    double phonethrans;
+    
     NSTimer *timer;
     NSTimeInterval getDataTimeInterval;
 }

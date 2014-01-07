@@ -19,6 +19,7 @@
 -(void)RecvHumiAndTempDada:(NSData*)data;
 -(void)RecvLightData:(NSData*)data;
 -(void)RecvUVData:(NSData*)data;
+-(void)RecvMicroPhone:(NSData*)data;
 @end
 
 @interface BLEController : NSObject{

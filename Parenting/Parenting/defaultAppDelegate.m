@@ -82,7 +82,7 @@ void UncaughtExceptionHandler(NSException *exception) {
 
     [MobClick startWithAppkey:UMENGAPPKEY];
     [MobClick checkUpdate];
-    
+
     // Required
     [APService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
                                                    UIRemoteNotificationTypeSound |
@@ -156,8 +156,6 @@ void UncaughtExceptionHandler(NSException *exception) {
         self.window.rootViewController  = TabbarController;
     }
 
-    //[ShareSDK registerApp:@"b0bf0698120"];
-    [UMSocialData setAppKey:UMENGAPPKEY];
     [self initializePlat];
     
 }
@@ -165,6 +163,8 @@ void UncaughtExceptionHandler(NSException *exception) {
 - (void)initializePlat
 {
     //添加新浪微博应用
+    [UMSocialData setAppKey:UMENGAPPKEY];
+    [UMSocialConfig setSupportSinaSSO:YES];
     //[ShareSDK connectSinaWeiboWithAppKey:@"2712555917"
     //                           appSecret:@"c76318d478ffd11a81ee70b424f1b162"
     //                         redirectUri:@"http://open.weibo.com/apps/2712555917"];
@@ -277,6 +277,7 @@ void UncaughtExceptionHandler(NSException *exception) {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"weather"];
     }
     
+    [UMSocialSnsService  applicationDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -298,11 +299,7 @@ void UncaughtExceptionHandler(NSException *exception) {
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
-//    return [ShareSDK handleOpenURL:url
-//                 sourceApplication:sourceApplication
-//                        annotation:annotation
-//                        wxDelegate:self];
-    return TRUE;
+    return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo

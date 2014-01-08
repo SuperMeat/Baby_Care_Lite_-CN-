@@ -222,7 +222,10 @@
         if (indexPath.row == 0) {
             input.tag = 1;
             input.placeholder = @"请输入邮箱地址";
+            input.keyboardType = UIKeyboardTypeEmailAddress;
+            input.autocapitalizationType = UITextAutocapitalizationTypeNone;
             [input becomeFirstResponder];
+            
         }
 //        else if (indexPath.row == 1){
 //            input.tag = 2;

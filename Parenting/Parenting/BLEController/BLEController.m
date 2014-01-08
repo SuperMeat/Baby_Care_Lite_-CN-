@@ -77,7 +77,7 @@
     else{
         scanCount++;
         if (scanCount>10) {
-//            [self stopscan];
+            //            [self stopscan];
             [self.bleControllerDelegate scanResult:NO with:nil];
         }
     }

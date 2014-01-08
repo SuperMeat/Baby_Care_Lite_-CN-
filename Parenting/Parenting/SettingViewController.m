@@ -244,7 +244,7 @@ messageView;
 {
     //TODO:同步数据 实现AlertDelegate里面的同步方法
 //    logoutAlert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"是否同步本地数据至服务器?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"同步",@"不同步", nil];
-    logoutAlert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"是否同步本地数据至服务器?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"登出",nil];
+    logoutAlert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"确定登出账号?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"登出",nil];
     [logoutAlert show];
 }
 
@@ -348,10 +348,16 @@ messageView;
     }
     
     if (alertView==logoutAlert) {
+        //记录历史账号
+        if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"ACCOUNT_TYPE"] isEqualToString:@"APP"])
+        {
+            [[NSUserDefaults standardUserDefaults]setObject:[[NSUserDefaults standardUserDefaults]objectForKey:@"ACCOUNT_NAME"] forKey:@"HISTORY_ACCOUNT_NAME"];
+        }
+
         //TODO:是否清楚本地数据
         if (buttonIndex==1) {
             //TODO:同步数据
-            [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"ACCOUNT_NAME"];
+                       [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"ACCOUNT_NAME"];
             [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"ACCOUNT_TYPE"];
             [self makeArray];
             [self.settingTable reloadData];

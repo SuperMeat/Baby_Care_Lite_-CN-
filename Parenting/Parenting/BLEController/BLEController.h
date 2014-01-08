@@ -14,6 +14,7 @@
 -(void)scanResult:(BOOL)result with:(NSMutableArray  *)foundPeripherals;
 -(void)BLEPowerOff:(BOOL)isPowerOff;
 -(void)DidConnected:(BOOL)isConnected;
+-(void)DisConnected:(BOOL)isConnected;
 -(void)RecvBTData:(NSData*)recvdata;
 -(void)RecvDataFinish:(BOOL)isFinished;
 -(void)RecvHumiAndTempDada:(NSData*)data;
@@ -44,7 +45,7 @@
 + (int) hexStringToInt:(NSString *)hexString;
 
 // 环境请求
--(void)getTemperature;
+-(void)getTemperatureAndHumi;
 -(void)getLight;
 -(void)getUV;
 -(void)getMicrophone:(int)type;//0开启,1关闭

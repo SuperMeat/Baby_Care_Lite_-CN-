@@ -199,6 +199,7 @@
     
     
     self.weather=[WeatherView weatherview];
+    [self.weather makeview];
     self.weather.chooseType = QCM_TYPE_BATH;
     
     //NSLog(@"%f",G_YADDONVERSION);

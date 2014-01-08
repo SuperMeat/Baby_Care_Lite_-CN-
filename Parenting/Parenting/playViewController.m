@@ -185,6 +185,7 @@
     [self.view addSubview:ad];
     
     self.weather = [WeatherView weatherview];
+    [self.weather makeview];
     self.weather.chooseType = QCM_TYPE_PLAY;
     weather.frame=CGRectMake(0, 0+G_YADDONVERSION, 320, 200);
     [self.view addSubview:weather];

@@ -58,12 +58,26 @@
     });
     return _sharedObject;
 }
+
 -(void)viewWillAppear:(BOOL)animated
 {
     
     if (self.weather) {
+        if (self.weather.isHidden == YES) {
+            pmintro.hidden = YES;
+        }
+        else
+        {
+            pmintro.hidden = NO;
+        }
         self.weather.chooseType = QCM_TYPE_FEED;
         [self.weather refreshweather];
+    }
+    
+    if (self.bleweather)
+    {
+        self.bleweather.chooseType = QCM_TYPE_FEED;
+        [self.bleweather refreshweather];
     }
     
     if (startButton != nil) {
@@ -226,51 +240,62 @@
     [self.view addSubview:ad];
     
     self.weather = [WeatherView weatherview];
+    [self.weather makeview];
     self.weather.chooseType = QCM_TYPE_FEED;
     weather.frame=CGRectMake(0, 0+G_YADDONVERSION, 320, 200);
     [self.view addSubview:weather];
-    NSLog(@"weather %@",weather);
+    NSLog(@"weather %@",self.weather);
+    
+    self.bleweather = [WeatherView weatherview];
+    self.bleweather.chooseType = QCM_TYPE_FEED;
+    [self.bleweather setbluetooth];
+    [self.bleweather makeview];
+    self.bleweather.frame=CGRectMake(0, 0+G_YADDONVERSION, 320, 200);
+    [self.view addSubview:self.bleweather];
+    [self.bleweather setHidden:YES];
+    NSLog(@"bleweather %@",self.bleweather);
     
 }
 
 -(void)makeView
 {
-    //    UIButton *environment=[UIButton buttonWithType:UIButtonTypeCustom];
-    //    [environment setTitle:NSLocalizedString(@"btnenvironment", nil) forState:UIControlStateNormal];
-    //    [environment setTitleEdgeInsets:UIEdgeInsetsMake(20, 0, 10, 0)];
-    //    [environment setBackgroundImage:[UIImage imageNamed:@"label_left.png"] forState:UIControlStateNormal];
-    //    [environment setBackgroundImage:[UIImage imageNamed:@"label_left_focus.png"] forState:UIControlStateDisabled];
-    //    environment.frame=CGRectMake(0, 190+G_YADDONVERSION, 160, 47);
-    //    [self.view addSubview:environment];
-    //    environment.tag=501;
-    //    [environment addTarget:self action:@selector(environmentOradvise:) forControlEvents:UIControlEventTouchUpInside];
-    //    [environment setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
-    //    [environment setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        UIButton *environment=[UIButton buttonWithType:UIButtonTypeCustom];
+        [environment setTitle:NSLocalizedString(@"气象站", nil) forState:UIControlStateNormal];
+        [environment setTitleEdgeInsets:UIEdgeInsetsMake(20, 0, 10, 0)];
+        [environment setBackgroundImage:[UIImage imageNamed:@"label_left.png"] forState:UIControlStateNormal];
+        [environment setBackgroundImage:[UIImage imageNamed:@"label_left_focus.png"] forState:UIControlStateDisabled];
+        environment.frame=CGRectMake(0, 190+G_YADDONVERSION, 160, 47);
+        [self.view addSubview:environment];
+        environment.tag=501;
+        [environment addTarget:self action:@selector(environmentOradvise:) forControlEvents:UIControlEventTouchUpInside];
+        [environment setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
+        [environment setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     //
     //
     //
-    //    UIButton *advise=[UIButton buttonWithType:UIButtonTypeCustom];
-    //    [advise setTitle:NSLocalizedString(@"btnadvise", nil)  forState:UIControlStateNormal];
-    //    [advise setBackgroundImage:[UIImage imageNamed:@"label_right.png"] forState:UIControlStateNormal];
-    //    [advise setBackgroundImage:[UIImage imageNamed:@"label_right_focus.png"] forState:UIControlStateDisabled];
-    //    advise.frame=CGRectMake(160, 190+G_YADDONVERSION, 160, 47);
-    //    [advise setTitleEdgeInsets:UIEdgeInsetsMake(20, 0, 10, 0)];
-    //    [self.view addSubview:advise];
-    //    advise.tag=502;
-    //    [advise addTarget:self action:@selector(environmentOradvise:) forControlEvents:UIControlEventTouchUpInside];
-    //    [self environmentOradvise:advise];
-    //    [advise setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
-    //    [advise setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        UIButton *advise=[UIButton buttonWithType:UIButtonTypeCustom];
+        [advise setTitle:NSLocalizedString(@"监测宝", nil)  forState:UIControlStateNormal];
+        [advise setBackgroundImage:[UIImage imageNamed:@"label_right.png"] forState:UIControlStateNormal];
+        [advise setBackgroundImage:[UIImage imageNamed:@"label_right_focus.png"] forState:UIControlStateDisabled];
+        advise.frame=CGRectMake(160, 190+G_YADDONVERSION, 160, 47);
+        [advise setTitleEdgeInsets:UIEdgeInsetsMake(20, 0, 10, 0)];
+        [self.view addSubview:advise];
+        advise.tag=502;
+        [advise addTarget:self action:@selector(environmentOradvise:) forControlEvents:UIControlEventTouchUpInside];
+        [self environmentOradvise:advise];
+        [advise setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
+        [advise setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    
     if (CUSTOMER_COUNTRY==1) {
-        UILabel *pmintro = [[UILabel alloc]initWithFrame:CGRectMake(208, 187, 100, 20)];
+        pmintro = [[UILabel alloc]initWithFrame:CGRectMake(208-198, 187-5-5, 100, 20)];
         [pmintro setBackgroundColor:[UIColor clearColor]];
         [pmintro setText:@"数据来源PM25.in"];
-        [pmintro setFont:[UIFont fontWithName:@"Arial" size:12]];
+        [pmintro setFont:[UIFont fontWithName:@"Arial" size:10]];
         [pmintro setTextColor:[UIColor whiteColor]];
         [self.view addSubview:pmintro];
     }
     
-    addRecordBtn = [[UIButton alloc]initWithFrame:CGRectMake(130, 220, 50, 28)];
+    addRecordBtn = [[UIButton alloc]initWithFrame:CGRectMake(130, 220+20, 50, 28)];
     [addRecordBtn setBackgroundColor:[UIColor clearColor]];
     [addRecordBtn setBackgroundImage:[UIImage imageNamed:@"btn2.png"] forState:UIControlStateNormal];
     [addRecordBtn setAlpha:1];
@@ -279,9 +304,9 @@
     [self.view addSubview:addRecordBtn];
     
     UIButton *Breast=[UIButton buttonWithType:UIButtonTypeCustom];
-    Breast.frame=CGRectMake(10, 220+G_YADDONVERSION, 56, 28);
+    Breast.frame=CGRectMake(10, 220+G_YADDONVERSION+20, 56, 28);
     UIButton *Bottle=[UIButton buttonWithType:UIButtonTypeCustom];
-    Bottle.frame=CGRectMake(66, 220+G_YADDONVERSION, 56, 28);
+    Bottle.frame=CGRectMake(66, 220+G_YADDONVERSION+20, 56, 28);
     [Breast setBackgroundImage:[UIImage imageNamed:@"feedway_left.png"] forState:UIControlStateNormal];
     [Breast setBackgroundImage:[UIImage imageNamed:@"feedway_left_focus.png"] forState:UIControlStateDisabled];
     Breast.tag=101;
@@ -290,7 +315,6 @@
     [Breast addTarget:self action:@selector(feedWay:) forControlEvents:UIControlEventTouchUpInside];
     [Breast setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
     [Breast setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    
     
     [Bottle setBackgroundImage:[UIImage imageNamed:@"feedway_right.png"] forState:UIControlStateNormal];
     [Bottle setBackgroundImage:[UIImage imageNamed:@"feedway_right_focus.png"] forState:UIControlStateDisabled];
@@ -305,8 +329,6 @@
     [self.view addSubview:Breast];
     [self.view addSubview:Bottle];
     
-    
-    
     UIImageView *feedwayimage=[[UIImageView alloc]initWithFrame:CGRectMake(10, 280+G_YADDONVERSION, 70, 88)];
     feedwayimage.contentMode=UIViewContentModeScaleAspectFit;
     feedwayimage.image=[UIImage imageNamed:@"feed_bottle_time.png"];
@@ -317,7 +339,6 @@
     breastleft.image=[UIImage imageNamed:@"breast_l.png"];
     breastleft.contentMode=UIViewContentModeScaleAspectFit;
     [self.view addSubview:breastleft];
-    
     
     breastright=[[UIImageView alloc]initWithFrame:CGRectMake(90, 280+G_YADDONVERSION, 49, 49)];
     breastright.image=[UIImage imageNamed:@"breast_r.png"];
@@ -359,12 +380,12 @@
     
     
     
-    UIImageView *timeicon=[[UIImageView alloc]initWithFrame:CGRectMake(160-G_XREDUCEONVERSION, 260+G_YADDONVERSION, 25, 25)];
+    UIImageView *timeicon=[[UIImageView alloc]initWithFrame:CGRectMake(160-G_XREDUCEONVERSION, 260+G_YADDONVERSION+20, 25, 25)];
     timeicon.contentMode=UIViewContentModeScaleAspectFit;
     timeicon.image=[UIImage imageNamed:@"icon_timing.png"];
     [self.view addSubview:timeicon];
     
-    labletip=[[UILabel alloc]initWithFrame:CGRectMake(185-G_XREDUCEONVERSION, 260+G_YADDONVERSION-5, 140, 40)];
+    labletip=[[UILabel alloc]initWithFrame:CGRectMake(185-G_XREDUCEONVERSION, 260+G_YADDONVERSION-5+20, 140, 40)];
     labletip.text = NSLocalizedString(@"Wait", nil);
     labletip.font = [UIFont fontWithName:@"Arial" size:15];
     labletip.numberOfLines=0;
@@ -625,12 +646,16 @@
     if (sender.tag==501) {
         another=(UIButton*)[self.view viewWithTag:502];
         weather.hidden=NO;
+        _bleweather.hidden = YES;
+        pmintro.hidden = NO;
         another.enabled=YES;
     }
     else
     {
         another=(UIButton*)[self.view viewWithTag:501];
         weather.hidden=YES;
+        _bleweather.hidden = NO;
+        pmintro.hidden = YES;
         another.enabled=YES;
     }
     

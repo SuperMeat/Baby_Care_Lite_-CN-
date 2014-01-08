@@ -90,16 +90,13 @@
     [self.bleControllerDelegate DidConnected:YES];
     
     //[self setSystemTime];
-    //[self getTemperature];
-    [self getLight];
-    //[self getUV];
 }
 
 - (void) didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error{
     NSLog(@"did Disconnect Peripheral");
     
     connectPeripheral = nil;
-    [self.bleControllerDelegate DidConnected:NO];
+    [self.bleControllerDelegate DisConnected:NO];
 }
 
 - (void) didWriteData:(CBPeripheral *)peripheral error:(NSError *)error{
@@ -468,7 +465,7 @@
 
 #pragma -mark environment data request
 //温度请求
-- (void)getTemperature
+- (void)getTemperatureAndHumi
 {
     Byte ucaCmdData[10];
     

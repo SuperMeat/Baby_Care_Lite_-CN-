@@ -21,6 +21,7 @@
     UIImageView *breastright;
     NSTimer *timer;
     UILabel *timeLable;
+    UILabel *pmintro;
    save_feedview *saveView;
     UILabel *labletip;
     
@@ -31,6 +32,7 @@
 @property(nonatomic,strong)NSString *breast;
 @property (strong, nonatomic)SummaryViewController *summary;
 @property(weak,nonatomic)WeatherView *weather;
+@property(weak,nonatomic)WeatherView *bleweather;
 @property(nonatomic,strong)NSString *obj;
 +(id)shareViewController;
 @end

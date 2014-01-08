@@ -28,29 +28,35 @@
     self=[super init];
     if (self){
         self.frame = CGRectMake(0, 0, 320, 200);
-        [self makeView];
-//        self.backgroundColor=[UIColor redColor];
-    
         
+//        self.backgroundColor=[UIColor redColor];
     }
     return self;
+}
+
+-(void)makeview
+{
+    [self makeView];
 }
 
 -(void)setbluetooth
 {
     self.blecontroller = [[BLEController alloc] init];
     self.blecontroller.bleControllerDelegate = self;
+    isbluetooth = YES;
+    getDataTimeInterval = 5.0;
+    isFistTime = YES;
 }
 
 -(void)makeView
 {
     dataarray =[[NSMutableArray alloc]init];
-    Environmentitem *temp=[[Environmentitem alloc]init];
-    Environmentitem *humi=[[Environmentitem alloc]init];
-    Environmentitem *light=[[Environmentitem alloc]init];
-    Environmentitem *sound=[[Environmentitem alloc]init];
-    Environmentitem *pm=[[Environmentitem alloc]init];
-    Environmentitem *uv=[[Environmentitem alloc]init];
+    Environmentitem *temp = [[Environmentitem alloc]init];
+    Environmentitem *humi = [[Environmentitem alloc]init];
+    Environmentitem *light= [[Environmentitem alloc]init];
+    Environmentitem *sound= [[Environmentitem alloc]init];
+    Environmentitem *pm   = [[Environmentitem alloc]init];
+    Environmentitem *uv   = [[Environmentitem alloc]init];
     
     temp.tag  = 1;
     humi.tag  = 2;
@@ -76,16 +82,22 @@
     dataarray=[[NSMutableArray alloc]initWithCapacity:0];
     [dataarray addObject:temp];
     [dataarray addObject:humi];
-    [dataarray addObject:light];
-    [dataarray addObject:sound];
+
     if (CUSTOMER_COUNTRY == 0)
     {
         [dataarray addObject:uv];
     }
     else
     {
-        [dataarray addObject:pm];
-
+        if (isbluetooth) {
+            [dataarray addObject:light];
+            [dataarray addObject:sound];
+            [dataarray addObject:uv];
+        }
+        else
+        {
+            [dataarray addObject:pm];
+        }
     }
 
     table = [[UITableView alloc]initWithFrame:CGRectMake(self.bounds.origin.x+10, self.bounds.origin.y+8, self.bounds.size.width-20, self.bounds.size.height) style:UITableViewStyleGrouped];
@@ -101,7 +113,54 @@
 
 
            // dispatch_async(dispatch_get_global_queue(0, 0), ^{
-    
+    if (isbluetooth) {
+        [[Weather weather] getweather:^(NSDictionary *weatherDict) {
+            NSDictionary *dict=weatherDict;
+            NSLog(@"weDic %@", dict);
+            
+            if([[dict objectForKey:@"temp"] length]>0)
+            {
+                temp.detail=[NSString stringWithFormat:@"%@℃",[dict objectForKey:@"temp"]];
+                temperature = [Weather gettemperature];
+            }
+            
+            if ([[dict objectForKey:@"humidity"] length]>0) {
+                humi.detail=[NSString stringWithFormat:@"%@%%",[dict objectForKey:@"humidity"]];
+                humidity   = [Weather gethumidity];
+            }
+            
+            if ([[dict objectForKey:@"light"] length]>0) {
+                light.detail=[NSString stringWithFormat:@"%@",[dict objectForKey:@"light"]];
+                curlux   = [Weather getlight];
+            }
+            
+            if ([[dict objectForKey:@"sound"] length]>0) {
+                sound.detail=[NSString stringWithFormat:@"%@",[dict objectForKey:@"sound"]];
+                 phonethrans  = [Weather getsound];
+            }
+            
+            if ([[dict objectForKey:@"uv"] length]>0) {
+                uv.detail=[NSString stringWithFormat:@"%@",[dict objectForKey:@"uv"]];
+                uvvalue   = [Weather getuv];
+            }
+
+            
+            [dataarray replaceObjectAtIndex:0 withObject:temp];
+            [dataarray replaceObjectAtIndex:1 withObject:humi];
+            [dataarray replaceObjectAtIndex:2 withObject:light];
+            [dataarray replaceObjectAtIndex:3 withObject:sound];
+            [dataarray replaceObjectAtIndex:4 withObject:uv];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                UITableView *tab=table;
+                [tab reloadData];
+            });
+        }];
+
+    }
+    else
+    {
                 [[Weather weather] getweather:^(NSDictionary *weatherDict) {
                     NSDictionary *dict=weatherDict;
                     NSLog(@"weDic %@", dict);
@@ -137,13 +196,21 @@
                 }];
                 
          //   } );
+    }
 }
 
 -(void)refreshweather
 {
     mAlTemp.mAdviseId = 0;
     mAlHumi.mAdviseId = 0;
-    [self updatedataarray];
+    if (isbluetooth == NO) {
+        [self updatedataarray];
+    }
+    else
+    {
+        [self updatebledataarray];
+    }
+    
 }
 
 -(void)updatedataarray
@@ -237,9 +304,9 @@
                 int pmvalue = [[dict objectForKey:@"PM25"] intValue];
                 if (pmvalue > 0) {
                     pm.detail=[NSString stringWithFormat:@"%@ %@",[dict objectForKey:@"PM25"],[OpenFunction getpm25description:pmvalue]];
-                    Environmentitem *itemPM25 = [dataarray objectAtIndex:4];
+                    Environmentitem *itemPM25 = [dataarray objectAtIndex:2];
                     itemPM25.detail = pm.detail;
-                    [dataarray replaceObjectAtIndex:4 withObject:itemPM25];
+                    [dataarray replaceObjectAtIndex:2 withObject:itemPM25];
                 }
             }
             
@@ -261,6 +328,134 @@
     }];
 
 }
+
+-(void)updatebledataarray
+{
+    Environmentitem *temp=[[Environmentitem alloc]init];
+    Environmentitem *humi=[[Environmentitem alloc]init];
+    Environmentitem *light=[[Environmentitem alloc]init];
+    Environmentitem *sound=[[Environmentitem alloc]init];
+    //Environmentitem *pm=[[Environmentitem alloc]init];
+    Environmentitem *uv=[[Environmentitem alloc]init];
+    
+    [[Weather weather] getweather:^(NSDictionary *weatherDict) {
+        NSDictionary *dict=weatherDict;
+        NSLog(@"weDic %@", dict);
+        
+        if([[dict objectForKey:@"temp"] length]>0)
+        {
+            temp.detail=[NSString stringWithFormat:@"%@℃",[dict objectForKey:@"temp"]];
+            NSArray *arr;
+            switch (self.chooseType) {
+                case QCM_TYPE_BATH:
+                    arr = [EnvironmentAdviceDataBase selectBathSuggestionByTemp:[[dict objectForKey:@"temp"] intValue]];
+                    break;
+                case QCM_TYPE_DIAPER:
+                    arr = [EnvironmentAdviceDataBase selectDiaperSuggestionByTemp:[[dict objectForKey:@"temp"] intValue]];
+                    break;
+                case QCM_TYPE_FEED:
+                    arr = [EnvironmentAdviceDataBase selectFeedSuggestionByTemp:[[dict objectForKey:@"temp"] intValue]];
+                    break;
+                case QCM_TYPE_SLEEP:
+                    arr = [EnvironmentAdviceDataBase selectSleepSuggestionByTemp:[[dict objectForKey:@"temp"] intValue]];
+                    break;
+                case QCM_TYPE_PLAY:
+                    arr = [EnvironmentAdviceDataBase selectPlaySuggestionByTemp:[[dict objectForKey:@"temp"] intValue]];
+                    break;
+                default:
+                    break;
+            }
+            
+            if ([arr count]>0) {
+                AdviseLevel *al = [arr objectAtIndex:0];
+                NSArray *a2 = [EnvironmentAdviceDataBase selectsuggestiontemp:al.mAdviseId];
+                if ([a2 count]>0) {
+                    AdviseData* ad = [a2 objectAtIndex:0];
+                    tempcontent = ad.mContent;
+                    templevel   = al.mLevel;
+                    mAdTemp = ad;
+                    mAlTemp = al;
+                }
+            }
+            
+        }
+        
+        if ([[dict objectForKey:@"humidity"] length]>0) {
+            humi.detail=[NSString stringWithFormat:@"%@ %%",[dict objectForKey:@"humidity"]];
+            NSArray *arr;
+            switch (self.chooseType) {
+                case QCM_TYPE_BATH:
+                    arr = [EnvironmentAdviceDataBase selectBathSuggestionByHumi:[[dict objectForKey:@"humidity"] intValue]];
+                    break;
+                case QCM_TYPE_DIAPER:
+                    arr = [EnvironmentAdviceDataBase selectDiaperSuggestionByHumi:[[dict objectForKey:@"humidity"] intValue]];
+                    break;
+                case QCM_TYPE_FEED:
+                    arr = [EnvironmentAdviceDataBase selectFeedSuggestionByHumi:[[dict objectForKey:@"humidity"] intValue]];
+                    break;
+                case QCM_TYPE_SLEEP:
+                    arr = [EnvironmentAdviceDataBase selectSleepSuggestionByHumi:[[dict objectForKey:@"humidity"] intValue]];
+                    break;
+                case QCM_TYPE_PLAY:
+                    arr = [EnvironmentAdviceDataBase selectPlaySuggestionByHumi:[[dict objectForKey:@"humidity"] intValue]];
+                    break;
+                default:
+                    break;
+            }
+            
+            if ([arr count]>0) {
+                AdviseLevel *al = [arr objectAtIndex:0];
+                NSArray *a2 = [EnvironmentAdviceDataBase selectsuggestionhumi:al.mAdviseId];
+                if ([a2 count]>0) {
+                    AdviseData* ad = [a2 objectAtIndex:0];
+                    tempcontent = ad.mContent;
+                    templevel   = al.mLevel;
+                    mAdHumi = ad;
+                    mAlHumi = al;
+                }
+            }
+        }
+        
+        if ([[dict objectForKey:@"light"] length]>0) {
+            light.detail=[NSString stringWithFormat:@"%@",[dict objectForKey:@"light"]];
+        }
+
+        if ([[dict objectForKey:@"sound"] length]>0) {
+            sound.detail=[NSString stringWithFormat:@"%@",[dict objectForKey:@"sound"]];
+        }
+        
+        if ([[dict objectForKey:@"uv"] length]>0) {
+            uv.detail=[NSString stringWithFormat:@"%@",[dict objectForKey:@"uv"]];
+        }
+        
+        Environmentitem *itemTemp = [dataarray objectAtIndex:0];
+        itemTemp.detail = temp.detail;
+        [dataarray replaceObjectAtIndex:0 withObject:itemTemp];
+        
+        Environmentitem *itemHumi = [dataarray objectAtIndex:1];
+        itemHumi.detail = humi.detail;
+        [dataarray replaceObjectAtIndex:1 withObject:itemHumi];
+        
+        Environmentitem *itemLight = [dataarray objectAtIndex:2];
+        itemLight.detail = light.detail;
+        [dataarray replaceObjectAtIndex:1 withObject:itemLight];
+        
+        Environmentitem *itemSound = [dataarray objectAtIndex:3];
+        itemSound.detail = sound.detail;
+        [dataarray replaceObjectAtIndex:1 withObject:itemSound];
+        
+        Environmentitem *itemUV = [dataarray objectAtIndex:4];
+        itemUV.detail = uv.detail;
+        [dataarray replaceObjectAtIndex:1 withObject:itemUV];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            UITableView *tab=table;
+            [tab reloadData];
+        });
+    }];
+    
+}
+
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -341,9 +536,9 @@
             default:
                 break;
         }
+        
         DXAlertView *alert = [[DXAlertView alloc] initWithTitle:title contentText:mAdTemp.mContent leftButtonTitle:nil rightButtonTitle:@"OK"];
         [alert show];
-
     }
     
     if (indexPath.section == 1 && mAlHumi.mAdviseId > 0) {
@@ -363,19 +558,28 @@
         }
         DXAlertView *alert = [[DXAlertView alloc] initWithTitle:title contentText:mAdHumi.mContent leftButtonTitle:nil rightButtonTitle:@"OK"];
         [alert show];
-        
     }
-
 }
 
-#pragma -mark bluetooth
+#pragma -mark bluetooth delegate
+-(void)DidConnected:(BOOL)isConnected
+{
+    isBLEConnected = isConnected;
+    [self sendData];
+}
+
+-(void)DisConnected:(BOOL)isConnected
+{
+    isBLEConnected = isConnected;
+}
+
 -(void)RecvHumiAndTempDada:(NSData*)data
 {
     NSString *hexStr=@"";
     
     Byte *hexData = (Byte *)[data bytes];
     errorCode = 0;
-    for(int i=0; i<[data length];i++)
+    for(int i = 0; i<[data length];i++)
     {
         NSString *newHexStr = [NSString stringWithFormat:@"%02x",hexData[i]&0xff];
         int recv = [BLEController hexStringToInt:newHexStr];
@@ -389,7 +593,6 @@
         }
         if (errorCode == 0)
         {
-            
             ///16进制数
             if (i == 1) {
                 humidityHigh = [BLEController hexStringHighToInt:newHexStr];
@@ -414,14 +617,12 @@
                 humidity    = ((humidityHigh+humidityLow) * 1.0 )/ 16383 * 100;
                 temperature = ((temperatureHigh + temperatureLow) * 1.0 )/ 16383 / 4 * 165 - 40;
                 hexStr = [NSString stringWithCString:[[NSString stringWithFormat:@"%@ 采集到的湿度:%ld %%, 温度:%ld !", date,humidity,temperature] UTF8String] encoding:NSUTF8StringEncoding];
-                //[Weather setweatherfrombluetooth:temperature Humidity:humidity];
+                [Weather setweatherfrombluetooth:temperature Humidity:humidity];
                 
                 [table reloadData];
             }
-            
         }
     }
-
 }
 
 -(double)getlightluxwithCH0:(double)ch0 andCH1:(double)ch1
@@ -453,7 +654,7 @@
 -(void)RecvLightData:(NSData*)data
 {
     Byte *hexData = (Byte *)[data bytes];
-    for (int i=0;i<[data length];i++) {
+    for (int i=0;i<=[data length];i++) {
         NSString *newHexStr = [NSString stringWithFormat:@"%02x",hexData[i]&0xff];
         int recv = [BLEController hexStringToInt:newHexStr];
         if (i == 0) {
@@ -477,9 +678,9 @@
             }
             else if (i == 3)
             {
-                lowlightChannel1 = [BLEController hexStringHighToInt:newHexStr];
+                lowlightChannel1  = [BLEController hexStringHighToInt:newHexStr];
             }
-            else
+            else if (i == 4)
             {
                 highlightChannel1 = [BLEController hexStringToInt:newHexStr];
             }
@@ -490,88 +691,90 @@
             }
         }
     }
-    curlux = [self getlightluxwithCH0:CH0 andCH1:CH1];
+    
+    curlux = [self getlightluxwithCH0:CH0*1.0 andCH1:CH1*1.0];
+    [Weather setlightfrombluetooth:curlux];
 }
 
--(int)getuv:(long)output
+-(int)getuv:(float)output
 {
     int ret = 0;
-    if (output < 1340) {
+    if (output < 1.04) {
         ret = 0;
     }
-    else if (output < 1439)
+    else if (output < 1.12)
     {
         ret = 1;
     }
-    else if (output < 1539)
+    else if (output < 1.20)
     {
         ret = 2;
     }
-    else if (output < 1638)
+    else if (output < 1.28)
     {
         ret = 3;
     }
-    else if (output < 1737)
+    else if (output < 1.36)
     {
         ret = 4;
     }
-    else if (output < 1836)
+    else if (output < 1.44)
     {
         ret = 5;
     }
-    else if (output < 1936)
+    else if (output < 1.52)
     {
         ret = 6;
     }
-    else if (output < 2035)
+    else if (output < 1.60)
     {
         ret = 7;
     }
-    else if (output < 2134)
+    else if (output < 1.68)
     {
         ret = 8;
     }
-    else if (output < 2234)
+    else if (output < 1.76)
     {
         ret = 9;
     }
-    else if (output < 2333)
+    else if (output < 1.84)
     {
         ret = 10;
     }
-    else if (output < 2432)
+    else if (output < 1.92)
     {
         ret = 11;
     }
-    else if (output < 2532)
+    else if (output < 2.00)
     {
         ret = 12;
     }
-    else if (output < 2631)
+    else if (output < 2.08)
     {
         ret = 13;
     }
-    else if (output < 2730)
+    else if (output < 2.16)
     {
         ret = 14;
     }
-    else if (output < 2829)
+    else if (output < 2.24)
     {
         ret = 15;
     }
-    else if (output < 2929)
+    else if (output < 2.32)
     {
         ret = 16;
     }
-    else if (output < 3028)
+    else if (output < 2.40)
     {
         ret = 17;
     }
-    else if (output < 3127)
+    else if (output < 2.48)
     {
         ret = 18;
     }
-    else if (output < 3327)
+    else if (output < 2.56)
     {
         ret = 19;
     }
@@ -586,7 +789,7 @@
 -(void)RecvUVData:(NSData*)data
 {
     Byte *hexData = (Byte *)[data bytes];
-    for (int i=0;i<[data length];i++)
+    for (int i=0;i<=[data length];i++)
     {
         NSString *newHexStr = [NSString stringWithFormat:@"%02x",hexData[i]&0xff];
         int recv = [BLEController hexStringToInt:newHexStr];
@@ -620,7 +823,81 @@
         }
         
     }
-    uvvalue = [self getuv:adcoutput];
+    float adc_v = adcoutput/8192.0*3.32;
+    
+    uvvalue = [self getuv:adc_v];
+    [Weather setuvfrombluetooth:uvvalue];
+}
+
+-(void)RecvMicroPhone:(NSData*)data
+{
+    Byte *hexData = (Byte *)[data bytes];
+    for (int i=0;i<=[data length];i++)
+    {
+        NSString *newHexStr = [NSString stringWithFormat:@"%02x",hexData[i]&0xff];
+        int recv = [BLEController hexStringToInt:newHexStr];
+        if (i == 0) {
+            if (recv == 0) {
+                errorCode = recv;
+            }
+            else{
+                NSLog(@"error code : %d", recv);
+            }
+        }
+        
+        if (errorCode == 0)
+        {
+            
+            //16进制数
+            if (i == 2) {
+                highphone  = [BLEController hexStringHighToInt:newHexStr];
+            }
+            
+            if (1 == i)
+            {
+                lowphone = [BLEController hexStringToInt:newHexStr];
+            }
+            
+            if (3 == i)
+            {
+                phonevalue = lowphone + highphone;
+                
+            }
+            
+        }
+        
+    }
+    
+    phonethrans = phonevalue*1.0/8192.0*3.32;
+    [Weather setsoundfrombluetooth:phonevalue];
+}
+
+- (void)sendData{
+    if (isBLEConnected) {
+        if (isFistTime) {
+            [_blecontroller getTemperatureAndHumi];
+            [_blecontroller getLight];
+            [_blecontroller getMicrophone:0];
+            [_blecontroller getUV];
+            isFistTime = NO;
+        }
+        
+        timer = [NSTimer scheduledTimerWithTimeInterval: getDataTimeInterval
+                                                 target: self
+                                               selector: @selector(handleTimer:)
+                                               userInfo: nil
+                                                repeats: YES];
+    }
+    
+}
+
+- (void) handleTimer: (NSTimer *) timer
+{
+    //在这里进行处理
+    [_blecontroller getTemperatureAndHumi];
+    [_blecontroller getLight];
+    [_blecontroller getMicrophone:0];
+    [_blecontroller getUV];
 }
 
 @end

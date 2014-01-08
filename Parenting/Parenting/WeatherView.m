@@ -46,6 +46,8 @@
     isbluetooth = YES;
     getDataTimeInterval = 5.0;
     isFistTime = YES;
+    [self.blecontroller startscan];
+    [self.blecontroller bleconnect];
 }
 
 -(void)makeView

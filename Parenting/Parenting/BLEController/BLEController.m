@@ -574,4 +574,5 @@ Byte calculateXor(Byte *pcData, Byte ucDataLen){
 {
     [uartLib sendValue:connectPeripheral sendData:sendData type:CBCharacteristicWriteWithoutResponse];
 }
+
 @end

@@ -188,6 +188,7 @@
 
     
     self.weather=[WeatherView weatherview];
+    [self.weather makeview];
     self.weather.chooseType = QCM_TYPE_SLEEP;
     weather.frame=CGRectMake(0, 0+G_YADDONVERSION, 320, 200);
     [self.view addSubview:weather];
@@ -355,7 +356,7 @@
         saveView=[[save_sleepview alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-SAVEVIEW_YADDONVERSION, self.view.frame.size.width, self.view.frame.size.height)];
     }
     [saveView loaddata];
-       startButton.enabled = NO;
+    startButton.enabled = NO;
     [self.view addSubview:saveView];
     
 }

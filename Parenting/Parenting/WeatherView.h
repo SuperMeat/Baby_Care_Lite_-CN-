@@ -50,6 +50,15 @@
     long adcoutput;
     short uvvalue;
     
+    //microphone
+    long lowphone;
+    long highphone;
+    long phonevalue;
+    double phonethrans;
+    
+    BOOL isbluetooth;
+    BOOL isFistTime;
+    BOOL isBLEConnected;
     NSTimer *timer;
     NSTimeInterval getDataTimeInterval;
 }
@@ -58,5 +67,7 @@
 @property (nonatomic, weak )id delete;
 @property (strong, nonatomic) BLEController *blecontroller;
 @property int chooseType;
+-(void)makeview;
 -(void)refreshweather;
+-(void)setbluetooth;
 @end

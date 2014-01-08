@@ -77,7 +77,7 @@
     else{
         scanCount++;
         if (scanCount>10) {
-//            [self stopscan];
+            //            [self stopscan];
             [self.bleControllerDelegate scanResult:NO with:nil];
         }
     }
@@ -88,14 +88,15 @@
     
     connectPeripheral = peripheral;
     [self.bleControllerDelegate DidConnected:YES];
-    [self setSystemTime];
+    
+    //[self setSystemTime];
 }
 
 - (void) didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error{
     NSLog(@"did Disconnect Peripheral");
     
     connectPeripheral = nil;
-    [self.bleControllerDelegate DidConnected:NO];
+    [self.bleControllerDelegate DisConnected:NO];
 }
 
 - (void) didWriteData:(CBPeripheral *)peripheral error:(NSError *)error{
@@ -105,8 +106,17 @@
 - (void) didReceiveData:(CBPeripheral *)peripheral recvData:(NSData *)recvData
 {
     NSLog(@"uart recv(%d):%@", [recvData length], recvData);
-    [self RecvBTData:recvData];
+    count++;
+    if (count>10)
+    {
+        [self getMicrophone:1];
+    }
+    else
+    {
+        [self RecvBTData:recvData];
+    }
 }
+
 #pragma -mark pid deal
 - (void) resp_set_sys_time : (NSData*) data
 {
@@ -208,22 +218,22 @@
 
 -(void)resp_get_temphumi:(NSData*)data
 {
-  //  [self.bleControllerDelegate RecvHumiAndTempDada:data];
+    [self.bleControllerDelegate RecvHumiAndTempDada:data];
 }
 
 -(void)resp_get_light:(NSData*)data
 {
-  //  [self.bleControllerDelegate RecvLightData:data];
+    [self.bleControllerDelegate RecvLightData:data];
 }
 
 -(void)resp_get_uv:(NSData*)data
 {
-  //  [self.bleControllerDelegate RecvUVData:data];
+    [self.bleControllerDelegate RecvUVData:data];
 }
 
 -(void)resp_get_microphone:(NSData*)data
 {
-    //  [self.bleControllerDelegate RecvUVData:data];
+    [self.bleControllerDelegate RecvMicroPhone:data];
 }
 
 #pragma mark tools function
@@ -273,7 +283,7 @@
             [self resp_get_uv:respData];
             break;
         case PID_RESP_GET_MICROPHONE:
-            [self resp_get_microphone:recvData];
+            [self resp_get_microphone:respData];
             break;
         default:
             //提取结束
@@ -455,7 +465,7 @@
 
 #pragma -mark environment data request
 //温度请求
-- (void)getTemperature
+- (void)getTemperatureAndHumi
 {
     Byte ucaCmdData[10];
     

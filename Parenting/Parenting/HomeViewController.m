@@ -78,7 +78,7 @@
         
     }
     //self.navigationItem.title=[[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
-
+    
     if (titleView == nil) {
         titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 40, 240, 40)];
         titleView.backgroundColor=[UIColor clearColor];
@@ -97,8 +97,8 @@
     buttonSyncBLE.frame=CGRectMake(265, 28, 43, 28);
     [buttonSyncBLE setBackgroundImage:[UIImage imageNamed:@"btn_syncBLE.png"]  forState:UIControlStateNormal];
     [buttonSyncBLE addTarget:self action:@selector(connectBLEController) forControlEvents:UIControlEventTouchUpInside];
-//    UIBarButtonItem *backbar=[[UIBarButtonItem alloc]initWithCustomView:buttonSyncBLE];
-//    self.navigationItem.rightBarButtonItem=backbar;
+    //    UIBarButtonItem *backbar=[[UIBarButtonItem alloc]initWithCustomView:buttonSyncBLE];
+    //    self.navigationItem.rightBarButtonItem=backbar;
     [self.navigationController.view addSubview:buttonSyncBLE];
     
     
@@ -756,17 +756,17 @@
 -(void)updateBabyinfo
 {
     babyImage.image=[UIImage imageWithData:[NSData dataWithContentsOfFile:PHOTOPATH]];
- //   UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];//allocate titleView
-//    titleView.backgroundColor=[UIColor clearColor];
-//    //Create UILable
-//    UILabel *titleText = [[UILabel alloc] initWithFrame: CGRectMake(100, 0, 50, 20)];//allocate titleText
-//    titleText.backgroundColor = [UIColor clearColor];
-//    titleText.textColor = [UIColor whiteColor];
-//    [titleText setText:[[NSUserDefaults standardUserDefaults] objectForKey:@"name"]];
-//    [titleView addSubview:titleText];
-//    
-//    self.navigationItem.titleView = titleView;
-//    self.title=[[NSUserDefaults standardUserDefaults]     objectForKey:@"name"];
+    //   UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];//allocate titleView
+    //    titleView.backgroundColor=[UIColor clearColor];
+    //    //Create UILable
+    //    UILabel *titleText = [[UILabel alloc] initWithFrame: CGRectMake(100, 0, 50, 20)];//allocate titleText
+    //    titleText.backgroundColor = [UIColor clearColor];
+    //    titleText.textColor = [UIColor whiteColor];
+    //    [titleText setText:[[NSUserDefaults standardUserDefaults] objectForKey:@"name"]];
+    //    [titleView addSubview:titleText];
+    //
+    //    self.navigationItem.titleView = titleView;
+    //    self.title=[[NSUserDefaults standardUserDefaults]     objectForKey:@"name"];
 }
 
 #pragma cwb:
@@ -836,7 +836,7 @@
         //连接失败,提醒距离
         [bleController stopscan];
         [timer invalidate];
-
+        
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"同步失败,请确定\n①手机蓝牙已开启\n②配件已开启并在手机附近" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [alert show];
         isFound = NO;

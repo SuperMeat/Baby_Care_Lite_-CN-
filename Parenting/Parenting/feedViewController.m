@@ -133,7 +133,7 @@
         {
             startButton.selected=YES;
         }
-        //
+        
         if ([[NSUserDefaults standardUserDefaults] objectForKey:@"timerOnBefore"]) {
             
             timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerGo) userInfo:nil repeats:YES];
@@ -270,9 +270,7 @@
         [environment addTarget:self action:@selector(environmentOradvise:) forControlEvents:UIControlEventTouchUpInside];
         [environment setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
         [environment setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    //
-    //
-    //
+
         UIButton *advise=[UIButton buttonWithType:UIButtonTypeCustom];
         [advise setTitle:NSLocalizedString(@"监测宝", nil)  forState:UIControlStateNormal];
         [advise setBackgroundImage:[UIImage imageNamed:@"label_right.png"] forState:UIControlStateNormal];

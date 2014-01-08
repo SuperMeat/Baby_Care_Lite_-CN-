@@ -110,7 +110,8 @@
     }
     
     //TODO:登录接口-记录用户登录纪录
-    NSString* strUrl = [ASIHTTPADDRESS stringByAppendingString:@"/BaseService.svc/Userlogin/"];
+    NSString* strUrl = [NSString alloc];
+    strUrl = [ASIHTTPADDRESS stringByAppendingString:@"/BaseService.svc/Userlogin/"];
     strUrl = [strUrl stringByAppendingString:[MD5 md5:ASIHTTPTOKEN]];
     NSString* openudid = [@"/" stringByAppendingString:[APService openUDID]];
     strUrl = [strUrl stringByAppendingString:openudid];
@@ -224,6 +225,13 @@
             if (indexPath.row == 0) {
                 input.tag = 1;
                 input.placeholder = @"请输入邮箱地址";
+                input.keyboardType = UIKeyboardTypeEmailAddress;
+                input.autocapitalizationType = UITextAutocapitalizationTypeNone;
+                if ([[NSUserDefaults standardUserDefaults] objectForKey:@"HISTORY_ACCOUNT_NAME"] != nil)
+                {
+                    input.text =[[NSUserDefaults standardUserDefaults] objectForKey:@"HISTORY_ACCOUNT_NAME"];
+                }
+
                 [input becomeFirstResponder];
             }
             else{

@@ -28,8 +28,6 @@
     //****cwb****
     BOOL isSaved;
     int scanCount;
-    
-    int count;
 }
 @property (assign) id<BLEControllerDelegate> bleControllerDelegate;
 
@@ -41,8 +39,8 @@
 -(void)setSystemTime;
 -(void)getPressKeyHistory:(int)type;
 
-+ (int) hexStringHighToInt:(NSString *)hexString;
-+ (int) hexStringToInt:(NSString *)hexString;
++ (int)hexStringHighToInt:(NSString *)hexString;
++ (int)hexStringToInt:(NSString *)hexString;
 
 // 环境请求
 -(void)getTemperatureAndHumi;

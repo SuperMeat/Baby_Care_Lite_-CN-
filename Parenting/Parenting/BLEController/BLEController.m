@@ -106,15 +106,7 @@
 - (void) didReceiveData:(CBPeripheral *)peripheral recvData:(NSData *)recvData
 {
     NSLog(@"uart recv(%d):%@", [recvData length], recvData);
-    count++;
-    if (count>10)
-    {
-        [self getMicrophone:1];
-    }
-    else
-    {
-        [self RecvBTData:recvData];
-    }
+    [self RecvBTData:recvData];
 }
 
 #pragma -mark pid deal

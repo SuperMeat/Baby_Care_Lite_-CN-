@@ -11,6 +11,7 @@
 
 @class save_feedview;
 @class WeatherView;
+@class BLEWeatherView;
 @interface feedViewController : UIViewController
 {
     UIButton * startButton;
@@ -32,7 +33,7 @@
 @property(nonatomic,strong)NSString *breast;
 @property (strong, nonatomic)SummaryViewController *summary;
 @property(weak,nonatomic)WeatherView *weather;
-@property(weak,nonatomic)WeatherView *bleweather;
+@property(weak,nonatomic)BLEWeatherView *bleweather;
 @property(nonatomic,strong)NSString *obj;
 +(id)shareViewController;
 @end

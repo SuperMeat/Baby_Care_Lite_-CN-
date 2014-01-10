@@ -46,6 +46,7 @@
         isFound = NO;
         checktimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeGo) userInfo:nil repeats:YES];
         [self.blecontroller startscan];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"weatherbluetooth"];
     }
     else
     {
@@ -510,7 +511,6 @@
             }
         }
     }
-    //[self.blecontroller getLight];
 }
 
 -(double)getlightluxwithCH0:(double)ch0 andCH1:(double)ch1
@@ -582,7 +582,6 @@
     
     curlux = [self getlightluxwithCH0:CH0*1.0 andCH1:CH1*1.0];
     [BLEWeather setlightfrombluetooth:curlux];
-    //[self.blecontroller getMicrophone:0];
 }
 
 -(int)getuv:(float)output
@@ -769,7 +768,6 @@
     phonethrans = phonevalue*1.0*8192.0/3.32;
     
     [BLEWeather setsoundfrombluetooth:phonethrans andmaxsound:maxphonethrans];
-    //[self.blecontroller getUV];
 }
 
 - (void)sendData{
@@ -805,7 +803,7 @@
     }
     else if (getindex % 4 == 2)
     {
-        //[self.blecontroller getMicrophone:0];
+        [self.blecontroller getMicrophone:0];
     }
     else if (getindex % 4 == 3)
     {

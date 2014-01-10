@@ -148,18 +148,20 @@
     
     NSData *data = [stringFromFileAtURL dataUsingEncoding:NSUTF8StringEncoding];
     NSArray *weatherDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-    if (weatherDic.count == 1)
+    if (weatherDic == nil ||weatherDic.count == 1)
     {
         return nil;
     }
     else
     {
         NSDictionary *dic = [weatherDic lastObject];
-    
-        NSNumber *aqi = [dic objectForKey:@"aqi"];
-        return [NSString stringWithFormat:@"%@", aqi];
-
+        if (dic != nil && [dic count]>0) {
+            NSNumber *aqi = [dic objectForKey:@"aqi"];
+            return [NSString stringWithFormat:@"%@", aqi];
+        }
     }
+    
+    return nil;
 }
 
 -(NSDictionary *)getweather

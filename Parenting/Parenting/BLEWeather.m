@@ -105,7 +105,7 @@
     NSDictionary *envir = [[NSUserDefaults standardUserDefaults] objectForKey:@"weatherbluetooth"];
 
     NSLog(@"setsoundfrombluetooth sound:%lf, maxsound:%lf", sound, maxsound);
-    //
+    
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"weatherbluetooth"])
     {
         NSMutableDictionary *envir=[[NSMutableDictionary alloc]init];

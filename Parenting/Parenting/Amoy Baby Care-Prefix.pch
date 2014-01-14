@@ -29,6 +29,7 @@
 #import "ActivityItem.h"
 #import "WeatherView.h"
 #import "BLEWeatherView.h"
+#import "BLEWeatherController.h"
 #import "Weather.h"
 #import "BLEWeather.h"
 #import "FMDatabase.h"

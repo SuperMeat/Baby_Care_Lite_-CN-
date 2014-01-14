@@ -199,6 +199,7 @@
 		48F6ABB3187269650032045E /* 钟琴.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 48F6ABB1187269650032045E /* 钟琴.m4a */; };
 		48F6ABBA187D20FF0032045E /* BLEWeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F6ABB9187D20FF0032045E /* BLEWeatherView.m */; };
 		48F6ABBD187D2B6E0032045E /* BLEWeather.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F6ABBC187D2B6E0032045E /* BLEWeather.m */; };
+		48F6ABC01883B9BE0032045E /* BLEWeatherController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F6ABBF1883B9BE0032045E /* BLEWeatherController.m */; };
 		7215972117453680006FD415 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7215972017453680006FD415 /* UIKit.framework */; };
 		7215972317453680006FD415 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7215972217453680006FD415 /* Foundation.framework */; };
 		7215972517453680006FD415 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7215972417453680006FD415 /* CoreGraphics.framework */; };
@@ -892,6 +893,8 @@
 		48F6ABB9187D20FF0032045E /* BLEWeatherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEWeatherView.m; sourceTree = "<group>"; };
 		48F6ABBB187D2B6E0032045E /* BLEWeather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEWeather.h; sourceTree = "<group>"; };
 		48F6ABBC187D2B6E0032045E /* BLEWeather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEWeather.m; sourceTree = "<group>"; };
+		48F6ABBE1883B9BE0032045E /* BLEWeatherController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEWeatherController.h; sourceTree = "<group>"; };
+		48F6ABBF1883B9BE0032045E /* BLEWeatherController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEWeatherController.m; sourceTree = "<group>"; };
 		7215971C17453680006FD415 /* Amoy Baby Care.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Amoy Baby Care.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7215972017453680006FD415 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7215972217453680006FD415 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1838,6 +1841,8 @@
 				48357E2718473EC400BCF799 /* WeatherAdviseViewController.h */,
 				48357E2818473EC400BCF799 /* WeatherAdviseViewController.m */,
 				48357E2918473EC400BCF799 /* WeatherAdviseViewController.xib */,
+				48F6ABBE1883B9BE0032045E /* BLEWeatherController.h */,
+				48F6ABBF1883B9BE0032045E /* BLEWeatherController.m */,
 			);
 			name = Weather;
 			sourceTree = "<group>";
@@ -3643,6 +3648,7 @@
 				BE7C697D1867F1B300C4B675 /* ASIInputStream.m in Sources */,
 				485F3F4F17F16E3800BD876F /* DataCustomCell.m in Sources */,
 				CECE7F8E174A214F0036D0BC /* SettingItem.m in Sources */,
+				48F6ABC01883B9BE0032045E /* BLEWeatherController.m in Sources */,
 				CE0167D4174B217C00462363 /* CopyrightViewController.m in Sources */,
 				CE0167DB174B45AB00462363 /* feedViewController.m in Sources */,
 				CE0168AB174B506A00462363 /* SuggestView.m in Sources */,

@@ -248,7 +248,6 @@
     
     self.bleweather = [BLEWeatherView weatherview];
     self.bleweather.chooseType = QCM_TYPE_FEED;
-    [self.bleweather setbluetooth];
     [self.bleweather makeview];
     self.bleweather.frame=CGRectMake(0, 0+G_YADDONVERSION, 320, 200);
     [self.view addSubview:self.bleweather];
@@ -653,7 +652,6 @@
         another=(UIButton*)[self.view viewWithTag:501];
         weather.hidden=YES;
         _bleweather.hidden = NO;
-        [self.bleweather checkbluetooth];
         [self.bleweather refreshweather];
         pmintro.hidden = YES;
         another.enabled=YES;

@@ -12,7 +12,7 @@
 @synthesize getweatherBlock;
 -(void)dealloc
 {
-    self.getweatherBlock=nil;
+    self.getweatherBlock = nil;
 
 }
 +(id)weather
@@ -62,9 +62,6 @@
                     [mutableString deleteCharactersInRange:NSMakeRange([mutableString length]-1, 1)];
                     
                     mycity = mutableString;
-                    //NSLog(@"%@, %d",mutableString, mutableString.length);
-                    
-                    //NSLog(@"---%@..........%@..cout:%d",country,city,[array count]);
                 }
                 else
                 {
@@ -80,13 +77,9 @@
             NSDictionary *dict = [self getweather];
             getweatherBlock(dict);
         }
-        
-//        self.getweatherBlock = nil;
     });
-    
-    
-    
 }
+
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
     NSLog(@"%@",error);
@@ -155,39 +148,20 @@
     
     NSData *data = [stringFromFileAtURL dataUsingEncoding:NSUTF8StringEncoding];
     NSArray *weatherDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-    if (weatherDic.count == 1)
+    if (weatherDic == nil ||weatherDic.count == 1)
     {
         return nil;
     }
     else
     {
         NSDictionary *dic = [weatherDic lastObject];
-    
-        NSNumber *aqi = [dic objectForKey:@"aqi"];
-        return [NSString stringWithFormat:@"%@", aqi];
-
-    }
-}
-
--(NSDictionary *)getbleweather
-{
-    NSMutableDictionary *envir=[[NSMutableDictionary alloc]init];
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"weatherbluetooth"])
-    {
-        [envir setObject:[NSString stringWithFormat:@"0"] forKey:@"temp"];
-        [envir setObject:[NSString stringWithFormat:@"0"] forKey:@"humidity"];
-        [envir setObject:[NSString stringWithFormat:@"0"] forKey:@"light"];
-        [envir setObject:[NSString stringWithFormat:@"0"] forKey:@"sound"];
-        [envir setObject:[NSString stringWithFormat:@"0"] forKey:@"uv"];
-        
-        [[NSUserDefaults standardUserDefaults] setObject:envir forKey:@"weatherbluetooth"];
-    }
-    else
-    {
-        envir=[[NSUserDefaults standardUserDefaults] objectForKey:@"weatherbluetooth"];
+        if (dic != nil && [dic count]>0) {
+            NSNumber *aqi = [dic objectForKey:@"aqi"];
+            return [NSString stringWithFormat:@"%@", aqi];
+        }
     }
     
-    return envir;
+    return nil;
 }
 
 -(NSDictionary *)getweather
@@ -238,111 +212,6 @@
     }
    
     return envir;
-}
-
-
-+(void)setweatherfrombluetooth:(long)temp Humidity:(long)humi
-{
-    [[NSUserDefaults standardUserDefaults]  removeObjectForKey:@"weatherbluetooth"];
-    
-    NSMutableDictionary *envir=[[NSMutableDictionary alloc]init];
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"weatherbluetooth"])
-    {
-        [envir setObject:[NSString stringWithFormat:@"%ld",temp] forKey:@"temp"];
-        [envir setObject:[NSString stringWithFormat:@"%ld",humi] forKey:@"humidity"];
-        
-        
-        [[NSUserDefaults standardUserDefaults] setObject:envir forKey:@"weatherbluetooth"];
-    }
-}
-
-+(void)setlightfrombluetooth:(double)light
-{
-    [[NSUserDefaults standardUserDefaults]  removeObjectForKey:@"weatherbluetooth"];
-    
-    NSMutableDictionary *envir=[[NSMutableDictionary alloc]init];
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"weatherbluetooth"])
-    {
-        [envir setObject:[NSString stringWithFormat:@"%lf",light] forKey:@"light"];
-        [[NSUserDefaults standardUserDefaults] setObject:envir forKey:@"weatherbluetooth"];
-    }
-}
-
-+(void)setsoundfrombluetooth:(double)sound
-{
-    [[NSUserDefaults standardUserDefaults]  removeObjectForKey:@"weatherbluetooth"];
-    
-    NSMutableDictionary *envir=[[NSMutableDictionary alloc]init];
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"weatherbluetooth"])
-    {
-        [envir setObject:[NSString stringWithFormat:@"%lf",sound] forKey:@"sound"];
-        
-        [[NSUserDefaults standardUserDefaults] setObject:envir forKey:@"weatherbluetooth"];
-    }
-}
-
-+(void)setuvfrombluetooth:(long)uv
-{
-    [[NSUserDefaults standardUserDefaults]  removeObjectForKey:@"weatherbluetooth"];
-    
-    NSMutableDictionary *envir=[[NSMutableDictionary alloc]init];
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"weatherbluetooth"])
-    {
-        [envir setObject:[NSString stringWithFormat:@"%ld",uv] forKey:@"uv"];
-        [[NSUserDefaults standardUserDefaults] setObject:envir forKey:@"weatherbluetooth"];
-    }
-}
-
-+(long)gettemperature{
-    NSDictionary *dict=[[NSUserDefaults standardUserDefaults] objectForKey:@"weatherbluetooth"];
-    if([[dict objectForKey:@"temp"] length]>0)
-    {
-        return [[NSString stringWithFormat:@"%@",[dict objectForKey:@"temp"]]intValue];
-    }
-    
-    return 0;
-}
-
-
-+(long)gethumidity
-{
-    NSDictionary *dict=[[NSUserDefaults standardUserDefaults] objectForKey:@"weatherbluetooth"];
-    if([[dict objectForKey:@"humidity"] length]>0)
-    {
-        return [[NSString stringWithFormat:@"%@",[dict objectForKey:@"humidity"]]intValue];
-    }
-    
-    return 0;
-}
-
-+(double)getlight{
-    NSDictionary *dict=[[NSUserDefaults standardUserDefaults] objectForKey:@"weatherbluetooth"];
-    if([[dict objectForKey:@"light"] length]>0)
-    {
-        return [[NSString stringWithFormat:@"%@",[dict objectForKey:@"light"]]doubleValue];
-    }
-    
-    return 0.0;
-}
-
-+(double)getsound{
-    NSDictionary *dict=[[NSUserDefaults standardUserDefaults] objectForKey:@"weatherbluetooth"];
-    if([[dict objectForKey:@"sound"] length]>0)
-    {
-        return [[NSString stringWithFormat:@"%@",[dict objectForKey:@"sound"]]intValue];
-    }
-    
-    return 0;
-}
-
-+(long)getuv{
-    NSDictionary *dict=[[NSUserDefaults standardUserDefaults] objectForKey:@"weatherbluetooth"];
-    if([[dict objectForKey:@"uv"] length]>0)
-    {
-        return [[NSString stringWithFormat:@"%@",[dict objectForKey:@"uv"]]intValue];
-    }
-    
-    return 0;
 }
 
 -(void)getweather:(Getweather) getweather

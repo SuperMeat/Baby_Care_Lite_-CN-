@@ -1,26 +1,30 @@
 //
-//  WeatherView.m
-//  Parenting
+//  BLEWeatherView.m
+//  Amoy Baby Care
 //
-//  Created by user on 13-5-30.
-//  Copyright (c) 2013年 家明. All rights reserved.
+//  Created by @Arvi@ on 14-1-8.
+//  Copyright (c) 2014年 爱摩科技有限公司. All rights reserved.
 //
 
-#import "WeatherView.h"
+#import "BLEWeatherView.h"
 #import "Environmentitem.h"
 #import "EnvironmentAdviceDataBase.h"
 #import "WeatherAdviseViewController.h"
-
-@implementation WeatherView
+@implementation BLEWeatherView
 @synthesize dataarray;
 +(id)weatherview
 {
-
+    
     __strong static WeatherView *_sharedObject = nil;
-
-      _sharedObject =  [[self alloc] init]; // or some other init metho
-
+    
+    _sharedObject =  [[self alloc] init]; // or some other init metho
+    
     return _sharedObject;
+}
+
+-(void)dealloc
+{
+    [gettimer invalidate];
 }
 
 -(id)init
@@ -28,8 +32,8 @@
     self=[super init];
     if (self){
         self.frame = CGRectMake(0, 0, 320, 200);
-        
-//        self.backgroundColor=[UIColor redColor];
+        getDataTimeInterval = 1.0;
+        //        self.backgroundColor=[UIColor redColor];
     }
     return self;
 }
@@ -73,16 +77,18 @@
     dataarray=[[NSMutableArray alloc]initWithCapacity:0];
     [dataarray addObject:temp];
     [dataarray addObject:humi];
-
+    
     if (CUSTOMER_COUNTRY == 0)
     {
         [dataarray addObject:uv];
     }
     else
     {
-        [dataarray addObject:pm];
+        [dataarray addObject:light];
+        [dataarray addObject:sound];
+        [dataarray addObject:uv];
     }
-
+    
     table = [[UITableView alloc]initWithFrame:CGRectMake(self.bounds.origin.x+10, self.bounds.origin.y+8, self.bounds.size.width-20, self.bounds.size.height) style:UITableViewStyleGrouped];
     table.separatorStyle = UITableViewCellSeparatorStyleNone;
     table.backgroundColor=[UIColor clearColor];
@@ -91,64 +97,80 @@
     table.backgroundView=nil;
     table.bounces=NO;
     
-     [self setBackgroundColor:[UIColor colorWithRed:239.0/255 green:239.0/255 blue:239.0/255 alpha:1]];
+    [self setBackgroundColor:[UIColor colorWithRed:239.0/255 green:239.0/255 blue:239.0/255 alpha:1]];
     [self addSubview:table];
+    
+    gettimer = [NSTimer scheduledTimerWithTimeInterval: getDataTimeInterval
+                                                target: self
+                                              selector: @selector(handleTimer:)
+                                              userInfo: nil
+                                               repeats: YES];
 
-
-    [[Weather weather] getweather:^(NSDictionary *weatherDict) {
-        NSDictionary *dict=weatherDict;
+    //[[BLEWeather bleweather] getbleweather:^(NSDictionary *weatherDict) {
+        NSDictionary *dict=[[BLEWeather bleweather] getbleweather];
         NSLog(@"weDic %@", dict);
         
         if([[dict objectForKey:@"temp"] length]>0)
         {
             temp.detail=[NSString stringWithFormat:@"%@℃",[dict objectForKey:@"temp"]];
         }
+        
         if ([[dict objectForKey:@"humidity"] length]>0) {
             humi.detail=[NSString stringWithFormat:@"%@%%",[dict objectForKey:@"humidity"]];
         }
         
-        if (CUSTOMER_COUNTRY == 1) {
-            if ([[dict objectForKey:@"PM25"] length]>0) {
-                int pmvalue = [[dict objectForKey:@"PM25"] intValue];
-                if (pmvalue > 0) {
-                    pm.detail=[NSString stringWithFormat:@"%@ %@",[dict objectForKey:@"PM25"],[OpenFunction getpm25description:pmvalue]];
-                    [dataarray replaceObjectAtIndex:4 withObject:pm];
-                }
-            }
-            
+        if ([[dict objectForKey:@"light"] length]>0) {
+            light.detail=[NSString stringWithFormat:@"%@",[dict objectForKey:@"light"]];
         }
+        
+        if ([[dict objectForKey:@"maxsound"] length]>0) {
+            sound.detail=[NSString stringWithFormat:@"%@",[dict objectForKey:@"maxsound"]];
+        }
+        
+        if ([[dict objectForKey:@"uv"] length]>0) {
+            uv.detail=[NSString stringWithFormat:@"%@",[dict objectForKey:@"uv"]];
+        }
+        
         
         [dataarray replaceObjectAtIndex:0 withObject:temp];
         [dataarray replaceObjectAtIndex:1 withObject:humi];
-        
+        [dataarray replaceObjectAtIndex:2 withObject:light];
+        [dataarray replaceObjectAtIndex:3 withObject:sound];
+        [dataarray replaceObjectAtIndex:4 withObject:uv];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
             UITableView *tab=table;
             [tab reloadData];
         });
-    }];
-    
+   // }];
+}
+
+- (void) handleTimer: (NSTimer *) timer
+{
+    if ([[BLEWeatherController bleweathercontroller] isConnected]) {
+        [self refreshweather];
+    }
 }
 
 -(void)refreshweather
 {
     mAlTemp.mAdviseId = 0;
     mAlHumi.mAdviseId = 0;
-    [self updatedataarray];
+    [self updatebledataarray];
 }
 
--(void)updatedataarray
+-(void)updatebledataarray
 {
     Environmentitem *temp=[[Environmentitem alloc]init];
     Environmentitem *humi=[[Environmentitem alloc]init];
-    //  Environmentitem *light=[[Environmentitem alloc]init];
-    //  Environmentitem *sound=[[Environmentitem alloc]init];
-    Environmentitem *pm=[[Environmentitem alloc]init];
-    //  Environmentitem *uv=[[Environmentitem alloc]init];
+    Environmentitem *light=[[Environmentitem alloc]init];
+    Environmentitem *sound=[[Environmentitem alloc]init];
+    //Environmentitem *pm=[[Environmentitem alloc]init];
+    Environmentitem *uv=[[Environmentitem alloc]init];
     
-    [[Weather weather] getweather:^(NSDictionary *weatherDict) {
-        NSDictionary *dict=weatherDict;
+  //  [[BLEWeather bleweather] getbleweather:^(NSDictionary *weatherDict) {
+        NSDictionary *dict=[[BLEWeather bleweather]getbleweather];
         NSLog(@"weDic %@", dict);
         
         if([[dict objectForKey:@"temp"] length]>0)
@@ -174,12 +196,12 @@
                 default:
                     break;
             }
-
+            
             if ([arr count]>0) {
                 AdviseLevel *al = [arr objectAtIndex:0];
                 NSArray *a2 = [EnvironmentAdviceDataBase selectsuggestiontemp:al.mAdviseId];
                 if ([a2 count]>0) {
-                   AdviseData* ad = [a2 objectAtIndex:0];
+                    AdviseData* ad = [a2 objectAtIndex:0];
                     tempcontent = ad.mContent;
                     templevel   = al.mLevel;
                     mAdTemp = ad;
@@ -188,6 +210,7 @@
             }
             
         }
+        
         if ([[dict objectForKey:@"humidity"] length]>0) {
             humi.detail=[NSString stringWithFormat:@"%@ %%",[dict objectForKey:@"humidity"]];
             NSArray *arr;
@@ -224,17 +247,16 @@
             }
         }
         
-        if (CUSTOMER_COUNTRY == 1) {
-            if ([[dict objectForKey:@"PM25"] length]>0) {
-                int pmvalue = [[dict objectForKey:@"PM25"] intValue];
-                if (pmvalue > 0) {
-                    pm.detail=[NSString stringWithFormat:@"%@ %@",[dict objectForKey:@"PM25"],[OpenFunction getpm25description:pmvalue]];
-                    Environmentitem *itemPM25 = [dataarray objectAtIndex:2];
-                    itemPM25.detail = pm.detail;
-                    [dataarray replaceObjectAtIndex:2 withObject:itemPM25];
-                }
-            }
-            
+        if ([[dict objectForKey:@"light"] length]>0) {
+            light.detail=[NSString stringWithFormat:@"%@",[dict objectForKey:@"light"]];
+        }
+        
+        if ([[dict objectForKey:@"maxsound"] length]>0) {
+            sound.detail=[NSString stringWithFormat:@"%@",[dict objectForKey:@"maxsound"]];
+        }
+        
+        if ([[dict objectForKey:@"uv"] length]>0) {
+            uv.detail=[NSString stringWithFormat:@"%@",[dict objectForKey:@"uv"]];
         }
         
         Environmentitem *itemTemp = [dataarray objectAtIndex:0];
@@ -245,14 +267,26 @@
         itemHumi.detail = humi.detail;
         [dataarray replaceObjectAtIndex:1 withObject:itemHumi];
         
+        Environmentitem *itemLight = [dataarray objectAtIndex:2];
+        itemLight.detail = light.detail;
+        [dataarray replaceObjectAtIndex:2 withObject:itemLight];
+        
+        Environmentitem *itemSound = [dataarray objectAtIndex:3];
+        itemSound.detail = sound.detail;
+        [dataarray replaceObjectAtIndex:3 withObject:itemSound];
+        
+        Environmentitem *itemUV = [dataarray objectAtIndex:4];
+        itemUV.detail = uv.detail;
+        [dataarray replaceObjectAtIndex:4 withObject:itemUV];
         dispatch_async(dispatch_get_main_queue(), ^{
             
             UITableView *tab=table;
             [tab reloadData];
         });
-    }];
-
+   // }];
+    
 }
+
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -283,7 +317,7 @@
     }
     Environmentitem *item=[dataarray objectAtIndex:indexPath.section];
     Cell.imageView.image=item.headimage;
-
+    
     Cell.textLabel.text=item.title;
     UIImageView *image=(UIImageView*)[Cell.contentView viewWithTag:104];
     

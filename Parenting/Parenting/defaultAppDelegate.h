@@ -26,16 +26,16 @@
     SummaryViewController       *summaryViewController;
     HomeViewController          *homeViewController;
     GuideViewController         *guideViewController;
-    
+    BLEWeatherController        *bleweatherController;
     UINavigationController *settingNavigationViewController;
     UINavigationController *adviseNavigationViewController;
     UINavigationController *summaryNavigationViewController;
     UINavigationController *homeNavigationViewController;
     UINavigationController *icNavigationViewController;
-  
 }
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) defaultViewController *viewController;
 
+-(BOOL)isBLEWeatherConnected;
 @end

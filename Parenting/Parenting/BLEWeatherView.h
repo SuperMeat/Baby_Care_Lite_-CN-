@@ -1,17 +1,17 @@
 //
-//  WeatherView.h
-//  Parenting
+//  BLEWeatherView.h
+//  Amoy Baby Care
 //
-//  Created by user on 13-5-30.
-//  Copyright (c) 2013年 家明. All rights reserved.
+//  Created by @Arvi@ on 14-1-8.
+//  Copyright (c) 2014年 爱摩科技有限公司. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "BLEController.h"
 @class AdviseData;
 @class AdviseLevel;
-@interface WeatherView : UIView <UITableViewDataSource,UITableViewDelegate>
+@interface BLEWeatherView : UIView<UITableViewDataSource,UITableViewDelegate>
 {
-
     BOOL         isgetted;
     UITableView *table;
     NSString    *tempcontent;
@@ -24,8 +24,11 @@
     AdviseData  *mAdHumi;
     AdviseLevel *mAlHumi;
     
-}
+    BOOL isFistTime;
+    NSTimer *gettimer;
+    NSTimeInterval getDataTimeInterval;
 
+}
 +(id)weatherview;
 @property (nonatomic,strong)  NSMutableArray  *dataarray;
 @property (nonatomic, weak )id delete;

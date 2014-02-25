@@ -78,10 +78,12 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     //[self.tableView reloadData];
+    [MobClick beginLogPageView:@"小贴士"];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
+    [MobClick endLogPageView:@"小贴士"];
     //[self.navigationController popToRootViewControllerAnimated:YES];
 }
 

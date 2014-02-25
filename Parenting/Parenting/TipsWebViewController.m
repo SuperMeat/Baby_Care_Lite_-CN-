@@ -37,9 +37,15 @@
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [MobClick beginLogPageView:[NSString stringWithFormat:@"tips_%@", _url]];
+}
+
 -(void)viewWillDisappear:(BOOL)animated
 {
     //[self.navigationController popViewControllerAnimated:NO];
+    [MobClick endLogPageView:[NSString stringWithFormat:@"tips_%@", _url]];
 }
 
 - (void)viewDidLoad

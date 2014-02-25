@@ -189,6 +189,8 @@
 		48EC1DDE1862F6E400965254 /* nofity_myadvise_day_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48EC1DDA1862F6E400965254 /* nofity_myadvise_day_up@2x.png */; };
 		48EC1DDF1862F6E400965254 /* nofity_myadvise_day.png in Resources */ = {isa = PBXBuildFile; fileRef = 48EC1DDB1862F6E400965254 /* nofity_myadvise_day.png */; };
 		48EC1DE01862F6E400965254 /* nofity_myadvise_day@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48EC1DDC1862F6E400965254 /* nofity_myadvise_day@2x.png */; };
+		48F47EFD18BB466A009A504B /* 152.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F47EFC18BB466A009A504B /* 152.png */; };
+		48F47EFF18BB468F009A504B /* 144.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F47EFE18BB468F009A504B /* 144.png */; };
 		48F6AB931867D3AC0032045E /* LocalNotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F6AB921867D3AC0032045E /* LocalNotify.m */; };
 		48F6AB9A186AD7470032045E /* task_top_delet.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F6AB99186AD7470032045E /* task_top_delet.png */; };
 		48F6ABA4186D191C0032045E /* AlarmKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F6ABA3186D191C0032045E /* AlarmKey.m */; };
@@ -879,6 +881,8 @@
 		48EC1DDA1862F6E400965254 /* nofity_myadvise_day_up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nofity_myadvise_day_up@2x.png"; sourceTree = "<group>"; };
 		48EC1DDB1862F6E400965254 /* nofity_myadvise_day.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nofity_myadvise_day.png; sourceTree = "<group>"; };
 		48EC1DDC1862F6E400965254 /* nofity_myadvise_day@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nofity_myadvise_day@2x.png"; sourceTree = "<group>"; };
+		48F47EFC18BB466A009A504B /* 152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 152.png; sourceTree = "<group>"; };
+		48F47EFE18BB468F009A504B /* 144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 144.png; sourceTree = "<group>"; };
 		48F6AB911867D3AB0032045E /* LocalNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNotify.h; sourceTree = "<group>"; };
 		48F6AB921867D3AC0032045E /* LocalNotify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNotify.m; sourceTree = "<group>"; };
 		48F6AB99186AD7470032045E /* task_top_delet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task_top_delet.png; sourceTree = "<group>"; };
@@ -1966,6 +1970,8 @@
 		485749C618332860000D921B /* liteicon_cn */ = {
 			isa = PBXGroup;
 			children = (
+				48F47EFE18BB468F009A504B /* 144.png */,
+				48F47EFC18BB466A009A504B /* 152.png */,
 				485749C718332860000D921B /* 114.png */,
 				485749C818332860000D921B /* 120.png */,
 				485749C918332860000D921B /* 29.png */,
@@ -3155,6 +3161,7 @@
 				48574A94183B366B000D921B /* UMSCommentInputControlleriPad.xib in Resources */,
 				CE0167C3174B059000462363 /* pic_default.png in Resources */,
 				485749DE18332860000D921B /* 80.png in Resources */,
+				48F47EFF18BB468F009A504B /* 144.png in Resources */,
 				485749E018332860000D921B /* Icon-Small-50@2x.png in Resources */,
 				CE0167C4174B059000462363 /* pic_default@2x.png in Resources */,
 				CE0167C5174B059000462363 /* radio.png in Resources */,
@@ -3277,6 +3284,7 @@
 				CE016882174B49D300462363 /* label_right_focus.png in Resources */,
 				CE016883174B49D300462363 /* label_right_focus@2x.png in Resources */,
 				CE016884174B49D300462363 /* play_time.png in Resources */,
+				48F47EFD18BB466A009A504B /* 152.png in Resources */,
 				48F6ABB2187269650032045E /* 竖琴.m4a in Resources */,
 				48F6ABB3187269650032045E /* 钟琴.m4a in Resources */,
 				CE016885174B49D300462363 /* play_time@2x.png in Resources */,
@@ -3796,6 +3804,7 @@
 				PROVISIONING_PROFILE = "50AA14CB-54AC-44E0-968A-DFE1C2AD8759";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "50AA14CB-54AC-44E0-968A-DFE1C2AD8759";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
@@ -3819,9 +3828,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "50AA14CB-54AC-44E0-968A-DFE1C2AD8759";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "50AA14CB-54AC-44E0-968A-DFE1C2AD8759";
+				PROVISIONING_PROFILE = "7D99526B-E829-434E-AF3C-997AC6CB0C89";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7D99526B-E829-434E-AF3C-997AC6CB0C89";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -3909,8 +3919,8 @@
 					"-Objc",
 				);
 				PRODUCT_NAME = "Amoy Baby Care";
-				PROVISIONING_PROFILE = "50AA14CB-54AC-44E0-968A-DFE1C2AD8759";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "50AA14CB-54AC-44E0-968A-DFE1C2AD8759";
+				PROVISIONING_PROFILE = "7D99526B-E829-434E-AF3C-997AC6CB0C89";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7D99526B-E829-434E-AF3C-997AC6CB0C89";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = armv7;
@@ -3928,7 +3938,7 @@
 				7215973F17453680006FD415 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		7215974017453680006FD415 /* Build configuration list for PBXNativeTarget "Amoy Baby Care" */ = {
 			isa = XCConfigurationList;
@@ -3937,7 +3947,7 @@
 				7215974217453680006FD415 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

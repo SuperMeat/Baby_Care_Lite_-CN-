@@ -44,6 +44,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [MobClick beginLogPageView:@"首页"];
+    
     isFound = YES;
     
     if ([UIApplication sharedApplication].statusBarStyle != UIStatusBarStyleLightContent) {
@@ -99,7 +101,7 @@
     [buttonSyncBLE addTarget:self action:@selector(connectBLEController) forControlEvents:UIControlEventTouchUpInside];
     //    UIBarButtonItem *backbar=[[UIBarButtonItem alloc]initWithCustomView:buttonSyncBLE];
     //    self.navigationItem.rightBarButtonItem=backbar;
-    [self.navigationController.view addSubview:buttonSyncBLE];
+    //[self.navigationController.view addSubview:buttonSyncBLE];
     
     
     
@@ -143,6 +145,7 @@
 {
     [timer invalidate];
     [buttonSyncBLE removeFromSuperview];
+    [MobClick endLogPageView:@"首页"];
 }
 
 -(void)viewDidDisappear:(BOOL)animated

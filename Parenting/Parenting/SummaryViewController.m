@@ -75,6 +75,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [MobClick beginLogPageView:@"总结"];
 #define IOS7_OR_LATER   ( [[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending )
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
@@ -111,7 +112,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    
+    [MobClick endLogPageView:@"总结"];
     [menu setValue:[NSNumber numberWithBool:NO] forKey:@"expanding"];
     
 }

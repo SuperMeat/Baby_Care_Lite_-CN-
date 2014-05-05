@@ -148,13 +148,19 @@
                                      initWithContentsOfURL:URL
                                      encoding:NSUTF8StringEncoding
                                      error:&error];
-    
     NSData *data = [stringFromFileAtURL dataUsingEncoding:NSUTF8StringEncoding];
+    
     if (data != nil) {
         NSArray *weatherDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-        if (weatherDic == nil ||weatherDic.count == 1)
+        if (weatherDic == nil || weatherDic.count == 1)
         {
-            return [NSString stringWithFormat:@"%d", 0];;
+            
+            ASIHTTPController *aSIHTTPController = [[ASIHTTPController alloc] init];
+            NSString *uploaderror = [NSString stringWithFormat:@"%@ %@",
+                                     mycity, stringFromFileAtURL];
+            [aSIHTTPController postError:uploaderror];
+
+            return [NSString stringWithFormat:@"%d", 0];
         }
         else
         {
@@ -166,7 +172,7 @@
         }
     }
     
-    return [NSString stringWithFormat:@"%d", 0];;
+    return [NSString stringWithFormat:@"%d", 0];
 }
 
 -(NSDictionary *)getweather
@@ -197,7 +203,8 @@
         }
         
         mycity = [[NSUserDefaults standardUserDefaults] objectForKey:@"mylocation"];
-        if (CUSTOMER_COUNTRY == 1 && mycity) {
+        if (CUSTOMER_COUNTRY == 1 && mycity)
+        {
             NSString *pm25value = [self getweatherfromPM25in:mycity];
             if (pm25value != nil) {
                 [envir setObject:pm25value forKey:@"PM25"];
@@ -215,8 +222,14 @@
             if ([envir objectForKey:@"PM25"] == nil)
             {
                 NSMutableDictionary *newenvir = [[NSMutableDictionary alloc] init];
-                [newenvir setObject:[envir objectForKey:@"temp"] forKey:@"temp"];
-                [newenvir setObject:[envir objectForKey:@"humidity"] forKey:@"humidity"];
+                if ([envir objectForKey:@"temp"] != nil) {
+                    [newenvir setObject:[envir objectForKey:@"temp"] forKey:@"temp"];
+                }
+                
+                if ([envir objectForKey:@"humidity"] != nil) {
+                    [newenvir setObject:[envir objectForKey:@"humidity"] forKey:@"humidity"];
+                }
+                
                 [newenvir setObject:[self getweatherfromPM25in:mycity] forKey:@"PM25"];
                 [[NSUserDefaults standardUserDefaults] setObject:newenvir forKey:@"weather"];
             }

@@ -111,12 +111,32 @@ static int age = 0;
              self.standardheighttextfield.text=[array objectAtIndex:0];
         }
         
-        if ([array objectAtIndex:1]) {
-            self.standardweighttextfield.text=[array objectAtIndex:1];
+        if ([array count] == 2) {
+            if ([array objectAtIndex:0]) {
+                self.standardheighttextfield.text=[array objectAtIndex:0];
+            }
+            
+            if ([array objectAtIndex:1])
+            {
+                self.standardweighttextfield.text=[array objectAtIndex:1];
+            }
         }
         
-        if([array objectAtIndex:2]){
-            self.standardhctextfield.text=[array objectAtIndex:2];
+        
+        if ([array count] == 3)
+        {
+            if ([array objectAtIndex:0]) {
+                self.standardheighttextfield.text=[array objectAtIndex:0];
+            }
+            
+            if ([array objectAtIndex:1])
+            {
+                self.standardweighttextfield.text=[array objectAtIndex:1];
+            }
+            
+            if([array objectAtIndex:2]){
+                self.standardhctextfield.text=[array objectAtIndex:2];
+            }
         }
     }
 
@@ -290,8 +310,7 @@ static int age = 0;
     _standardheighttextfield.textColor=[UIColor colorWithRed:0xAF/255.0 green:0xAF/255.0 blue:0xAF/255.0 alpha:0xFF/255.0];
     _standardhctextfield.textColor=[UIColor colorWithRed:0xAF/255.0 green:0xAF/255.0 blue:0xAF/255.0 alpha:0xFF/255.0];
     
-    
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShown:)
                                                  name:UIKeyboardWillShowNotification object:nil];

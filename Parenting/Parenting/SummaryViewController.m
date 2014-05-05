@@ -123,14 +123,16 @@
     
     [self TimeSelected:(UIButton*)[self.view viewWithTag:201]];
     if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"MARK"] isEqualToString:@"1"] ||![[NSUserDefaults standardUserDefaults] objectForKey:@"MARK"]) {
-        
-        [self MenuSelectIndex:0];
-        [backbutton setHidden:YES];
-        
+        [self MenuSelectIndex:1];
+        if (backbutton) {
+            [backbutton setHidden:YES];
+        }
     }
     else
     {
-        [backbutton setHidden:NO];
+        if (backbutton != nil ) {
+            [backbutton setHidden:NO];
+        }
     }
     
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"bg_title.png"]  forBarMetrics:UIBarMetricsDefault];
@@ -791,11 +793,13 @@
             break;
     }
     
+    selectIndex = idx;
+    plotScrollView.contentSize = CGSizeMake([DataBase scrollWidthWithTag:plotTag andTableName:[self tableName:selectIndex]] * 320, 0);
+
     for (MyCorePlot *plot_1 in plotArray) {
         [plot_1 removeFromSuperview];
     }
     [plotArray removeAllObjects];
-    selectIndex = idx;
     [self scrollUpadateData];
 }
 

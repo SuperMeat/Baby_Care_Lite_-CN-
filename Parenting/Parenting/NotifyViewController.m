@@ -63,8 +63,15 @@
     [self.view addSubview:tableview];
     tableview.delegate   = self;
     tableview.dataSource = self;
+    tableview.userInteractionEnabled = YES;
     tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)reloadNotify
+{
+    notifyArray =  [DataBase selectNotifyMessage:0];
+    [tableview reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,6 +93,10 @@
     return 10;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
@@ -98,13 +109,25 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NotifyCell"];
-        cell.textLabel.font=[UIFont systemFontOfSize:17];
-        cell.textLabel.textColor=[UIColor colorWithRed:0xAF/255.0 green:0xAF/255.0 blue:0xAF/255.0 alpha:0xFF/255.0];
+        UITextView *label = [[UITextView alloc] initWithFrame:CGRectMake(20, 0, 280, 80)];
+        label.tag = 101;
+        [label setFont:[UIFont systemFontOfSize:13]];
+        [label setEditable:NO];
+        [label setScrollEnabled:YES];
+        [label setTextAlignment:NSTextAlignmentLeft];
+        [label setTextColor:[UIColor colorWithRed:0xAF/255.0 green:0xAF/255.0 blue:0xAF/255.0 alpha:0xFF/255.0]];
+        
+        [cell.contentView addSubview:label];
     }
     
     // Configure the cell...
     NotifyItem *item=[notifyArray objectAtIndex:indexPath.section];
-    cell.textLabel.text=item.content;
+    for (id subview in cell.contentView.subviews) {
+        if ([subview isKindOfClass:[UITextView class]]) {
+            [subview setText:item.content];
+        }
+    }
+    //cell.textLabel.text=item.content;
     
     return cell;
 }
@@ -161,6 +184,26 @@
     // Pass the selected object to the new view controller.
     
     // Push the view controller.
+}
+
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == tableview)
+    {
+        if (editingStyle==UITableViewCellEditingStyleDelete) {
+            NotifyItem *item=[notifyArray objectAtIndex:indexPath.section];
+            if (item != nil) {
+                [DataBase deleteNotifyMessageById:item.notifyid];
+                [self reloadNotify];
+            }
+           
+        }
+    }
 }
 
 @end

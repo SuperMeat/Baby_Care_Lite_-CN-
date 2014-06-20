@@ -45,7 +45,8 @@
 #import "EnvironmentAdviceDataBase.h"
 #import "DXAlertView.h"
 #import "UartLib.h"
-
+#import "ASIHTTPController.h"
+#import "MTA.h"
 #define PHOTOPATH ([NSString stringWithFormat:@"%@/Documents/baby.png",NSHomeDirectory()])
 #define SHAREPATH ([NSString stringWithFormat:@"%@/Documents/share.png",NSHomeDirectory()])
 #define DBPATH ([NSString stringWithFormat:@"%@/Documents/babycare.db",NSHomeDirectory()])
@@ -101,6 +102,8 @@
 
 #define GuideVerson    @"1.7.6"
 
+#define MTA_KEY @"I8YCA97JRD3C"
+
 #define ASIHTTPADDRESS @"http://cbaisan.w82.dns87.com/babycare/WCF" //接口IP
 //#define ASIHTTPADDRESS @"http://192.168.1.138:8033/babycare/WCF"
 #define ASIHTTPTOKEN @"5788024"  //令牌
@@ -146,5 +149,7 @@
 #define BLUETOOTH_BUTTON_BATH   @"03"
 #define BLUETOOTH_BUTTON_SLEEP  @"01"
 #define BLUETOOTH_BUTTON_PLAY   @"02"
-//*** end
 
+#define G_WEBVIEWY (([UIScreen mainScreen].bounds.size.height) >= 568.0 ? 49:150)
+
+//*** end

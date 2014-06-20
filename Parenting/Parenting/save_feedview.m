@@ -389,7 +389,7 @@
     {
         way=1;
         
-        if (leftbtn.enabled) {
+        if (!leftbtn.enabled) {
             oz=@"left";
         }
         else
@@ -408,7 +408,7 @@
 //    }
     if (select) {
         if (Oztext.hidden) {
-            if (leftbtn.enabled) {
+            if (!leftbtn.enabled) {
                 oz=@"left";
             }
             else
@@ -425,11 +425,11 @@
         NSArray *array = [durationtext.text componentsSeparatedByString:@":"];
         duration = [[array objectAtIndex:0] intValue]*60*60 + [[array objectAtIndex:1]intValue]*60+[[array objectAtIndex:2]intValue];
         if (curstarttime == nil) {
-            [db updatefeedOzorlr:self.start Month:[currentdate getMonthFromDate:self.start] Week:[currentdate getWeekFromDate:self.start] WeekDay:[currentdate getWeekDayFromDate:self.start] Duration:duration OzorLR:Oztext.text Remark:remarktext.text OldStartTime:self.start];
+            [db updatefeedOzorlr:self.start Month:[currentdate getMonthFromDate:self.start] Week:[currentdate getWeekFromDate:self.start] WeekDay:[currentdate getWeekDayFromDate:self.start] Duration:duration OzorLR:oz Remark:remarktext.text OldStartTime:self.start];
         }
         else
         {
-            [db updatefeedOzorlr:curstarttime Month:[currentdate getMonthFromDate:curstarttime] Week:[currentdate getWeekFromDate:curstarttime] WeekDay:[currentdate getWeekDayFromDate:curstarttime] Duration:duration OzorLR:Oztext.text Remark:remarktext.text OldStartTime:self.start];
+            [db updatefeedOzorlr:curstarttime Month:[currentdate getMonthFromDate:curstarttime] Week:[currentdate getWeekFromDate:curstarttime] WeekDay:[currentdate getWeekDayFromDate:curstarttime] Duration:duration OzorLR:oz Remark:remarktext.text OldStartTime:self.start];
             curstarttime = nil;
         }
 
@@ -467,15 +467,15 @@
 {
     sender.enabled=NO;
     UIButton *another;
-    if (sender.tag==1001) {
+    if (sender.tag==1001)
+    {
         another=(UIButton*)[self viewWithTag:1002];
-  
     }
     else
     {
         another=(UIButton*)[self viewWithTag:1001];
-        
     }
+    
     another.enabled=YES;
 }
 

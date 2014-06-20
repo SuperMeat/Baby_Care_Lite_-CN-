@@ -61,6 +61,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"喂食"];
     
     if (self.weather) {
         if (self.weather.isHidden == YES) {
@@ -163,6 +165,9 @@
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"喂食"];
+
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"addfeednow"]){
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"timerOn"];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"ctl"];
@@ -246,42 +251,42 @@
     [self.view addSubview:weather];
     NSLog(@"weather %@",self.weather);
     
-    self.bleweather = [BLEWeatherView weatherview];
-    self.bleweather.chooseType = QCM_TYPE_FEED;
-    [self.bleweather makeview];
-    self.bleweather.frame=CGRectMake(0, 0+G_YADDONVERSION, 320, 200);
-    [self.view addSubview:self.bleweather];
-    [self.bleweather setHidden:YES];
-    NSLog(@"bleweather %@",self.bleweather);
+//    self.bleweather = [BLEWeatherView weatherview];
+//    self.bleweather.chooseType = QCM_TYPE_FEED;
+//    [self.bleweather makeview];
+//    self.bleweather.frame=CGRectMake(0, 0+G_YADDONVERSION, 320, 200);
+//    [self.view addSubview:self.bleweather];
+//    [self.bleweather setHidden:YES];
+//    NSLog(@"bleweather %@",self.bleweather);
     
 }
 
 -(void)makeView
 {
-        UIButton *environment=[UIButton buttonWithType:UIButtonTypeCustom];
-        [environment setTitle:NSLocalizedString(@"气象站", nil) forState:UIControlStateNormal];
-        [environment setTitleEdgeInsets:UIEdgeInsetsMake(20, 0, 10, 0)];
-        [environment setBackgroundImage:[UIImage imageNamed:@"label_left.png"] forState:UIControlStateNormal];
-        [environment setBackgroundImage:[UIImage imageNamed:@"label_left_focus.png"] forState:UIControlStateDisabled];
-        environment.frame=CGRectMake(0, 190+G_YADDONVERSION, 160, 47);
-        [self.view addSubview:environment];
-        environment.tag=501;
-        [environment addTarget:self action:@selector(environmentOradvise:) forControlEvents:UIControlEventTouchUpInside];
-        [environment setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
-        [environment setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-
-        UIButton *advise=[UIButton buttonWithType:UIButtonTypeCustom];
-        [advise setTitle:NSLocalizedString(@"监测宝", nil)  forState:UIControlStateNormal];
-        [advise setBackgroundImage:[UIImage imageNamed:@"label_right.png"] forState:UIControlStateNormal];
-        [advise setBackgroundImage:[UIImage imageNamed:@"label_right_focus.png"] forState:UIControlStateDisabled];
-        advise.frame=CGRectMake(160, 190+G_YADDONVERSION, 160, 47);
-        [advise setTitleEdgeInsets:UIEdgeInsetsMake(20, 0, 10, 0)];
-        [self.view addSubview:advise];
-        advise.tag=502;
-        [advise addTarget:self action:@selector(environmentOradvise:) forControlEvents:UIControlEventTouchUpInside];
-        [self environmentOradvise:advise];
-        [advise setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
-        [advise setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//        UIButton *environment=[UIButton buttonWithType:UIButtonTypeCustom];
+//        [environment setTitle:NSLocalizedString(@"气象站", nil) forState:UIControlStateNormal];
+//        [environment setTitleEdgeInsets:UIEdgeInsetsMake(20, 0, 10, 0)];
+//        [environment setBackgroundImage:[UIImage imageNamed:@"label_left.png"] forState:UIControlStateNormal];
+//        [environment setBackgroundImage:[UIImage imageNamed:@"label_left_focus.png"] forState:UIControlStateDisabled];
+//        environment.frame=CGRectMake(0, 190+G_YADDONVERSION, 160, 47);
+//        [self.view addSubview:environment];
+//        environment.tag=501;
+//        [environment addTarget:self action:@selector(environmentOradvise:) forControlEvents:UIControlEventTouchUpInside];
+//        [environment setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
+//        [environment setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//
+//        UIButton *advise=[UIButton buttonWithType:UIButtonTypeCustom];
+//        [advise setTitle:NSLocalizedString(@"监测宝", nil)  forState:UIControlStateNormal];
+//        [advise setBackgroundImage:[UIImage imageNamed:@"label_right.png"] forState:UIControlStateNormal];
+//        [advise setBackgroundImage:[UIImage imageNamed:@"label_right_focus.png"] forState:UIControlStateDisabled];
+//        advise.frame=CGRectMake(160, 190+G_YADDONVERSION, 160, 47);
+//        [advise setTitleEdgeInsets:UIEdgeInsetsMake(20, 0, 10, 0)];
+//        [self.view addSubview:advise];
+//        advise.tag=502;
+//        [advise addTarget:self action:@selector(environmentOradvise:) forControlEvents:UIControlEventTouchUpInside];
+//        [self environmentOradvise:advise];
+//        [advise setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
+//        [advise setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     
     if (CUSTOMER_COUNTRY==1) {
         pmintro = [[UILabel alloc]initWithFrame:CGRectMake(208-198, 187-5-5, 100, 20)];
@@ -478,23 +483,25 @@
 
 -(void)startOrPause:(UIButton*)sender
 {
-    if (sender==startButton) {
+    if (sender==startButton)
+    {
         self.breast=nil;
-        if (!sender.selected) {
+        if (!sender.selected)
+        {
             
             if ([[NSUserDefaults standardUserDefaults] objectForKey:@"timerOn"]) {
                 UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"TimerTipsTile", nil) message:NSLocalizedString(@"TimerMessage", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Dismiss", nil) otherButtonTitles:nil, nil];
-                
                 [alert show];
-                
                 return;
             }
+            
             labletip.text = NSLocalizedString(@"Counting", nil);           startButton.selected=YES;
             self.breast=@"";
             
             [[NSUserDefaults standardUserDefaults] setObject:[currentdate date] forKey:@"timerOn"];
             [[NSUserDefaults standardUserDefaults] setObject:@"feed" forKey:@"ctl"];
-            timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerGo) userInfo:nil repeats:YES];    }
+            timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerGo) userInfo:nil repeats:YES];
+        }
         else{
             
             [self makeSave];
@@ -505,7 +512,9 @@
     }
     else if(sender==startButtonleft)
     {
-        if (!sender.selected) {
+        self.breast=@"left";
+        if (!sender.selected)
+        {
             
             if ([[NSUserDefaults standardUserDefaults] objectForKey:@"timerOn"]) {
                 UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"TimerTipsTile", nil) message:NSLocalizedString(@"TimerMessage", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Dismiss", nil) otherButtonTitles:nil, nil];
@@ -515,12 +524,13 @@
                 return;
             }
             labletip.text = NSLocalizedString(@"Counting", nil);
-            self.breast=@"left";
+            
             sender.selected=YES;
             [[NSUserDefaults standardUserDefaults] setObject:[currentdate date] forKey:@"timerOn"];
             [[NSUserDefaults standardUserDefaults] setObject:@"feed" forKey:@"ctl"];
             [[NSUserDefaults standardUserDefaults] setObject:@"left" forKey:@"breast"];
-            timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerGo) userInfo:nil repeats:YES];    }
+            timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerGo) userInfo:nil repeats:YES];
+        }
         else{
             [self makeSave];
             
@@ -529,7 +539,9 @@
     }
     else
     {
-        if (!sender.selected) {
+        self.breast=@"right";
+        if (!sender.selected)
+        {
             
             if ([[NSUserDefaults standardUserDefaults] objectForKey:@"timerOn"]) {
                 UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"TimerTipsTile", nil) message:NSLocalizedString(@"TimerMessage", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Dismiss", nil) otherButtonTitles:nil, nil];
@@ -539,17 +551,17 @@
                 return;
             }
             labletip.text = NSLocalizedString(@"Counting", nil);
-            self.breast=@"right";
+            
             sender.selected=YES;
             [[NSUserDefaults standardUserDefaults] setObject:[currentdate date] forKey:@"timerOn"];
             [[NSUserDefaults standardUserDefaults] setObject:@"feed" forKey:@"ctl"];
             [[NSUserDefaults standardUserDefaults] setObject:@"right" forKey:@"breast"];
-            timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerGo) userInfo:nil repeats:YES];    }
-        else{
-            [self makeSave];
-            
+            timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerGo) userInfo:nil repeats:YES];
         }
-        
+        else
+        {
+            [self makeSave];
+        }
     }
     addRecordBtn.enabled = NO;
 }

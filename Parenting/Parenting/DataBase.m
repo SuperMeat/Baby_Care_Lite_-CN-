@@ -735,7 +735,13 @@
             }
             else
             {
-                curweek = week;
+                if (max == 7) {
+                    curweek = week-scrollpage;
+                }
+                else
+                {
+                    curweek = week;
+                }
             }
 
             NSString *sql = [NSString stringWithFormat:@"select count(*) from %@ where week = %i and weekday = %i", table, curweek, i];
@@ -1292,6 +1298,7 @@
     res=[db open];
     if (!res) {
         NSLog(@"数据库打开失败");
+        [db close];
         return nil;
     }
     
@@ -1339,6 +1346,7 @@
     }
     NSLog(@"%@",array);
 
+    [db close];
     return array;
 }
 

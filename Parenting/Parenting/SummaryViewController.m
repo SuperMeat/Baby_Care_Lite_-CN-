@@ -75,6 +75,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [MobClick beginLogPageView:@"总结"];
 #define IOS7_OR_LATER   ( [[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending )
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
@@ -111,7 +112,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    
+    [MobClick endLogPageView:@"总结"];
     [menu setValue:[NSNumber numberWithBool:NO] forKey:@"expanding"];
     
 }
@@ -122,14 +123,16 @@
     
     [self TimeSelected:(UIButton*)[self.view viewWithTag:201]];
     if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"MARK"] isEqualToString:@"1"] ||![[NSUserDefaults standardUserDefaults] objectForKey:@"MARK"]) {
-        
-        [self MenuSelectIndex:0];
-        [backbutton setHidden:YES];
-        
+        [self MenuSelectIndex:1];
+        if (backbutton) {
+            [backbutton setHidden:YES];
+        }
     }
     else
     {
-        [backbutton setHidden:NO];
+        if (backbutton != nil ) {
+            [backbutton setHidden:NO];
+        }
     }
     
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"bg_title.png"]  forBarMetrics:UIBarMetricsDefault];
@@ -790,11 +793,13 @@
             break;
     }
     
+    selectIndex = idx;
+    plotScrollView.contentSize = CGSizeMake([DataBase scrollWidthWithTag:plotTag andTableName:[self tableName:selectIndex]] * 320, 0);
+
     for (MyCorePlot *plot_1 in plotArray) {
         [plot_1 removeFromSuperview];
     }
     [plotArray removeAllObjects];
-    selectIndex = idx;
     [self scrollUpadateData];
 }
 
@@ -856,10 +861,10 @@
         //return AdviseArray.count;
         switch (chooseAdvise) {
             case ADVISE_TYPE_ALL:
-                return 34;
+                return 64;
                 break;
             case ADVISE_TYPE_FEED:
-                return 5;
+                return 35;
                 break;
             case ADVISE_TYPE_SLEEP:
                 return 5;
@@ -919,6 +924,7 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"%d,row:%d", indexPath.section, indexPath.row);
     if (tableView == List)
     {
         CustumCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
@@ -926,13 +932,16 @@
             cell = [[[NSBundle mainBundle] loadNibNamed:@"CustumCell" owner:self options:nil] lastObject];
             cell.selectionStyle=UITableViewCellSelectionStyleNone;
         }
+
+        if (indexPath.row >= [ListArray count]) {
+            return cell;
+        }
+
         cell.minutesLable.textColor=cell.timeLable.textColor;
         SummaryItem *item=[ListArray objectAtIndex:indexPath.row];
         cell.timeLable.text = [currentdate dateForSummaryList:item.starttime];
         cell.MarkLable.text = NSLocalizedString(item.type, nil);
         cell.minutesLable.text = item.duration;
-        
-        
         
         if ([item.duration isEqualToString:NSLocalizedString(@"Wet", nil)]) {
             cell.minutesLable.textColor=[UIColor colorWithRed:0x82/255.0 green:0xC6/255.0 blue:0xE1/255.0 alpha:0xFF/255.0];
@@ -971,13 +980,13 @@
        // NSLog(@"%d",indexPath.section);
         switch (chooseAdvise) {
             case ADVISE_TYPE_ALL:
-                if (indexPath.section < 5) {
-                    imageName = [NSString stringWithFormat:@"Feed_%d.jpg", indexPath.section + 1];
+                if (indexPath.section < 35) {
+                    imageName = [NSString stringWithFormat:@"Feed_%d.jpg", indexPath.section % 5  + 1];
                     title =[NSString stringWithFormat:@"Feed_T%d", indexPath.section + 1];
                 }
                 else if (indexPath.section < 10)
                 {
-                    imageName = [NSString stringWithFormat:@"Sleep_%d.jpg", indexPath.section % 5 + 1];
+                    imageName = [NSString stringWithFormat:@"Sleep_%d.jpg", indexPath.section % 35 + 1];
                     title =[NSString stringWithFormat:@"Sleep_T%d", indexPath.section % 5+ 1];
                 }
                 else if (indexPath.section < 16)
@@ -999,8 +1008,8 @@
 
                 break;
             case ADVISE_TYPE_FEED:
-                if (indexPath.section < 5) {
-                    imageName = [NSString stringWithFormat:@"Feed_%d.jpg", indexPath.section + 1];
+                if (indexPath.section < 35) {
+                    imageName = [NSString stringWithFormat:@"Feed_%d.jpg", indexPath.section % 5+ 1];
                     title =[NSString stringWithFormat:@"Feed_T%d", indexPath.section + 1];
                 }
                 break;
@@ -1075,12 +1084,12 @@
         NSString *url, *key;
         switch (chooseAdvise) {
             case ADVISE_TYPE_ALL:
-                if (indexPath.section < 5) {
+                if (indexPath.section < 35) {
                     key = [NSString stringWithFormat:@"Feed_%d", indexPath.section + 1];
                 }
                 else if (indexPath.section < 10)
                 {
-                    key = [NSString stringWithFormat:@"Sleep_%d", indexPath.section %5+ 1];
+                    key = [NSString stringWithFormat:@"Sleep_%d", indexPath.section %25+ 1];
                 }
                 else if (indexPath.section < 16)
                 {
@@ -1097,7 +1106,7 @@
 
                 break;
             case ADVISE_TYPE_FEED:
-                if (indexPath.section < 5) {
+                if (indexPath.section < 35) {
                     key = [NSString stringWithFormat:@"Feed_%d", indexPath.section + 1];
                 }
                 break;
@@ -1127,7 +1136,6 @@
         
         url = NSLocalizedString(key, nil);
         
-//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
         TipsWebViewController *tips = [[TipsWebViewController alloc] init];
         [tips setTipsUrl:url];
         [self.navigationController pushViewController:tips animated:YES];

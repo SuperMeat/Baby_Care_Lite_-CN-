@@ -53,6 +53,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [MobClick beginLogPageView:@"洗澡"];
+    
     if (self.weather) {
         self.weather.chooseType = QCM_TYPE_BATH;
         [self.weather refreshweather];
@@ -110,6 +112,8 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
+    [MobClick endLogPageView:@"洗澡"];
+    
     [saveView removeFromSuperview];
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"addbathnow"]){
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"timerOn"];

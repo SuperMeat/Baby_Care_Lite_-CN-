@@ -109,9 +109,35 @@ void UncaughtExceptionHandler(NSException *exception) {
     ASIHTTPController *aSIHTTPController = [[ASIHTTPController alloc] init];
     [aSIHTTPController getSyncCount];
 //    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"BLEPERIPHERAL_ACTIVITY" ];
-    bleweatherController = [[BLEWeatherController alloc]init];
+    //bleweatherController = [[BLEWeatherController alloc]init];
+    [self uploadUserInfo];
     
+    [MTA startWithAppkey:MTA_KEY];
     return YES;
+}
+
+-(void)uploadUserInfo
+{
+    NSString *age = [[NSUserDefaults standardUserDefaults] objectForKey:@"birthday"];
+    NSString *name = [[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
+    NSString *weight = [[NSUserDefaults standardUserDefaults] objectForKey:@"weight"];
+    NSString *height = [[NSUserDefaults standardUserDefaults] objectForKey:@"height"];
+    NSString *head = [[NSUserDefaults standardUserDefaults] objectForKey:@"head"];
+    NSString *gender = [[NSUserDefaults standardUserDefaults] objectForKey:@"gender"];
+    NSString *mycity = [[NSUserDefaults standardUserDefaults] objectForKey:@"mylocation"];
+    
+    BOOL b = [[NSUserDefaults standardUserDefaults] boolForKey:@"uploadinfo"];
+    if (name != nil && mycity != nil && weight != nil && head != nil &&
+        height != nil && gender != nil && b == FALSE)
+    {
+        ASIHTTPController *aSIHTTPController = [[ASIHTTPController alloc] init];
+        NSString *uploaderror = [NSString stringWithFormat:@"%@{city,%@,name,%@,age,%@,w,%@,h,%@,h,%@,g,%@}]",
+                                 [OpenFunction getopenudid],mycity,name,age,weight,height,head,gender];
+        [aSIHTTPController postError:uploaderror];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"uploadinfo"];
+
+    }
+   
 }
 
 -(void)tap
@@ -121,7 +147,6 @@ void UncaughtExceptionHandler(NSException *exception) {
     //adviseViewController  = [[AdviseMasterViewController alloc] init];
     settingViewController = [[SettingViewController alloc] init];
     icViewController      = [[InformationCenterViewController alloc] init];
-    
     
     homeNavigationViewController    = [[UINavigationController alloc] initWithRootViewController:homeViewController];
     summaryNavigationViewController = [[UINavigationController alloc] initWithRootViewController:summaryViewController];

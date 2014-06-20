@@ -52,6 +52,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"换尿布"];
 
   //  [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"weather"];
     if (self.weather) {
@@ -74,6 +76,9 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"换尿布"];
+    
     [saveView removeFromSuperview];
 }
 

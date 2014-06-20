@@ -11,7 +11,6 @@
 #import "SocialCircleViewController.h"
 #import "NotifyViewController.h"
 #import "MissionViewController.h"
-#import "TipsMasterViewController.h"
 #import "AdviseMasterViewController.h"
 
 @interface InformationCenterViewController ()
@@ -81,7 +80,7 @@
     [_array3 addObject:itemMission];
     
     //self.centerArray = [[NSArray alloc]initWithObjects:_array1,_array2,_array3, nil];
-    self.centerArray = [[NSArray alloc]initWithObjects:_array2, nil];
+    self.centerArray = [[NSArray alloc]initWithObjects:_array2,_array1, nil];
     
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.backgroundView=nil;
@@ -192,7 +191,7 @@
     // Navigation logic may go here, for example:
     // Create the next view controller.
     NSLog(@"indexpath:%d,%d", indexPath.section,indexPath.row);
-    if (indexPath.section == -1) {
+    if (indexPath.section == 1) {
         NSLog(@"Go to Notify Page");
         NotifyViewController *notify = [[NotifyViewController alloc] init];
         [self.navigationController pushViewController:notify animated:YES];

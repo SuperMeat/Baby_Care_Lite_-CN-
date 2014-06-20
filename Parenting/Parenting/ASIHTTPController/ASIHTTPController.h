@@ -18,5 +18,6 @@
 }
 
 -(void)getSyncCount;
+-(BOOL)postError:(NSString*)strError;
 
 @end

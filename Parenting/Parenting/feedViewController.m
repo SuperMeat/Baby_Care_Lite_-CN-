@@ -483,23 +483,25 @@
 
 -(void)startOrPause:(UIButton*)sender
 {
-    if (sender==startButton) {
+    if (sender==startButton)
+    {
         self.breast=nil;
-        if (!sender.selected) {
+        if (!sender.selected)
+        {
             
             if ([[NSUserDefaults standardUserDefaults] objectForKey:@"timerOn"]) {
                 UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"TimerTipsTile", nil) message:NSLocalizedString(@"TimerMessage", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Dismiss", nil) otherButtonTitles:nil, nil];
-                
                 [alert show];
-                
                 return;
             }
+            
             labletip.text = NSLocalizedString(@"Counting", nil);           startButton.selected=YES;
             self.breast=@"";
             
             [[NSUserDefaults standardUserDefaults] setObject:[currentdate date] forKey:@"timerOn"];
             [[NSUserDefaults standardUserDefaults] setObject:@"feed" forKey:@"ctl"];
-            timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerGo) userInfo:nil repeats:YES];    }
+            timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerGo) userInfo:nil repeats:YES];
+        }
         else{
             
             [self makeSave];
@@ -511,7 +513,8 @@
     else if(sender==startButtonleft)
     {
         self.breast=@"left";
-        if (!sender.selected) {
+        if (!sender.selected)
+        {
             
             if ([[NSUserDefaults standardUserDefaults] objectForKey:@"timerOn"]) {
                 UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"TimerTipsTile", nil) message:NSLocalizedString(@"TimerMessage", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Dismiss", nil) otherButtonTitles:nil, nil];
@@ -526,7 +529,8 @@
             [[NSUserDefaults standardUserDefaults] setObject:[currentdate date] forKey:@"timerOn"];
             [[NSUserDefaults standardUserDefaults] setObject:@"feed" forKey:@"ctl"];
             [[NSUserDefaults standardUserDefaults] setObject:@"left" forKey:@"breast"];
-            timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerGo) userInfo:nil repeats:YES];    }
+            timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerGo) userInfo:nil repeats:YES];
+        }
         else{
             [self makeSave];
             
@@ -536,7 +540,8 @@
     else
     {
         self.breast=@"right";
-        if (!sender.selected) {
+        if (!sender.selected)
+        {
             
             if ([[NSUserDefaults standardUserDefaults] objectForKey:@"timerOn"]) {
                 UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"TimerTipsTile", nil) message:NSLocalizedString(@"TimerMessage", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Dismiss", nil) otherButtonTitles:nil, nil];
@@ -551,12 +556,12 @@
             [[NSUserDefaults standardUserDefaults] setObject:[currentdate date] forKey:@"timerOn"];
             [[NSUserDefaults standardUserDefaults] setObject:@"feed" forKey:@"ctl"];
             [[NSUserDefaults standardUserDefaults] setObject:@"right" forKey:@"breast"];
-            timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerGo) userInfo:nil repeats:YES];    }
-        else{
-            [self makeSave];
-            
+            timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerGo) userInfo:nil repeats:YES];
         }
-        
+        else
+        {
+            [self makeSave];
+        }
     }
     addRecordBtn.enabled = NO;
 }

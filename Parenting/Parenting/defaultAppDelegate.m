@@ -111,6 +111,8 @@ void UncaughtExceptionHandler(NSException *exception) {
 //    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"BLEPERIPHERAL_ACTIVITY" ];
     //bleweatherController = [[BLEWeatherController alloc]init];
     [self uploadUserInfo];
+    
+    [MTA startWithAppkey:MTA_KEY];
     return YES;
 }
 

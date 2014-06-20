@@ -93,7 +93,7 @@
 {
     // Return the number of sections.
     //return [dataArray count];
-    return 34;
+    return 64;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -156,30 +156,30 @@
     
     NSString *imageName,*title;
     //NSLog(@"%d",indexPath.section);
-    if (indexPath.section < 5) {
-        imageName = [NSString stringWithFormat:@"Feed_%d.jpg", indexPath.section + 1];
+    if (indexPath.section < 35) {
+        imageName = [NSString stringWithFormat:@"Feed_%d.jpg", indexPath.section % 5 + 1];
         title =[NSString stringWithFormat:@"Feed_T%d", indexPath.section + 1];
     }
-    else if (indexPath.section < 10)
+    else if (indexPath.section < 40)
     {
-        imageName = [NSString stringWithFormat:@"Sleep_%d.jpg", indexPath.section % 5 + 1];
-         title =[NSString stringWithFormat:@"Sleep_T%d", indexPath.section % 5+ 1];
+        imageName = [NSString stringWithFormat:@"Sleep_%d.jpg", indexPath.section % 35 + 1];
+         title =[NSString stringWithFormat:@"Sleep_T%d", indexPath.section % 35+ 1];
     }
-    else if (indexPath.section < 16)
+    else if (indexPath.section < 46)
     {
-        imageName = [NSString stringWithFormat:@"Bath_%d.jpg", indexPath.section % 10 + 1];
-         title =[NSString stringWithFormat:@"Bath_T%d", indexPath.section % 10 + 1];
+        imageName = [NSString stringWithFormat:@"Bath_%d.jpg", indexPath.section % 40 + 1];
+         title =[NSString stringWithFormat:@"Bath_T%d", indexPath.section % 40 + 1];
     }
-    else if (indexPath.section < 21)
+    else if (indexPath.section < 51)
     {
-        imageName = [NSString stringWithFormat:@"Diaper_%d.jpg", indexPath.section % 16 + 1];
-        title = [NSString stringWithFormat:@"Diaper_T%d", indexPath.section % 16 + 1];
+        imageName = [NSString stringWithFormat:@"Diaper_%d.jpg", indexPath.section % 46 + 1];
+        title = [NSString stringWithFormat:@"Diaper_T%d", indexPath.section % 46 + 1];
 
     }
     else
     {
-        imageName = [NSString stringWithFormat:@"Play_%d.jpg", indexPath.section % 21 + 1];
-        title = [NSString stringWithFormat:@"Play_T%d", indexPath.section % 21 + 1];
+        imageName = [NSString stringWithFormat:@"Play_%d.jpg", indexPath.section % 51 + 1];
+        title = [NSString stringWithFormat:@"Play_T%d", indexPath.section % 51 + 1];
     }
     title = NSLocalizedString(title, nil);
     [tipsTitle setText:title];
@@ -283,24 +283,24 @@
     }
     
     NSString *url, *key;
-    if (indexPath.section < 5) {
+    if (indexPath.section < 35) {
         key = [NSString stringWithFormat:@"Feed_%d", indexPath.section + 1];
     }
-    else if (indexPath.section < 10)
+    else if (indexPath.section < 40)
     {
-        key = [NSString stringWithFormat:@"Sleep_%d", indexPath.section %5+ 1];
+        key = [NSString stringWithFormat:@"Sleep_%d", indexPath.section %35+ 1];
     }
-    else if (indexPath.section < 16)
+    else if (indexPath.section < 46)
     {
-        key = [NSString stringWithFormat:@"Bath_%d", indexPath.section %10+ 1];
+        key = [NSString stringWithFormat:@"Bath_%d", indexPath.section %40+ 1];
     }
-    else if (indexPath.section < 21)
+    else if (indexPath.section < 51)
     {
-        key = [NSString stringWithFormat:@"Diaper_%d", indexPath.section%16 + 1];
+        key = [NSString stringWithFormat:@"Diaper_%d", indexPath.section%46 + 1];
     }
     else
     {
-        key = [NSString stringWithFormat:@"Play_%d", indexPath.section %21+ 1];
+        key = [NSString stringWithFormat:@"Play_%d", indexPath.section %51+ 1];
     }
     
     url = NSLocalizedString(key, nil);

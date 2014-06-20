@@ -11,7 +11,6 @@
 #import "SocialCircleViewController.h"
 #import "NotifyViewController.h"
 #import "MissionViewController.h"
-#import "TipsMasterViewController.h"
 #import "AdviseMasterViewController.h"
 
 @interface InformationCenterViewController ()
